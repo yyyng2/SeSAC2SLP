@@ -35,6 +35,13 @@ class OnboardingViewController: BaseViewController {
         configureScrollView()
 
         initPageViewController()
+        UIFont.familyNames.sorted().forEach { familyName in
+            print("*** \(familyName) ***")
+            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+                print("\(fontName)")
+            }
+            print("---------------------")
+        }
     }
     
     override func configure() {

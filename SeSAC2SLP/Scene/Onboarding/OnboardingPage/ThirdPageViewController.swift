@@ -12,6 +12,7 @@ class ThirdPageViewController: BaseViewController {
        let label = UILabel()
         label.textAlignment = .center
         label.text = "SeSAC Study"
+        label.font = UIFont(name: "NotoSansKR-Medium", size: 24.0)
         return label
     }()
     

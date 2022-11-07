@@ -23,6 +23,9 @@
 		1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB1029197D9D00BCC159 /* TabBarController.swift */; };
 		1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB122919838000BCC159 /* OnboardingViewController.swift */; };
 		1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB1529198B2400BCC159 /* OnboardingView.swift */; };
+		1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB182919BAC000BCC159 /* UILabel+Extension.swift */; };
+		1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */; };
+		1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		1870FB1029197D9D00BCC159 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1870FB122919838000BCC159 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1870FB1529198B2400BCC159 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1870FB182919BAC000BCC159 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 		1870FAD22918B5A000BCC159 /* SeSAC2SLP */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB172919BAB200BCC159 /* Extension */,
 				1870FAD32918B5A000BCC159 /* AppDelegate.swift */,
 				1870FAD52918B5A000BCC159 /* SceneDelegate.swift */,
 				1870FAEA2918F7EB00BCC159 /* Constant */,
@@ -102,6 +109,7 @@
 		1870FAEA2918F7EB00BCC159 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB1A2919BCAF00BCC159 /* Font */,
 				1870FB042919269A00BCC159 /* Base */,
 				1870FAF02918FCB200BCC159 /* UserDefaultsHelper.swift */,
 				1870FAEB2918F7FF00BCC159 /* Color */,
@@ -166,6 +174,23 @@
 				1870FB1029197D9D00BCC159 /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		1870FB172919BAB200BCC159 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB182919BAC000BCC159 /* UILabel+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		1870FB1A2919BCAF00BCC159 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */,
+				1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +259,8 @@
 			files = (
 				1870FAE82918B5D500BCC159 /* .gitignore in Resources */,
 				1870FAE02918B5A300BCC159 /* LaunchScreen.storyboard in Resources */,
+				1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */,
+				1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */,
 				1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +283,7 @@
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
+				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,7 @@ class SecondPageViewController: BaseViewController {
        let label = UILabel()
         label.numberOfLines = 2
         label.textAlignment = .center
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 24.0)
         label.text = """
                     스터디를 원하는 친구를
                     찾을 수 있어요
@@ -32,6 +33,8 @@ class SecondPageViewController: BaseViewController {
         [label, imageView].forEach {
             view.addSubview($0)
         }
+        let targetString = "스터디를 원하는 친구"
+        label.asFontColor(targetString: targetString, font: UIFont(name: "NotoSansKR-Medium", size: 24.0), color: Constants.brandColor.green)
     }
     
     override func setConstraints() {
