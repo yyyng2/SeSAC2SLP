@@ -40,13 +40,13 @@ class SecondPageViewController: BaseViewController {
     override func setConstraints() {
         label.snp.makeConstraints { make in
             make.centerX.width.equalTo(view)
-            make.centerY.equalTo(view).multipliedBy(0.7)
+            make.centerY.equalTo(view).multipliedBy(0.6)
             make.height.equalTo(view).multipliedBy(0.4)
         }
         imageView.snp.makeConstraints { make in
             make.centerX.width.equalTo(view)
-            make.centerY.equalTo(view).multipliedBy(1.2)
-            make.height.equalTo(view).multipliedBy(0.4)
+            make.centerY.equalTo(view).multipliedBy(1.3)
+            make.height.equalTo(view).multipliedBy(0.5)
         }
     }
 }

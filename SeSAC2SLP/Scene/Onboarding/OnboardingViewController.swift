@@ -35,13 +35,13 @@ class OnboardingViewController: BaseViewController {
         configureScrollView()
 
         initPageViewController()
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
+//        UIFont.familyNames.sorted().forEach { familyName in
+//            print("*** \(familyName) ***")
+//            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+//                print("\(fontName)")
+//            }
+//            print("---------------------")
+//        }
     }
     
     override func configure() {
@@ -79,7 +79,7 @@ class OnboardingViewController: BaseViewController {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
             
-            sceneDelegate?.window?.rootViewController = TabBarController()
+            sceneDelegate?.window?.rootViewController = AuthenticationViewController()
             sceneDelegate?.window?.makeKeyAndVisible()
         }
     

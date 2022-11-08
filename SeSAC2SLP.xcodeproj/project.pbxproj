@@ -26,6 +26,18 @@
 		1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB182919BAC000BCC159 /* UILabel+Extension.swift */; };
 		1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */; };
 		1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */; };
+		1870FB24291A2F1D00BCC159 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */; };
+		1870FB27291A33C300BCC159 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB26291A33C300BCC159 /* FirebaseAuth */; };
+		1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */; };
+		1870FB2E291A505E00BCC159 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB2D291A505E00BCC159 /* Toast */; };
+		1870FB31291A518000BCC159 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB30291A518000BCC159 /* RxCocoa */; };
+		1870FB33291A518000BCC159 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB32291A518000BCC159 /* RxSwift */; };
+		1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB36291A52CC00BCC159 /* CustomSignButton.swift */; };
+		1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB38291A53BE00BCC159 /* CustomSignLabel.swift */; };
+		1870FB3C291A54DD00BCC159 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB3B291A54DD00BCC159 /* AuthenticationViewController.swift */; };
+		1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB3E291A557000BCC159 /* CustomSignTextField.swift */; };
+		1870FB41291A5B8900BCC159 /* AuthenicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */; };
+		1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB47291AFACF00BCC159 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +61,15 @@
 		1870FB182919BAC000BCC159 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1870FB28291A492700BCC159 /* SeSAC2SLPDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC2SLPDebug.entitlements; sourceTree = "<group>"; };
+		1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		1870FB36291A52CC00BCC159 /* CustomSignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignButton.swift; sourceTree = "<group>"; };
+		1870FB38291A53BE00BCC159 /* CustomSignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignLabel.swift; sourceTree = "<group>"; };
+		1870FB3B291A54DD00BCC159 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		1870FB3E291A557000BCC159 /* CustomSignTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignTextField.swift; sourceTree = "<group>"; };
+		1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenicationViewModel.swift; sourceTree = "<group>"; };
+		1870FB47291AFACF00BCC159 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +77,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870FB2E291A505E00BCC159 /* Toast in Frameworks */,
 				1870FB0B291926F900BCC159 /* SnapKit in Frameworks */,
+				1870FB33291A518000BCC159 /* RxSwift in Frameworks */,
+				1870FB31291A518000BCC159 /* RxCocoa in Frameworks */,
+				1870FB27291A33C300BCC159 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +108,7 @@
 		1870FAD22918B5A000BCC159 /* SeSAC2SLP */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB28291A492700BCC159 /* SeSAC2SLPDebug.entitlements */,
 				1870FB172919BAB200BCC159 /* Extension */,
 				1870FAD32918B5A000BCC159 /* AppDelegate.swift */,
 				1870FAD52918B5A000BCC159 /* SceneDelegate.swift */,
@@ -91,6 +117,7 @@
 				1870FADC2918B5A300BCC159 /* Assets.xcassets */,
 				1870FADE2918B5A300BCC159 /* LaunchScreen.storyboard */,
 				1870FAE12918B5A300BCC159 /* Info.plist */,
+				1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */,
 			);
 			path = SeSAC2SLP;
 			sourceTree = "<group>";
@@ -109,6 +136,9 @@
 		1870FAEA2918F7EB00BCC159 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB3D291A555C00BCC159 /* UITextField */,
+				1870FB35291A52A700BCC159 /* UIButton */,
+				1870FB34291A52A300BCC159 /* UILabel */,
 				1870FB1A2919BCAF00BCC159 /* Font */,
 				1870FB042919269A00BCC159 /* Base */,
 				1870FAF02918FCB200BCC159 /* UserDefaultsHelper.swift */,
@@ -138,6 +168,7 @@
 		1870FAF42918FFF900BCC159 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB29291A4D0000BCC159 /* Authentication */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -180,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				1870FB182919BAC000BCC159 /* UILabel+Extension.swift */,
+				1870FB47291AFACF00BCC159 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +223,40 @@
 				1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		1870FB29291A4D0000BCC159 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */,
+				1870FB3B291A54DD00BCC159 /* AuthenticationViewController.swift */,
+				1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1870FB34291A52A300BCC159 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB38291A53BE00BCC159 /* CustomSignLabel.swift */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		1870FB35291A52A700BCC159 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB36291A52CC00BCC159 /* CustomSignButton.swift */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		1870FB3D291A555C00BCC159 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB3E291A557000BCC159 /* CustomSignTextField.swift */,
+			);
+			path = UITextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +277,10 @@
 			name = SeSAC2SLP;
 			packageProductDependencies = (
 				1870FB0A291926F900BCC159 /* SnapKit */,
+				1870FB26291A33C300BCC159 /* FirebaseAuth */,
+				1870FB2D291A505E00BCC159 /* Toast */,
+				1870FB30291A518000BCC159 /* RxCocoa */,
+				1870FB32291A518000BCC159 /* RxSwift */,
 			);
 			productName = SeSAC2SLP;
 			productReference = 1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */;
@@ -242,6 +312,9 @@
 			mainGroup = 1870FAC72918B5A000BCC159;
 			packageReferences = (
 				1870FB09291926F900BCC159 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1870FB2C291A505E00BCC159 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 1870FAD12918B5A000BCC159 /* Products */;
 			projectDirPath = "";
@@ -262,6 +335,7 @@
 				1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */,
 				1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */,
 				1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */,
+				1870FB24291A2F1D00BCC159 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,18 +346,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870FB41291A5B8900BCC159 /* AuthenicationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
+				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
+				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
+				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
+				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
+				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
+				1870FB3C291A54DD00BCC159 /* AuthenticationViewController.swift in Sources */,
 				1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SeSAC2SLP/SeSAC2SLPDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UT362X937Q;
@@ -430,6 +512,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +544,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -510,6 +594,30 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		1870FB2C291A505E00BCC159 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -517,6 +625,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1870FB09291926F900BCC159 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		1870FB26291A33C300BCC159 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		1870FB2D291A505E00BCC159 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB2C291A505E00BCC159 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		1870FB30291A518000BCC159 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		1870FB32291A518000BCC159 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
