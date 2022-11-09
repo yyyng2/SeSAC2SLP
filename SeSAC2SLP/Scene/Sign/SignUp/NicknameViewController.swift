@@ -13,4 +13,8 @@ final class NicknameCheckViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
     }
+    
+    override func bind() {
+        
+    }
 }

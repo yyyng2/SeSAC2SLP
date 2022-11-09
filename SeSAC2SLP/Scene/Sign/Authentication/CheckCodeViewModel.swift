@@ -7,6 +7,7 @@
 
 import Foundation
 
+import FirebaseAuth
 import RxSwift
 import RxCocoa
 
@@ -25,6 +26,7 @@ enum CheckCodeStatus {
 final class CheckCodeViewModel {
     
     let number = PublishSubject<String>()
+    var codeNum = PublishSubject<String>()
     
     struct Input {
         let numText: ControlProperty<String?>
@@ -70,8 +72,8 @@ final class CheckCodeViewModel {
         return result.evaluate(with: onlyNum)
     }
 
-    func api() {
-        
+    func checkSign(completionHandler: @escaping (Bool) -> Void) {
+        //가입 조회후 없으면 닉네임 뷰로
     }
     
 }

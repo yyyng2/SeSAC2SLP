@@ -71,7 +71,7 @@ final class AuthenticationViewController: BaseViewController {
                 switch result {
                 case true:
                     User.phoneNumber = text.deleteHyphenToSave
-                    self.viewModel.sendCode()
+                    AuthenticationManager().sendCode(completionHandler: <#(Bool) -> Void#>)
                     let vc = CheckCodeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                 case false:

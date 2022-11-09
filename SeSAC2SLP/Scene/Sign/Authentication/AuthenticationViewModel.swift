@@ -1,5 +1,5 @@
 //
-//  AuthenicationViewModel.swift
+//  AuthenticationViewModel.swift
 //  SeSAC2SLP
 //
 //  Created by Y on 2022/11/08.
@@ -7,7 +7,6 @@
 
 import Foundation
 
-import FirebaseAuth
 import RxSwift
 import RxCocoa
 
@@ -103,18 +102,6 @@ final class AuthenticationViewModel {
      
     }
 
-    func sendCode() {
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(User.phoneNumber, uiDelegate: nil) { verificationID, error in
-              if let error = error {
-                // self.showMessagePrompt(error.localizedDescription)
-                  print("\(error.localizedDescription)")
-                return
-              }
-              // Sign in using the verificationID and the code sent to the user
-              // ...
-                print("success")
-          }
-    }
+    
     
 }

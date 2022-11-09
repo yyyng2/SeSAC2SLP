@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAuth
+
 final class OnboardingViewController: BaseViewController {
     
     let mainView = OnboardingView()
@@ -32,7 +34,6 @@ final class OnboardingViewController: BaseViewController {
         super.viewDidLoad()
         configure()
         configurePage()
-        configureScrollView()
 
         initPageViewController()
 //        UIFont.familyNames.sorted().forEach { familyName in
@@ -51,10 +52,6 @@ final class OnboardingViewController: BaseViewController {
     
     func configurePage() {
         mainView.pageControl.numberOfPages = pages.count
-    }
-    
-    func configureScrollView() {
-     
     }
     
     func initPageViewController() {
@@ -79,9 +76,13 @@ final class OnboardingViewController: BaseViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
-        let rootViewController = AuthenticationViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        sceneDelegate?.window?.rootViewController = navigationController
+        if Auth.auth().currentUser == nil {
+            let rootViewController = AuthenticationViewController()
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            sceneDelegate?.window?.rootViewController = navigationController
+        } else {
+            
+        }
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     

@@ -31,6 +31,7 @@ enum keyEnum: String {
     case signStatus = "signStatus"
     case phoneNumber = "phoneNumber"
     case authVerificationID = "authVerificationID"
+    case verificationCode = "verificationCode"
 }
 
 struct User {
@@ -42,4 +43,6 @@ struct User {
     static var phoneNumber: String
     @UserDefaultsHelper(key: keyEnum.authVerificationID.rawValue, defaultValue: "")
     static var authVerificationID: String
+    @UserDefaultsHelper(key: keyEnum.verificationCode.rawValue, defaultValue: 0)
+    static var verificationCode: Int
 }
