@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingViewController: BaseViewController {
+final class OnboardingViewController: BaseViewController {
     
     let mainView = OnboardingView()
     
@@ -76,12 +76,14 @@ class OnboardingViewController: BaseViewController {
     }
     
     @objc func startButtonTapped() {
-            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            let sceneDelegate = windowScene?.delegate as? SceneDelegate
-            
-            sceneDelegate?.window?.rootViewController = AuthenticationViewController()
-            sceneDelegate?.window?.makeKeyAndVisible()
-        }
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
+        let rootViewController = AuthenticationViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        sceneDelegate?.window?.rootViewController = navigationController
+        sceneDelegate?.window?.makeKeyAndVisible()
+    }
     
 }
 

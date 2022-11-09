@@ -16,7 +16,7 @@ class BaseViewController: UIViewController {
         configure()
         setConstraints()
         setNavigationUI()
-        
+        bind()
     }
 
     func configure() {
@@ -27,6 +27,10 @@ class BaseViewController: UIViewController {
     }
     func setNavigationUI() {
 
+    }
+    
+    func bind() {
+        
     }
     
 }

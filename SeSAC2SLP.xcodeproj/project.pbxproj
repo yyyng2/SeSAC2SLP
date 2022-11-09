@@ -26,8 +26,6 @@
 		1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB182919BAC000BCC159 /* UILabel+Extension.swift */; };
 		1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */; };
 		1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */; };
-		1870FB24291A2F1D00BCC159 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */; };
-		1870FB27291A33C300BCC159 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB26291A33C300BCC159 /* FirebaseAuth */; };
 		1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */; };
 		1870FB2E291A505E00BCC159 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB2D291A505E00BCC159 /* Toast */; };
 		1870FB31291A518000BCC159 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB30291A518000BCC159 /* RxCocoa */; };
@@ -38,6 +36,18 @@
 		1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB3E291A557000BCC159 /* CustomSignTextField.swift */; };
 		1870FB41291A5B8900BCC159 /* AuthenicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */; };
 		1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB47291AFACF00BCC159 /* String+Extension.swift */; };
+		1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB4A291B2A8E00BCC159 /* CheckCodeView.swift */; };
+		1870FB4D291B2AA300BCC159 /* CheckCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB4C291B2AA300BCC159 /* CheckCodeViewModel.swift */; };
+		1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB4E291B2ABD00BCC159 /* CheckCodeViewController.swift */; };
+		1870FB51291B3F5000BCC159 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1870FB50291B3F5000BCC159 /* GoogleService-Info.plist */; };
+		1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB55291B698D00BCC159 /* NicknameCheckView.swift */; };
+		1870FB58291B699B00BCC159 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB57291B699B00BCC159 /* NicknameViewModel.swift */; };
+		1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB59291B69A800BCC159 /* NicknameViewController.swift */; };
+		1870FB5D291B7D6E00BCC159 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB5C291B7D6E00BCC159 /* Alamofire */; };
+		1870FB61291B8F4600BCC159 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB60291B8F4600BCC159 /* FirebaseAnalyticsSwift */; };
+		1870FB63291B8F4600BCC159 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB62291B8F4600BCC159 /* FirebaseAuth */; };
+		1870FB65291B8F4600BCC159 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB64291B8F4600BCC159 /* FirebaseCrashlytics */; };
+		1870FB67291B8F4600BCC159 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB66291B8F4600BCC159 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +71,6 @@
 		1870FB182919BAC000BCC159 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		1870FB1B2919BCC600BCC159 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		1870FB1C2919BCC700BCC159 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
-		1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1870FB28291A492700BCC159 /* SeSAC2SLPDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC2SLPDebug.entitlements; sourceTree = "<group>"; };
 		1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		1870FB36291A52CC00BCC159 /* CustomSignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignButton.swift; sourceTree = "<group>"; };
@@ -70,6 +79,13 @@
 		1870FB3E291A557000BCC159 /* CustomSignTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignTextField.swift; sourceTree = "<group>"; };
 		1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenicationViewModel.swift; sourceTree = "<group>"; };
 		1870FB47291AFACF00BCC159 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		1870FB4A291B2A8E00BCC159 /* CheckCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCodeView.swift; sourceTree = "<group>"; };
+		1870FB4C291B2AA300BCC159 /* CheckCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCodeViewModel.swift; sourceTree = "<group>"; };
+		1870FB4E291B2ABD00BCC159 /* CheckCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCodeViewController.swift; sourceTree = "<group>"; };
+		1870FB50291B3F5000BCC159 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1870FB55291B698D00BCC159 /* NicknameCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameCheckView.swift; sourceTree = "<group>"; };
+		1870FB57291B699B00BCC159 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		1870FB59291B69A800BCC159 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +93,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870FB67291B8F4600BCC159 /* FirebaseMessaging in Frameworks */,
+				1870FB61291B8F4600BCC159 /* FirebaseAnalyticsSwift in Frameworks */,
 				1870FB2E291A505E00BCC159 /* Toast in Frameworks */,
 				1870FB0B291926F900BCC159 /* SnapKit in Frameworks */,
 				1870FB33291A518000BCC159 /* RxSwift in Frameworks */,
+				1870FB5D291B7D6E00BCC159 /* Alamofire in Frameworks */,
+				1870FB65291B8F4600BCC159 /* FirebaseCrashlytics in Frameworks */,
+				1870FB63291B8F4600BCC159 /* FirebaseAuth in Frameworks */,
 				1870FB31291A518000BCC159 /* RxCocoa in Frameworks */,
-				1870FB27291A33C300BCC159 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				1870FB28291A492700BCC159 /* SeSAC2SLPDebug.entitlements */,
+				1870FB5E291B7DA900BCC159 /* Network */,
 				1870FB172919BAB200BCC159 /* Extension */,
 				1870FAD32918B5A000BCC159 /* AppDelegate.swift */,
 				1870FAD52918B5A000BCC159 /* SceneDelegate.swift */,
@@ -117,7 +138,7 @@
 				1870FADC2918B5A300BCC159 /* Assets.xcassets */,
 				1870FADE2918B5A300BCC159 /* LaunchScreen.storyboard */,
 				1870FAE12918B5A300BCC159 /* Info.plist */,
-				1870FB23291A2F1D00BCC159 /* GoogleService-Info.plist */,
+				1870FB50291B3F5000BCC159 /* GoogleService-Info.plist */,
 			);
 			path = SeSAC2SLP;
 			sourceTree = "<group>";
@@ -168,6 +189,7 @@
 		1870FAF42918FFF900BCC159 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
+				1870FB53291B693E00BCC159 /* SignUp */,
 				1870FB29291A4D0000BCC159 /* Authentication */,
 			);
 			path = Sign;
@@ -231,6 +253,9 @@
 				1870FB2A291A4D4C00BCC159 /* AuthenticationView.swift */,
 				1870FB3B291A54DD00BCC159 /* AuthenticationViewController.swift */,
 				1870FB40291A5B8900BCC159 /* AuthenicationViewModel.swift */,
+				1870FB4A291B2A8E00BCC159 /* CheckCodeView.swift */,
+				1870FB4E291B2ABD00BCC159 /* CheckCodeViewController.swift */,
+				1870FB4C291B2AA300BCC159 /* CheckCodeViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -259,6 +284,23 @@
 			path = UITextField;
 			sourceTree = "<group>";
 		};
+		1870FB53291B693E00BCC159 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				1870FB55291B698D00BCC159 /* NicknameCheckView.swift */,
+				1870FB57291B699B00BCC159 /* NicknameViewModel.swift */,
+				1870FB59291B69A800BCC159 /* NicknameViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		1870FB5E291B7DA900BCC159 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,10 +319,14 @@
 			name = SeSAC2SLP;
 			packageProductDependencies = (
 				1870FB0A291926F900BCC159 /* SnapKit */,
-				1870FB26291A33C300BCC159 /* FirebaseAuth */,
 				1870FB2D291A505E00BCC159 /* Toast */,
 				1870FB30291A518000BCC159 /* RxCocoa */,
 				1870FB32291A518000BCC159 /* RxSwift */,
+				1870FB5C291B7D6E00BCC159 /* Alamofire */,
+				1870FB60291B8F4600BCC159 /* FirebaseAnalyticsSwift */,
+				1870FB62291B8F4600BCC159 /* FirebaseAuth */,
+				1870FB64291B8F4600BCC159 /* FirebaseCrashlytics */,
+				1870FB66291B8F4600BCC159 /* FirebaseMessaging */,
 			);
 			productName = SeSAC2SLP;
 			productReference = 1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */;
@@ -312,9 +358,10 @@
 			mainGroup = 1870FAC72918B5A000BCC159;
 			packageReferences = (
 				1870FB09291926F900BCC159 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1870FB2C291A505E00BCC159 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				1870FB5B291B7D6D00BCC159 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 1870FAD12918B5A000BCC159 /* Products */;
 			projectDirPath = "";
@@ -335,7 +382,7 @@
 				1870FB1E2919BCC700BCC159 /* NotoSansKR-Medium.otf in Resources */,
 				1870FB1D2919BCC700BCC159 /* NotoSansKR-Regular.otf in Resources */,
 				1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */,
-				1870FB24291A2F1D00BCC159 /* GoogleService-Info.plist in Resources */,
+				1870FB51291B3F5000BCC159 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,17 +395,23 @@
 			files = (
 				1870FB41291A5B8900BCC159 /* AuthenicationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
+				1870FB58291B699B00BCC159 /* NicknameViewModel.swift in Sources */,
 				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
+				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,
+				1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
 				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
+				1870FB4D291B2AA300BCC159 /* CheckCodeViewModel.swift in Sources */,
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
+				1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
+				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
 				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
 				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
@@ -594,14 +647,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		1870FB2C291A505E00BCC159 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
@@ -618,6 +663,22 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		1870FB5B291B7D6D00BCC159 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -625,11 +686,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1870FB09291926F900BCC159 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		1870FB26291A33C300BCC159 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1870FB25291A33C300BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
 		};
 		1870FB2D291A505E00BCC159 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -645,6 +701,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		1870FB5C291B7D6E00BCC159 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB5B291B7D6D00BCC159 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		1870FB60291B8F4600BCC159 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		1870FB62291B8F4600BCC159 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		1870FB64291B8F4600BCC159 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		1870FB66291B8F4600BCC159 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

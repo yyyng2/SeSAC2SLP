@@ -28,9 +28,18 @@ import Foundation
 
 enum keyEnum: String {
     case isAppFirstLaunch = "isAppFirstLaunch"
+    case signStatus = "signStatus"
+    case phoneNumber = "phoneNumber"
+    case authVerificationID = "authVerificationID"
 }
 
 struct User {
     @UserDefaultsHelper(key: keyEnum.isAppFirstLaunch.rawValue, defaultValue: true)
     static var isAppFirstLaunch: Bool
+    @UserDefaultsHelper(key: keyEnum.signStatus.rawValue, defaultValue: 0)
+    static var signStatus: Int
+    @UserDefaultsHelper(key: keyEnum.phoneNumber.rawValue, defaultValue: "")
+    static var phoneNumber: String
+    @UserDefaultsHelper(key: keyEnum.authVerificationID.rawValue, defaultValue: "")
+    static var authVerificationID: String
 }

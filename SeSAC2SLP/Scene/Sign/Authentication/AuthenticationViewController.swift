@@ -9,9 +9,9 @@ import Foundation
 
 import RxCocoa
 import RxSwift
-import UIKit
+import Toast
 
-class AuthenticationViewController: BaseViewController {
+final class AuthenticationViewController: BaseViewController {
     let mainView = AuthenticationView()
     let viewModel = AuthenticationViewModel()
     let disposeBag = DisposeBag()
@@ -23,14 +23,12 @@ class AuthenticationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bind()
-        
     }
     
-    func bind() {
+    override func bind() {
         let input = AuthenticationViewModel.Input (
             numText: mainView.phoneNumberTextField.rx.text,
-            buttonTap: mainView.sendTextMessageButton.rx.tap
+            buttonTap: mainView.sendCodeButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -39,7 +37,7 @@ class AuthenticationViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, value) in
                 let color = value ? Constants.brandColor.green : Constants.grayScale.gray5
-                vc.mainView.sendTextMessageButton.backgroundColor = color
+                vc.mainView.sendCodeButton.backgroundColor = color
                
             }
             .disposed(by: disposeBag)
@@ -49,7 +47,7 @@ class AuthenticationViewController: BaseViewController {
             .bind { (vc, value) in
                 switch value {
                 case .over:
-                    vc.mainView.phoneNumberTextField.text = vc.mainView.phoneNumberTextField.text?.deleteOverRange
+                    vc.mainView.phoneNumberTextField.text = vc.mainView.phoneNumberTextField.text?.deleteNumberOverRange
                 case .third:
                     vc.mainView.phoneNumberTextField.text = vc.mainView.phoneNumberTextField.text?.thirdWithHypen
                 case .underThird:
@@ -66,18 +64,18 @@ class AuthenticationViewController: BaseViewController {
      
         output.buttonTap
             .withUnretained(self)
-            .bind { _ in
-                guard let text = self.mainView.phoneNumberTextField.text else { return }
-                let result = self.viewModel.checkPattern(num: text)
+            .bind { (vc, _) in
+             
+                guard let text = vc.mainView.phoneNumberTextField.text else { return }
+                let result = vc.viewModel.checkPattern(num: text)
                 switch result {
-                case .ok:
-                    let vc = OnboardingViewController()
+                case true:
+                    User.phoneNumber = text.deleteHyphenToSave
+                    self.viewModel.sendCode()
+                    let vc = CheckCodeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
-                case .no:
-                    let alert = UIAlertController(title: "No", message: "", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "ok", style: .cancel)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true)
+                case false:
+                    self.mainView.makeToast("잘못된 번호입니다.", duration: 1.5, position: .center)
                 }
             }
             .disposed(by: disposeBag)

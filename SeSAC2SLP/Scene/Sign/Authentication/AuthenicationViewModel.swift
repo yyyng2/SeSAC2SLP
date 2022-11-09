@@ -7,6 +7,7 @@
 
 import Foundation
 
+import FirebaseAuth
 import RxSwift
 import RxCocoa
 
@@ -17,11 +18,6 @@ enum TextRange {
     case underSecond
     case underThird
     case third
-}
-
-enum TextCheck {
-    case ok
-    case no
 }
 
 final class AuthenticationViewModel {
@@ -58,9 +54,17 @@ final class AuthenticationViewModel {
             return .under
         }
         
-        if id.count > 13 {
-            return .over
+        if id.contains("011-") {
+            if id.count > 12 {
+                return .over
+            }
+        } else {
+            if id.count > 13 {
+                return .over
+            }
         }
+        
+     
         
         if id.count > 3 && id.count < 8 {
             return .underFirst
@@ -81,18 +85,36 @@ final class AuthenticationViewModel {
         return .under
     }
     
-    func checkPattern(num: String) -> TextCheck {
-        let onlyNum = num.deleteHypen
-        let pattern = "^01[0-1, 7][0-9]{7,8}$"
-        let result = NSPredicate(format:"SELF MATCHES %@", pattern)
-        print(result.evaluate(with: onlyNum))
-        switch result.evaluate(with: onlyNum) {
+    func checkPattern(num: String) -> Bool {
+        switch num.contains("011-") {
         case true:
-            return .ok
+            let onlyNum = num.deleteHyphen
+            let pattern = "^01[1, 7][0-9]{7}$"
+            let result = NSPredicate(format:"SELF MATCHES %@", pattern)
+
+            return result.evaluate(with: onlyNum)
         case false:
-            return .no
+            let onlyNum = num.deleteHyphen
+            let pattern = "^01[0, 7][0-9]{7,8}$"
+            let result = NSPredicate(format:"SELF MATCHES %@", pattern)
+
+            return result.evaluate(with: onlyNum)
         }
+     
     }
 
+    func sendCode() {
+        PhoneAuthProvider.provider()
+            .verifyPhoneNumber(User.phoneNumber, uiDelegate: nil) { verificationID, error in
+              if let error = error {
+                // self.showMessagePrompt(error.localizedDescription)
+                  print("\(error.localizedDescription)")
+                return
+              }
+              // Sign in using the verificationID and the code sent to the user
+              // ...
+                print("success")
+          }
+    }
     
 }

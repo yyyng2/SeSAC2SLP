@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingView: BaseView {
+final class OnboardingView: BaseView {
     
     let contentView: UIView = {
         let view = UIView()

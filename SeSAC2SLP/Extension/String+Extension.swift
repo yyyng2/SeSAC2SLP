@@ -11,9 +11,9 @@ extension String {
   // MARK: - 휴대폰 번호 하이픈 추가
   public var underFirstWithHypen: String {
       
-      let stringWithHypen: String = self
-      var result = stringWithHypen.components(separatedBy: ["-"]).joined()
-      result.insert("-", at: stringWithHypen.index(stringWithHypen.startIndex, offsetBy: 3))
+      let stringWithHyphen: String = self
+      var result = stringWithHyphen.components(separatedBy: ["-"]).joined()
+      result.insert("-", at: stringWithHyphen.index(stringWithHyphen.startIndex, offsetBy: 3))
       
     
       return result
@@ -21,8 +21,8 @@ extension String {
     
     public var underSecondWithHypen: String {
         
-        let stringWithHypen: String = self
-        var result = stringWithHypen.components(separatedBy: ["-"]).joined()
+        let stringWithHyphen: String = self
+        var result = stringWithHyphen.components(separatedBy: ["-"]).joined()
         result.insert("-", at: result.index(result.startIndex, offsetBy: 3))
         result.insert("-", at: result.index(result.startIndex, offsetBy: 7))
         
@@ -41,27 +41,51 @@ extension String {
     
     public var thirdWithHypen: String {
         
-        let stringWithHypen: String = self
-        var result = stringWithHypen.components(separatedBy: ["-"]).joined()
+        let stringWithHyphen: String = self
+        var result = stringWithHyphen.components(separatedBy: ["-"]).joined()
         result.insert("-", at: result.index(result.startIndex, offsetBy: 3))
         result.insert("-", at: result.index(result.startIndex, offsetBy: 8))
         
         return result
     }
     
-    public var deleteOverRange: String {
+    public var deleteNumberOverRange: String {
         
-        var stringWithHypen: String = self
-        let index = stringWithHypen.index(stringWithHypen.startIndex, offsetBy: 13)
-        stringWithHypen = String(stringWithHypen[..<index])
+        var stringWithHyphen: String = self
+        if stringWithHyphen.contains("011-") {
+            let index = stringWithHyphen.index(stringWithHyphen.startIndex, offsetBy: 12)
+            stringWithHyphen = String(stringWithHyphen[..<index])
 
-        return stringWithHypen
+            return stringWithHyphen.underSecondWithHypen
+        } else {
+            let index = stringWithHyphen.index(stringWithHyphen.startIndex, offsetBy: 13)
+            stringWithHyphen = String(stringWithHyphen[..<index])
+
+            return stringWithHyphen
+        }
     }
     
-    public var deleteHypen: String {
-        var stringWithHypen: String = self
-        var result = stringWithHypen.components(separatedBy: ["-"]).joined()
+    public var deleteHyphen: String {
+        let stringWithHyphen: String = self
+        let result = stringWithHyphen.components(separatedBy: ["-"]).joined()
         return result
         
+    }
+    
+    public var deleteCodeOverRange: String {
+        
+        var stringWithHyphen: String = self
+     
+        let index = stringWithHyphen.index(stringWithHyphen.startIndex, offsetBy: 6)
+        stringWithHyphen = String(stringWithHyphen[..<index])
+        
+        return stringWithHyphen
+        
+    }
+    
+    public var deleteHyphenToSave: String {
+        let stringWithHyphen: String = self
+        var result = stringWithHyphen.deleteHyphen
+        return "+82\(result.dropFirst(1))"
     }
 }

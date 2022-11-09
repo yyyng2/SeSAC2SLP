@@ -18,11 +18,6 @@ class CustomSignButton: UIButton {
     }
     
     func configure() {
-//        switch isEnabled {
-//        case true:
-//            return backgroundColor = Constants.brandColor.green
-//        case false:
-//            return backgroundColor = Constants.grayScale.gray5
-//        }
+        layer.cornerRadius = 10
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondPageViewController: BaseViewController {
+final class SecondPageViewController: BaseViewController {
     let label: UILabel = {
        let label = UILabel()
         label.numberOfLines = 2

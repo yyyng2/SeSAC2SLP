@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThirdPageViewController: BaseViewController {
+final class ThirdPageViewController: BaseViewController {
     let label: UILabel = {
        let label = UILabel()
         label.textAlignment = .center
