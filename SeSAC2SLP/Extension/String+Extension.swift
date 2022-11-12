@@ -72,20 +72,44 @@ extension String {
         
     }
     
+    public var deleteHyphenToSave: String {
+        let stringWithHyphen: String = self
+        let result = stringWithHyphen.deleteHyphen
+        return "+82\(result.dropFirst(1))"
+    }
+    
     public var deleteCodeOverRange: String {
         
-        var stringWithHyphen: String = self
+        var code: String = self
      
-        let index = stringWithHyphen.index(stringWithHyphen.startIndex, offsetBy: 6)
-        stringWithHyphen = String(stringWithHyphen[..<index])
+        let index = code.index(code.startIndex, offsetBy: 6)
+        code = String(code[..<index])
         
-        return stringWithHyphen
+        return code
         
     }
     
-    public var deleteHyphenToSave: String {
-        let stringWithHyphen: String = self
-        var result = stringWithHyphen.deleteHyphen
-        return "+82\(result.dropFirst(1))"
+    public var deleteNameOverRange: String {
+        
+        var name: String = self
+     
+        let index = name.index(name.startIndex, offsetBy: 10)
+        name = String(name[..<index])
+        
+        return name
+        
     }
+    
+    func changeToDate() -> Date {
+        let date: String = self
+     
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let result = formatter.date(from: date) else { return Date() }
+        
+        return result
+    }
+    
 }

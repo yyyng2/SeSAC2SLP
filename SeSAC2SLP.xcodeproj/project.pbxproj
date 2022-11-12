@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1838074E291F8431001755D5 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838074D291F8431001755D5 /* Date+Extension.swift */; };
+		18380750291FB73B001755D5 /* EmailCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838074F291FB73B001755D5 /* EmailCheckView.swift */; };
+		18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380751291FB746001755D5 /* EmailCheckViewController.swift */; };
+		18380754291FB74D001755D5 /* EmailCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380753291FB74D001755D5 /* EmailCheckViewModel.swift */; };
+		18380756291FBC16001755D5 /* GenderCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380755291FBC16001755D5 /* GenderCheckView.swift */; };
+		18380758291FBC21001755D5 /* GenderCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380757291FBC21001755D5 /* GenderCheckViewController.swift */; };
+		1838075A291FBC27001755D5 /* GenderCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380759291FBC27001755D5 /* GenderCheckViewModel.swift */; };
+		1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */; };
+		1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075E291FC08E001755D5 /* CustomGenderButton.swift */; };
+		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
 		1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD32918B5A000BCC159 /* AppDelegate.swift */; };
 		1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD52918B5A000BCC159 /* SceneDelegate.swift */; };
 		1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1870FADC2918B5A300BCC159 /* Assets.xcassets */; };
@@ -49,9 +59,24 @@
 		1870FB65291B8F4600BCC159 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB64291B8F4600BCC159 /* FirebaseCrashlytics */; };
 		1870FB67291B8F4600BCC159 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1870FB66291B8F4600BCC159 /* FirebaseMessaging */; };
 		1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB69291C36BA00BCC159 /* AuthenticationManager.swift */; };
+		1870FB6C291CECBC00BCC159 /* BirthCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6B291CECBC00BCC159 /* BirthCheckView.swift */; };
+		1870FB6E291CECC900BCC159 /* BirthCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6D291CECC900BCC159 /* BirthCheckViewController.swift */; };
+		1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */; };
+		1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */; };
+		1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1838074D291F8431001755D5 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		1838074F291FB73B001755D5 /* EmailCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckView.swift; sourceTree = "<group>"; };
+		18380751291FB746001755D5 /* EmailCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckViewController.swift; sourceTree = "<group>"; };
+		18380753291FB74D001755D5 /* EmailCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckViewModel.swift; sourceTree = "<group>"; };
+		18380755291FBC16001755D5 /* GenderCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCheckView.swift; sourceTree = "<group>"; };
+		18380757291FBC21001755D5 /* GenderCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCheckViewController.swift; sourceTree = "<group>"; };
+		18380759291FBC27001755D5 /* GenderCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCheckViewModel.swift; sourceTree = "<group>"; };
+		1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignDetailLabel.swift; sourceTree = "<group>"; };
+		1838075E291FC08E001755D5 /* CustomGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenderButton.swift; sourceTree = "<group>"; };
+		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC2SLP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1870FAD32918B5A000BCC159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1870FAD52918B5A000BCC159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +113,11 @@
 		1870FB57291B699B00BCC159 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		1870FB59291B69A800BCC159 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		1870FB69291C36BA00BCC159 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		1870FB6B291CECBC00BCC159 /* BirthCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckView.swift; sourceTree = "<group>"; };
+		1870FB6D291CECC900BCC159 /* BirthCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckViewController.swift; sourceTree = "<group>"; };
+		1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckViewModel.swift; sourceTree = "<group>"; };
+		1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthTextField.swift; sourceTree = "<group>"; };
+		1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +266,8 @@
 			children = (
 				1870FB182919BAC000BCC159 /* UILabel+Extension.swift */,
 				1870FB47291AFACF00BCC159 /* String+Extension.swift */,
+				1838074D291F8431001755D5 /* Date+Extension.swift */,
+				18380760291FC0EF001755D5 /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -266,6 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				1870FB38291A53BE00BCC159 /* CustomSignLabel.swift */,
+				1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */,
+				1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -274,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				1870FB36291A52CC00BCC159 /* CustomSignButton.swift */,
+				1838075E291FC08E001755D5 /* CustomGenderButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -282,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				1870FB3E291A557000BCC159 /* CustomSignTextField.swift */,
+				1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */,
 			);
 			path = UITextField;
 			sourceTree = "<group>";
@@ -292,6 +328,15 @@
 				1870FB55291B698D00BCC159 /* NicknameCheckView.swift */,
 				1870FB57291B699B00BCC159 /* NicknameViewModel.swift */,
 				1870FB59291B69A800BCC159 /* NicknameViewController.swift */,
+				1870FB6B291CECBC00BCC159 /* BirthCheckView.swift */,
+				1870FB6D291CECC900BCC159 /* BirthCheckViewController.swift */,
+				1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */,
+				1838074F291FB73B001755D5 /* EmailCheckView.swift */,
+				18380751291FB746001755D5 /* EmailCheckViewController.swift */,
+				18380753291FB74D001755D5 /* EmailCheckViewModel.swift */,
+				18380755291FBC16001755D5 /* GenderCheckView.swift */,
+				18380757291FBC21001755D5 /* GenderCheckViewController.swift */,
+				18380759291FBC27001755D5 /* GenderCheckViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -398,13 +443,18 @@
 			files = (
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
+				1870FB6E291CECC900BCC159 /* BirthCheckViewController.swift in Sources */,
 				1870FB58291B699B00BCC159 /* NicknameViewModel.swift in Sources */,
 				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
+				1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */,
 				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,
+				1870FB6C291CECBC00BCC159 /* BirthCheckView.swift in Sources */,
+				1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */,
+				1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */,
 				1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
@@ -414,15 +464,25 @@
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
 				1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */,
+				18380758291FBC21001755D5 /* GenderCheckViewController.swift in Sources */,
+				18380754291FB74D001755D5 /* EmailCheckViewModel.swift in Sources */,
+				1838075A291FBC27001755D5 /* GenderCheckViewModel.swift in Sources */,
+				18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
+				1838074E291F8431001755D5 /* Date+Extension.swift in Sources */,
 				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
+				1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */,
 				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
 				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
+				1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */,
 				1870FB3C291A54DD00BCC159 /* AuthenticationViewController.swift in Sources */,
+				18380756291FBC16001755D5 /* GenderCheckView.swift in Sources */,
+				18380750291FB73B001755D5 /* EmailCheckView.swift in Sources */,
 				1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */,
+				18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

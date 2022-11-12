@@ -25,9 +25,6 @@ enum CheckCodeStatus {
 
 final class CheckCodeViewModel {
     
-    let number = PublishSubject<String>()
-    var codeNum = PublishSubject<String>()
-    
     struct Input {
         let numText: ControlProperty<String?>
         let buttonTap: ControlEvent<Void>

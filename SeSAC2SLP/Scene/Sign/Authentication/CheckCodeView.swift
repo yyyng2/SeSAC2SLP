@@ -64,9 +64,9 @@ final class CheckCodeView: BaseView {
         }
         startSignButton.snp.makeConstraints { make in
             make.centerX.equalTo(safeAreaLayoutGuide)
-            make.width.height.equalTo(codeTextField)
-            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(1.1)
-            
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.07)
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(1)
         }
     }
     

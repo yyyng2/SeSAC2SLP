@@ -36,9 +36,10 @@ final class AuthenticationViewController: BaseViewController {
         output.validStatus
             .withUnretained(self)
             .bind { (vc, value) in
-                let color = value ? Constants.brandColor.green : Constants.grayScale.gray5
+                let color = value ? Constants.brandColor.green : Constants.grayScale.gray6
+                let lineColor = value ? Constants.BaseColor.black : Constants.grayScale.gray6
                 vc.mainView.sendCodeButton.backgroundColor = color
-               
+                vc.mainView.phoneNumberTextField.underLineView.backgroundColor = color
             }
             .disposed(by: disposeBag)
         
@@ -64,6 +65,7 @@ final class AuthenticationViewController: BaseViewController {
      
         output.buttonTap
             .withUnretained(self)
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance) 
             .bind { (vc, _) in
              
                 guard let text = vc.mainView.phoneNumberTextField.text else { return }
@@ -71,9 +73,17 @@ final class AuthenticationViewController: BaseViewController {
                 switch result {
                 case true:
                     User.phoneNumber = text.deleteHyphenToSave
-                    AuthenticationManager().sendCode(completionHandler: <#(Bool) -> Void#>)
-                    let vc = CheckCodeViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    AuthenticationManager().sendCode(completionHandler: { Bool in
+                        switch Bool {
+                        case true:
+                            self.mainView.makeToast("전화 번호 인증 시작", duration: 1.5, position: .center)
+                            let vc = CheckCodeViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        case false:
+                            self.mainView.makeToast("잘못된 번호입니다.", duration: 1.5, position: .center)
+                        }
+                    })
+                   
                 case false:
                     self.mainView.makeToast("잘못된 번호입니다.", duration: 1.5, position: .center)
                 }

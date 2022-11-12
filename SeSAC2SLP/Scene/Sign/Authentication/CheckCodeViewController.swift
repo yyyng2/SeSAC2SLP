@@ -20,6 +20,13 @@ final class CheckCodeViewController: BaseViewController {
         self.view = mainView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.mainView.makeToast("인증번호를 보냈습니다.", duration: 1, position: .center)
+        }
+    }
+    
     override func bind() {
         let input = CheckCodeViewModel.Input (
             numText: mainView.codeTextField.rx.text,
@@ -31,9 +38,10 @@ final class CheckCodeViewController: BaseViewController {
         output.validStatus
             .withUnretained(self)
             .bind { (vc, value) in
-                let color = value ? Constants.brandColor.green : Constants.grayScale.gray5
+                let color = value ? Constants.brandColor.green : Constants.grayScale.gray6
+                let lineColor = value ? Constants.BaseColor.black : Constants.grayScale.gray6
                 vc.mainView.startSignButton.backgroundColor = color
-                
+                vc.mainView.codeTextField.underLineView.backgroundColor = lineColor
             }
             .disposed(by: disposeBag)
         
@@ -44,7 +52,7 @@ final class CheckCodeViewController: BaseViewController {
                 case .over:
                     vc.mainView.codeTextField.text = vc.mainView.codeTextField.text?.deleteCodeOverRange
                 case .correct:
-                    self.mainView.makeToast("okay", duration: 1.5, position: .center)
+                    break
                 case .under:
                     break
                 }
@@ -53,6 +61,7 @@ final class CheckCodeViewController: BaseViewController {
         
         output.buttonTap
             .withUnretained(self)
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance) 
             .bind { (vc, _) in
                 
                 guard let text = vc.mainView.codeTextField.text else { return }

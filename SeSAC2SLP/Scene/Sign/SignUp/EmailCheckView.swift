@@ -1,25 +1,34 @@
 //
-//  NicknameCheckView.swift
+//  EmailCheckView.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/09.
+//  Created by Y on 2022/11/12.
 //
 
-import Foundation
+import UIKit
 
-final class NicknameCheckView: BaseView {
-    let nicknameViewInfoLabel: CustomSignLabel = {
+final class EmailCheckView: BaseView {
+    let EmailViewInfoLabel: CustomSignLabel = {
        let label = CustomSignLabel()
         label.numberOfLines = 1
         label.text = """
-                    닉네임을 입력해 주세요
+                    이메일을 입력해 주세요
                     """
         return label
     }()
     
-    let nicknameTextField: CustomSignTextField = {
+    let EmailViewInfoDetailLabel: CustomSignDetailLabel = {
+       let label = CustomSignDetailLabel()
+        label.numberOfLines = 1
+        label.text = """
+                    휴대폰 번호 변경 시 인증을 위해 사용해요
+                    """
+        return label
+    }()
+    
+    let emailTextField: CustomSignTextField = {
        let textfield = CustomSignTextField()
-        textfield.placeholder = "10자 이내로 입력"
+        textfield.placeholder = "SeSAC@email.com"
         textfield.keyboardType = .default
         return textfield
     }()
@@ -33,18 +42,23 @@ final class NicknameCheckView: BaseView {
     
     override func configure() {
         backgroundColor = Constants.BaseColor.white
-        [nicknameViewInfoLabel, nicknameTextField, nextButton].forEach {
+        [EmailViewInfoLabel, EmailViewInfoDetailLabel, emailTextField, nextButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
-        nicknameViewInfoLabel.snp.makeConstraints { make in
+        EmailViewInfoLabel.snp.makeConstraints { make in
             make.centerX.width.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.2)
-            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
         }
-        nicknameTextField.snp.makeConstraints { make in
+        EmailViewInfoDetailLabel.snp.makeConstraints { make in
+            make.centerX.width.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.2)
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(0.55)
+        }
+        emailTextField.snp.makeConstraints { make in
             make.centerX.equalTo(safeAreaLayoutGuide)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)

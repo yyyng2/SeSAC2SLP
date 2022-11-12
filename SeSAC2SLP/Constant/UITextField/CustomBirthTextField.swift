@@ -1,13 +1,13 @@
 //
-//  CustomSignTextField.swift
+//  CustomBirthTextField.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/08.
+//  Created by Y on 2022/11/11.
 //
 
 import UIKit
 
-class CustomSignTextField: UITextField {
+class CustomBirthTextField: UITextField {
     
     lazy var underLineView: UIView = {
        let view = UIView()
@@ -26,6 +26,7 @@ class CustomSignTextField: UITextField {
     
     func configure() {
         addSubview(underLineView)
+        tintColor = .clear
         resignFirstResponder()
         font = UIFont(name: "NotoSansKR-Regular", size: 16)
         underLineView.snp.makeConstraints { make in

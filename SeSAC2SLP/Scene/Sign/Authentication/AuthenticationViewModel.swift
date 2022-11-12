@@ -21,8 +21,6 @@ enum TextRange {
 
 final class AuthenticationViewModel {
     
-    let number = PublishSubject<String>()
-    
     struct Input {
         let numText: ControlProperty<String?>
         let buttonTap: ControlEvent<Void>
@@ -38,7 +36,7 @@ final class AuthenticationViewModel {
     func transform(input: Input) -> Output {
         let numTextResult = input.numText
                   .orEmpty
-                  .map { $0.count > 11 }
+                  .map { $0.count > 0 }
                   .share()
         
         let numCheck = input.numText
@@ -88,13 +86,13 @@ final class AuthenticationViewModel {
         switch num.contains("011-") {
         case true:
             let onlyNum = num.deleteHyphen
-            let pattern = "^01[1, 7][0-9]{7}$"
+            let pattern = "^01[1][0-9]{7}$"
             let result = NSPredicate(format:"SELF MATCHES %@", pattern)
 
             return result.evaluate(with: onlyNum)
         case false:
             let onlyNum = num.deleteHyphen
-            let pattern = "^01[0, 7][0-9]{7,8}$"
+            let pattern = "^01[0][0-9]{7,8}$"
             let result = NSPredicate(format:"SELF MATCHES %@", pattern)
 
             return result.evaluate(with: onlyNum)
