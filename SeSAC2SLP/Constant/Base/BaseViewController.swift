@@ -26,7 +26,14 @@ class BaseViewController: UIViewController {
         
     }
     func setNavigationUI() {
-
+        self.navigationController?.navigationBar.tintColor = Constants.BaseColor.black
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+    }
+    
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func bind() {

@@ -32,6 +32,7 @@ enum keyEnum: String {
     case phoneNumber = "phoneNumber"
     case authVerificationID = "authVerificationID"
     case verificationCode = "verificationCode"
+    case IDToken = "IDToken"
     case fcm = "fcm"
     case nickname = "nickname"
     case birth = "birth"
@@ -50,6 +51,8 @@ struct User {
     static var authVerificationID: String
     @UserDefaultsHelper(key: keyEnum.verificationCode.rawValue, defaultValue: 0)
     static var verificationCode: Int
+    @UserDefaultsHelper(key: keyEnum.IDToken.rawValue, defaultValue: "")
+    static var IDToken: String
     @UserDefaultsHelper(key: keyEnum.fcm.rawValue, defaultValue: "")
     static var fcm: String
     @UserDefaultsHelper(key: keyEnum.nickname.rawValue, defaultValue: "")

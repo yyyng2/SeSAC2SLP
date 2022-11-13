@@ -72,8 +72,11 @@ final class CheckCodeViewController: BaseViewController {
                     AuthenticationManager().checkVerifyId(code: text) { value in
                         switch value {
                         case true:
+                            
+                            
                             let vc = NicknameCheckViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
+                            
 //                            self.viewModel.checkSign { bool in
 //                                switch bool {
 //                                case true:

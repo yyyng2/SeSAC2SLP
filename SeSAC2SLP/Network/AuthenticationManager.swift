@@ -36,6 +36,14 @@ class AuthenticationManager {
                 completionHandler(false)
                 return
             }
+            Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                if let error = error {
+                    return
+                }
+                guard let id = idToken else { return }
+                print(id)
+                User.IDToken = id
+            }
             completionHandler(true)
         }
     }

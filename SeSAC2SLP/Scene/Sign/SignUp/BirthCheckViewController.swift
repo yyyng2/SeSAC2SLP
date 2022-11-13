@@ -88,7 +88,7 @@ final class BirthCheckViewController: BaseViewController {
                 switch result {
                 case true:
                     User.birth = "\(string)T\(Date().formatToString(dateStyle: .time))Z"
-                    print(User.birth)
+                    print(User.birth, User.fcm)
                     self.mainView.makeToast("오케이", duration: 1.5, position: .center)
                     let vc = EmailCheckViewController()
                     self.navigationController?.pushViewController(vc, animated: true)

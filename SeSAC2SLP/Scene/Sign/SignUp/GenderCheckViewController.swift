@@ -23,8 +23,6 @@ class GenderCheckViewController: BaseViewController {
     override func bind() {
     
         let input = GenderCheckViewModel.Input (
-            leftBool: mainView.leftButton.isSelected,
-            rightBool: mainView.rightButton.isSelected,
             leftButtonTap: mainView.leftButton.rx.tap,
             rightButtonTap: mainView.rightButton.rx.tap,
             buttonTap: mainView.nextButton.rx.tap
@@ -38,11 +36,8 @@ class GenderCheckViewController: BaseViewController {
                 DispatchQueue.main.async {
                     if self.mainView.rightButton.isSelected == true {
                         self.mainView.rightButton.isSelected = !self.mainView.rightButton.isSelected
-//                        self.mainView.rightButton.backgroundColor = Constants.BaseColor.white
                     }
                     self.mainView.leftButton.isSelected = !self.mainView.leftButton.isSelected
-//                    self.mainView.leftButton.backgroundColor = Constants.brandColor.whiteGreen
-                 
                 }
             }
             .disposed(by: disposeBag)
@@ -53,11 +48,8 @@ class GenderCheckViewController: BaseViewController {
                 DispatchQueue.main.async {
                     if self.mainView.leftButton.isSelected == true {
                         self.mainView.leftButton.isSelected = !self.mainView.leftButton.isSelected
-//                        self.mainView.leftButton.backgroundColor = Constants.BaseColor.white
                     }
-                    self.mainView.rightButton.isSelected = !self.mainView.rightButton.isSelected
-//                    self.mainView.rightButton.backgroundColor = Constants.brandColor.whiteGreen
-                   
+                    self.mainView.rightButton.isSelected = !self.mainView.rightButton.isSelected                   
                 }
             }
             .disposed(by: disposeBag)
@@ -71,16 +63,20 @@ class GenderCheckViewController: BaseViewController {
                 switch result {
                 case .none:
                     self.mainView.makeToast("성별을 선택해 주세요.", duration: 1.5, position: .center)
+                    print("fcm:",User.fcm, "id:",User.authVerificationID)
                     User.gender = 2
                 case .man:
                     self.mainView.makeToast("남자", duration: 1.5, position: .center)
                     User.gender = 1
+                    APIService().signUp()
                     print(User.gender)
                 case .woman:
                     self.mainView.makeToast("여자", duration: 1.5, position: .center)
                     User.gender = 0
+                    APIService().signUp()
                     print(User.gender)
                 }
+                APIService().login()
             }
             .disposed(by: disposeBag)
         

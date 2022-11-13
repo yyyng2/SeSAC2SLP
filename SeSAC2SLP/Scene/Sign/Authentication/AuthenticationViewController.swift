@@ -5,7 +5,7 @@
 //  Created by Y on 2022/11/08.
 //
 
-import Foundation
+import UIKit
 
 import RxCocoa
 import RxSwift
@@ -22,7 +22,6 @@ final class AuthenticationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func bind() {

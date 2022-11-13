@@ -31,22 +31,16 @@ final class GenderCheckView: BaseView {
         config.image = UIImage(named: "man")
         config.imagePlacement = .top
         config.baseForegroundColor = Constants.BaseColor.black
+        
         var titleAttr = AttributedString.init("남자")
         titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 16)
         config.attributedTitle = titleAttr
-        
-      
         
         config.buttonSize = .large
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
        let button = CustomGenderButton(configuration: config)
         
-//        button.configurationUpdateHandler = { button in
-//              var config = button.configuration
-//            config?.baseBackgroundColor = button.isSelected ? Constants.brandColor.whiteGreen : Constants.BaseColor.white
-//            button.configuration = config
-//        }
     
         return button
     }()
@@ -56,22 +50,15 @@ final class GenderCheckView: BaseView {
         config.image = UIImage(named: "woman")
         config.imagePlacement = .top
         config.baseForegroundColor = Constants.BaseColor.black
+        
         var titleAttr = AttributedString.init("여자")
         titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 16)
         config.attributedTitle = titleAttr
-        
-      
         
         config.buttonSize = .large
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
        let button = CustomGenderButton(configuration: config)
-        
-//        button.configurationUpdateHandler = { button in
-//              var config = button.configuration
-//            config?.background.backgroundColor = button.isSelected ? Constants.brandColor.whiteGreen : Constants.BaseColor.white
-//            button.configuration = config
-//        }
 
         return button
     }()

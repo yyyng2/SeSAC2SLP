@@ -48,6 +48,7 @@ final class EmailCheckViewController: BaseViewController {
                 let result = vc.viewModel.checkPattern(email: text)
                 switch result {
                 case true:
+                    User.email = text
                     let vc = GenderCheckViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                 case false:

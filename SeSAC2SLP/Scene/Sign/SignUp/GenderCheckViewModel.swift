@@ -21,8 +21,6 @@ final class GenderCheckViewModel {
     var genderInit: gender = .none
     
     struct Input {
-        let leftBool: Bool?
-        let rightBool: Bool?
         let leftButtonTap: ControlEvent<Void>
         let rightButtonTap: ControlEvent<Void>
         let buttonTap: ControlEvent<Void>

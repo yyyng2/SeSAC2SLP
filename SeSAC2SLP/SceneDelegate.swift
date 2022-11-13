@@ -24,9 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if User.isAppFirstLaunch {
           //  User.isAppFirstLaunch = false
-//            let viewController = OnboardingViewController()
-//            window?.rootViewController = viewController
-            let viewController = BirthCheckViewController()
+            let viewController = OnboardingViewController()
+            window?.rootViewController = viewController
+//            let viewController = BirthCheckViewController()
             let navi = UINavigationController(rootViewController: viewController)
             window?.rootViewController = navi
         } else {
