@@ -17,8 +17,17 @@ final class NicknameCheckViewController: BaseViewController {
     let viewModel = NicknameCheckViewModel()
     let disposeBag = DisposeBag()
     
+    var nicknameStatus = false
+    
     override func loadView() {
         self.view = mainView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+      checkBadNickname()
+        
     }
     
     override func bind() {
@@ -66,9 +75,19 @@ final class NicknameCheckViewController: BaseViewController {
                     let vc = BirthCheckViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                 case false:
-                    self.mainView.makeToast("닉네임이 적합하지 않습니다.", duration: 1.5, position: .center)
+                    self.mainView.makeToast("닉네임은 1자 이상 10자 이내로 부탁드려요.", duration: 1.5, position: .center)
                 }
             }
             .disposed(by: disposeBag)
+    }
+    
+    func checkBadNickname() {
+        switch nicknameStatus {
+        case true:
+            nicknameStatus = false
+            self.mainView.makeToast("해당 닉네임은 사용할 수 없습니다.", duration: 1.5, position: .center)
+        case false:
+            break
+        }
     }
 }

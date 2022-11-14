@@ -81,7 +81,6 @@ final class OnboardingViewController: BaseViewController {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         } else {
-            print(Auth.auth().currentUser)
             let rootViewController = NicknameCheckViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController

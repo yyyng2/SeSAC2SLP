@@ -67,6 +67,9 @@
 		18DB8BB429209C64007D90CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DB8BB329209C64007D90CD /* GoogleService-Info.plist */; };
 		18DB8BB62920A05E007D90CD /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BB52920A05E007D90CD /* Network.swift */; };
 		18DB8BB82920A07A007D90CD /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BB72920A07A007D90CD /* APIService.swift */; };
+		18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBA2922176B007D90CD /* LaunchScreenView.swift */; };
+		18DB8BBD29221777007D90CD /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */; };
+		18DB8BBF29222DEE007D90CD /* APICodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBE29222DEE007D90CD /* APICodeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,9 @@
 		18DB8BB329209C64007D90CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18DB8BB52920A05E007D90CD /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		18DB8BB72920A07A007D90CD /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		18DB8BBA2922176B007D90CD /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		18DB8BBE29222DEE007D90CD /* APICodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICodeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 				1870FAF52919000200BCC159 /* Main */,
 				1870FAF42918FFF900BCC159 /* Sign */,
 				1870FAF32918FFEB00BCC159 /* Onboarding */,
+				18DB8BB92922173F007D90CD /* LaunchScreen */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -354,8 +361,18 @@
 				18DB8BAE29209A7D007D90CD /* Endpoint.swift */,
 				18DB8BB52920A05E007D90CD /* Network.swift */,
 				18DB8BB72920A07A007D90CD /* APIService.swift */,
+				18DB8BBE29222DEE007D90CD /* APICodeModel.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		18DB8BB92922173F007D90CD /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				18DB8BBA2922176B007D90CD /* LaunchScreenView.swift */,
+				18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,10 +470,12 @@
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
 				1870FB6E291CECC900BCC159 /* BirthCheckViewController.swift in Sources */,
+				18DB8BBF29222DEE007D90CD /* APICodeModel.swift in Sources */,
 				1870FB58291B699B00BCC159 /* NicknameViewModel.swift in Sources */,
 				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
 				1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
+				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
@@ -481,6 +500,7 @@
 				18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1838074E291F8431001755D5 /* Date+Extension.swift in Sources */,
+				18DB8BBD29221777007D90CD /* LaunchScreenViewController.swift in Sources */,
 				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
 				1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */,

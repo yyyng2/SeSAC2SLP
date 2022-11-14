@@ -112,4 +112,16 @@ extension String {
         return result
     }
     
+    func changeToBirthSave() -> Date {
+        let date: String = self
+     
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        
+        guard let result = formatter.date(from: date) else { return Date() }
+        
+        return result
+    }
+    
 }

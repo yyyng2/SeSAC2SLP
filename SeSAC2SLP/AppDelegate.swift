@@ -71,6 +71,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
+        Messaging.messaging().isAutoInitEnabled = true
+              // Get token
+        
+        
         guard let fcm = fcmToken else { return }
 //      print("Firebase registration token: \(String(describing: fcmToken))")
 //       print("FCM",fcm)

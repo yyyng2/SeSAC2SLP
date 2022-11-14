@@ -72,29 +72,11 @@ final class CheckCodeViewController: BaseViewController {
                     AuthenticationManager().checkVerifyId(code: text) { value in
                         switch value {
                         case true:
-                            
-                            
-                            let vc = NicknameCheckViewController()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            
-//                            self.viewModel.checkSign { bool in
-//                                switch bool {
-//                                case true:
-//                                    break
-//                                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//                                    let sceneDelegate = windowScene?.delegate as? SceneDelegate
-//
-//                                    let rootViewController = AuthenticationViewController()
-//                                    let navigationController = UINavigationController(rootViewController: rootViewController)
-//                                    sceneDelegate?.window?.rootViewController = navigationController
-//
-//                                    sceneDelegate?.window?.makeKeyAndVisible()
-//                                case false:
-//                                    let vc = NicknameCheckViewController()
-//                                    self.navigationController?.pushViewController(vc, animated: true)
-//
-//                                }
-//                            }
+                            APIService().updateFcmToken()
+                            APIService().login { value in
+                                APIService().reactLoginAPI(value: value)
+                            }
+                          
                         case false:
                             self.mainView.makeToast("잘못된 인증 번호입니다.", duration: 1.5, position: .center)
                         }

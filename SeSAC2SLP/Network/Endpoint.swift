@@ -14,6 +14,7 @@ enum SeSACAPI {
     case signUp(phoneNumber: String, FCMtoken: String, nick: String, birth: String, email: String, gender: Int)
     case login
     case withDraw
+    case updateFcmToken(FCMtoken: String)
 }
 
 extension SeSACAPI {
@@ -25,6 +26,8 @@ extension SeSACAPI {
             return URL(string: "http://api.sesac.co.kr:1207/v1/user")!
         case .withDraw:
             return URL(string: "http://api.sesac.co.kr:1207/v1/user/withdraw")!
+        case .updateFcmToken:
+            return URL(string: "http://api.sesac.co.kr:1207/v1/user/update_fcm_token")!
         }
     }
     
@@ -42,6 +45,8 @@ extension SeSACAPI {
                 "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)",
                 "Content-Type":"application/x-www-form-urlencoded"
             ]
+        case .updateFcmToken:
+            return ["idtoken":"\(User.IDToken)"]
         }
     }
     
@@ -56,6 +61,8 @@ extension SeSACAPI {
                 "email" : email,
                 "gender" : gender
             ]
+        case .updateFcmToken(let FCMToken):
+            return ["FCMtoken" : FCMToken]
         default:
             return ["":""]
         }

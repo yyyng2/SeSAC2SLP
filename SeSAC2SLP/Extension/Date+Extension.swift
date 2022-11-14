@@ -14,6 +14,7 @@ extension Date {
         case month
         case day
         case time
+        case all
     }
 
     func formatToString(dateStyle: DateStyle) -> String {
@@ -28,6 +29,8 @@ extension Date {
             formatter.dateFormat = "dd"
         case .time:
             formatter.dateFormat = "HH:mm:ss.SSS"
+        case .all:
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         }
 
 
@@ -51,6 +54,8 @@ extension Date {
             formatter.dateFormat = "dd"
         case .time:
             formatter.dateFormat = "HH:mm:ss.SSS"
+        case .all:
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         }
 
 

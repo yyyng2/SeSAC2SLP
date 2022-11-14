@@ -87,13 +87,13 @@ final class BirthCheckViewController: BaseViewController {
                 
                 switch result {
                 case true:
-                    User.birth = "\(string)T\(Date().formatToString(dateStyle: .time))Z"
-                    print(User.birth, User.fcm)
-                    self.mainView.makeToast("오케이", duration: 1.5, position: .center)
+                    User.birth = "\(string.changeToBirthSave())"
+//                    print("\(string.changeToBirthSave())")
+//                    print(User.birth, User.fcm)
                     let vc = EmailCheckViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                 case false:
-                    self.mainView.makeToast("만 17세 아님.", duration: 1.5, position: .center)
+                    self.mainView.makeToast("새싹스터디는 만 17세 이상만 사용할 수 있습니다.", duration: 1.5, position: .center)
                 }
             }
             .disposed(by: disposeBag)

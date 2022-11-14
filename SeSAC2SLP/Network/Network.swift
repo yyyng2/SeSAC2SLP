@@ -23,7 +23,7 @@ final class Network {
             case .failure(_):
                 
                 guard let statusCode = response.response?.statusCode else { return }
-                guard let error = SeSACError(rawValue: statusCode) else { return }
+                guard let error = LoginCode(rawValue: statusCode) else { return }
                 
                 completion(.failure(error))
             }

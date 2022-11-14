@@ -22,18 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.overrideUserInterfaceStyle = .light
         
-        if User.isAppFirstLaunch {
-          //  User.isAppFirstLaunch = false
-            let viewController = OnboardingViewController()
-            window?.rootViewController = viewController
-//            let viewController = BirthCheckViewController()
-            let navi = UINavigationController(rootViewController: viewController)
-            window?.rootViewController = navi
-        } else {
-            let viewController = TabBarController()
-            window?.rootViewController = viewController
-        }
-      
+        let viewController = LaunchScreenViewController()
+        let navi = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = navi   
       
         window?.makeKeyAndVisible()
     }

@@ -5,7 +5,7 @@
 //  Created by Y on 2022/11/12.
 //
 
-import Foundation
+import UIKit
 
 import RxSwift
 
@@ -66,20 +66,20 @@ class GenderCheckViewController: BaseViewController {
                     print("fcm:",User.fcm, "id:",User.authVerificationID)
                     User.gender = 2
                 case .man:
-                    self.mainView.makeToast("남자", duration: 1.5, position: .center)
                     User.gender = 1
-                    APIService().signUp()
+                    APIService().signUp { value in
+                        APIService().reactSignAPI(value: value)
+                    }
                     print(User.gender)
                 case .woman:
-                    self.mainView.makeToast("여자", duration: 1.5, position: .center)
                     User.gender = 0
-                    APIService().signUp()
+                    APIService().signUp { value in
+                        APIService().reactSignAPI(value: value)
+                    }
                     print(User.gender)
                 }
-                APIService().login()
             }
             .disposed(by: disposeBag)
-        
     }
     
 }
