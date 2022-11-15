@@ -9,7 +9,7 @@ import UIKit
 
 import FirebaseAuth
 
-class LaunchScreenViewController: BaseViewController {
+class LaunchScreenViewController: BaseSignViewController {
     let mainView = LaunchScreenView()
     
     override func loadView() {
@@ -18,8 +18,8 @@ class LaunchScreenViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+        AuthenticationManager.shared.updateIdToken()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
             self.checkStatus()
         }
     }

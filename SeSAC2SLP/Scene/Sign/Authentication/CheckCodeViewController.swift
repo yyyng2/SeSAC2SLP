@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Toast
 
-final class CheckCodeViewController: BaseViewController {
+final class CheckCodeViewController: BaseSignViewController {
     let mainView = CheckCodeView()
     let viewModel = CheckCodeViewModel()
     let disposeBag = DisposeBag()
@@ -72,7 +72,6 @@ final class CheckCodeViewController: BaseViewController {
                     AuthenticationManager().checkVerifyId(code: text) { value in
                         switch value {
                         case true:
-                            APIService().updateFcmToken()
                             APIService().login { value in
                                 APIService().reactLoginAPI(value: value)
                             }

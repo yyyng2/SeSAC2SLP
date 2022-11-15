@@ -12,7 +12,7 @@ import RxSwift
 import Toast
 import UIKit
 
-final class EmailCheckViewController: BaseViewController {
+final class EmailCheckViewController: BaseSignViewController {
     let mainView = EmailCheckView()
     let viewModel = EmailCheckViewModel()
     let disposeBag = DisposeBag()

@@ -9,54 +9,15 @@ import UIKit
 
 import Alamofire
 
-struct Login: Codable {
-    let _id: String
-    let __v: Int
-    let uid: String
-    let phoneNumber: String
-    let email: String
-    let FCMtoken: String
-    let nick: String
-    let birth: String
-    let gender: Int
-    let study: String
-    let comment: [String]
-    let reputation: [Int]
-    let sesac: Int
-    let sesacCollection: [Int]
-    let background: Int
-    let backgroundCollection: [Int]
-    let purchaseToken: [String]
-    let transactionId: [String]
-    let reviewedBefore: [String]
-    let reportedNum: Int
-    let reportedUser: [String]
-    let dodgepenalty: Int
-    let dodgeNum: Int
-    let ageMin: Int
-    let ageMax: Int
-    let searchable: Int
-    let createdAt: String
-}
-
-struct WithDraw: Codable {
-    let token: String
-}
-
-struct UserInfo: Codable {
-    let photo: String
-    let email: String
-    let username: String
-}
-
-
-
 class APIService {
     
    
     
     func signUp(completionHandler: @escaping (Int) -> Void) {
        
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
         let api = SeSACAPI.signUp(phoneNumber: User.phoneNumber, FCMtoken: User.fcm, nick: User.nickname, birth: User.birth, email: User.email, gender: User.gender)
         
         AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
@@ -71,12 +32,36 @@ class APIService {
 
         let api = SeSACAPI.login
 
-        AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).validate(statusCode: 200...299).responseDecodable(of: Login.self) { response in
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
+
+            switch response.result {
+            case .success(let data):
+                print(data)
+                //로그인 후 필요 정보 여기서 관리할 것
+                
+                guard let data = response.value else { return }
+                
+                User.sesac = data.sesac
+                User.sesacCollection = data.sesacCollection
+                User.background = data.background
+                User.backgroundCollection = data.backgroundCollection
+                User.signedName = data.nick
+                User.reputation = data.reputation
+                User.comment = data.comment
+                
+                guard let statusCode = response.response?.statusCode else { return }
+                print(statusCode)
+                completionHandler(statusCode)
+                
+            case .failure(let error):
+                print(error)
+                completionHandler(401)
+            }
             
-            //로그인 후 필요 정보 여기서 관리할 것
-            
-            guard let statusCode = response.response?.statusCode else { return }
-            completionHandler(statusCode)
+          
         }
     }
 
@@ -103,7 +88,22 @@ class APIService {
             case .success(let data):
                 print(response.response?.statusCode)
             case .failure(let error):
-                print(response.response?.statusCode)
+                guard let errorCode = error.responseCode else { return }
+               
+//                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+//
+//                if User.IDToken.count > 3 {
+//                    let rootViewController = AuthenticationViewController()
+//                    let navigationController = UINavigationController(rootViewController: rootViewController)
+//                    sceneDelegate?.window?.rootViewController = navigationController
+//                } else {
+//                    let rootViewController = OnboardingViewController()
+//                    let navigationController = UINavigationController(rootViewController: rootViewController)
+//                    sceneDelegate?.window?.rootViewController = navigationController
+//                }
+                
+              
                 
             }
         }
@@ -115,10 +115,13 @@ class APIService {
         
         switch LoginCode(rawValue: value) {
         case .success:
+            updateFcmToken()
+            print(value)
             let rootViewController = TabBarController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            sceneDelegate?.window?.rootViewController = navigationController
+//            let navigationController = UINavigationController(rootViewController: rootViewController)
+            sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
+            print(value)
             if User.phoneNumber.count > 3 {
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
@@ -129,12 +132,14 @@ class APIService {
                 sceneDelegate?.window?.rootViewController = navigationController
             }
         case .notMember:
+            print(value)
             let rootViewController = NicknameCheckViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         case .serverError:
             print("serverError")
         case .clientError:
+            print(value)
             if User.phoneNumber.count > 3 {
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
@@ -155,13 +160,15 @@ class APIService {
         
         switch SignCode(rawValue: value) {
         case .success:
+            AuthenticationManager.shared.updateIdToken()
+            updateFcmToken()
             let rootViewController = TabBarController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            sceneDelegate?.window?.rootViewController = navigationController
+            sceneDelegate?.window?.rootViewController = rootViewController
         case .already:
+            AuthenticationManager.shared.updateIdToken()
+            updateFcmToken()
             let rootViewController = TabBarController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            sceneDelegate?.window?.rootViewController = navigationController
+            sceneDelegate?.window?.rootViewController = rootViewController
         case .badNickname:
             let rootViewController = NicknameCheckViewController()
             rootViewController.nicknameStatus = true

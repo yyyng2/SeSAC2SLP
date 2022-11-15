@@ -38,6 +38,13 @@ enum keyEnum: String {
     case birth = "birth"
     case email = "email"
     case gender = "gender"
+    case sesac = "sesac"
+    case sesacCollection = "sesacCollection"
+    case background = "background"
+    case backgroundCollection = "backgroundCollection"
+    case signedName = "signedName"
+    case comment = "comment"
+    case reputation = "reputation"
 }
 
 struct User {
@@ -63,4 +70,18 @@ struct User {
     static var email: String
     @UserDefaultsHelper(key: keyEnum.gender.rawValue, defaultValue: 2)
     static var gender: Int
+    @UserDefaultsHelper(key: keyEnum.sesac.rawValue, defaultValue: 0)
+    static var sesac: Int
+    @UserDefaultsHelper(key: keyEnum.sesacCollection.rawValue, defaultValue: [0])
+    static var sesacCollection: [Int]
+    @UserDefaultsHelper(key: keyEnum.background.rawValue, defaultValue: 0)
+    static var background: Int
+    @UserDefaultsHelper(key: keyEnum.backgroundCollection.rawValue, defaultValue: [0])
+    static var backgroundCollection: [Int]
+    @UserDefaultsHelper(key: keyEnum.signedName.rawValue, defaultValue: "")
+    static var signedName: String
+    @UserDefaultsHelper(key: keyEnum.comment.rawValue, defaultValue: [""])
+    static var comment: [String]
+    @UserDefaultsHelper(key: keyEnum.reputation.rawValue, defaultValue: [0,0,0,0,0,0,0,0,0])
+    static var reputation: [Int]
 }

@@ -9,7 +9,7 @@ import UIKit
 
 import FirebaseAuth
 
-final class OnboardingViewController: BaseViewController {
+final class OnboardingViewController: BaseSignViewController {
     
     let mainView = OnboardingView()
     

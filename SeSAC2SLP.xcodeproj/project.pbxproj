@@ -70,6 +70,21 @@
 		18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBA2922176B007D90CD /* LaunchScreenView.swift */; };
 		18DB8BBD29221777007D90CD /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */; };
 		18DB8BBF29222DEE007D90CD /* APICodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BBE29222DEE007D90CD /* APICodeModel.swift */; };
+		18DB8BC2292255CF007D90CD /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BC1292255CE007D90CD /* UserInfoView.swift */; };
+		18DB8BC429225602007D90CD /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BC329225602007D90CD /* UserInfoViewController.swift */; };
+		18DB8BC62922560C007D90CD /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BC52922560C007D90CD /* UserInfoViewModel.swift */; };
+		18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BCE29226117007D90CD /* BaseCollectionViewCell.swift */; };
+		18DB8BD129227B6F007D90CD /* BaseSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BD029227B6F007D90CD /* BaseSignView.swift */; };
+		18DB8BD329227B8B007D90CD /* BaseSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BD229227B8B007D90CD /* BaseSignViewController.swift */; };
+		18DB8BD629228831007D90CD /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BD529228831007D90CD /* UserDetailView.swift */; };
+		18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BD72922883C007D90CD /* UserDetailViewController.swift */; };
+		18DB8BDA29236502007D90CD /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BD929236502007D90CD /* UserInfoTableViewCell.swift */; };
+		18DB8BDC2923650D007D90CD /* UserMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BDB2923650D007D90CD /* UserMenuTableViewCell.swift */; };
+		18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BDD2923653C007D90CD /* BaseTableViewCell.swift */; };
+		18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BDF292371F1007D90CD /* UserMenu.swift */; };
+		18DB8BE4292391C6007D90CD /* UserDetailHideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE3292391C5007D90CD /* UserDetailHideView.swift */; };
+		18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */; };
+		18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE7292395CF007D90CD /* SesacTitleColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +145,21 @@
 		18DB8BBA2922176B007D90CD /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		18DB8BBE29222DEE007D90CD /* APICodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICodeModel.swift; sourceTree = "<group>"; };
+		18DB8BC1292255CE007D90CD /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		18DB8BC329225602007D90CD /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		18DB8BC52922560C007D90CD /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		18DB8BCE29226117007D90CD /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		18DB8BD029227B6F007D90CD /* BaseSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSignView.swift; sourceTree = "<group>"; };
+		18DB8BD229227B8B007D90CD /* BaseSignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSignViewController.swift; sourceTree = "<group>"; };
+		18DB8BD529228831007D90CD /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		18DB8BD72922883C007D90CD /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		18DB8BD929236502007D90CD /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		18DB8BDB2923650D007D90CD /* UserMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMenuTableViewCell.swift; sourceTree = "<group>"; };
+		18DB8BDD2923653C007D90CD /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		18DB8BDF292371F1007D90CD /* UserMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMenu.swift; sourceTree = "<group>"; };
+		18DB8BE3292391C5007D90CD /* UserDetailHideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailHideView.swift; sourceTree = "<group>"; };
+		18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSesacTitleLabel.swift; sourceTree = "<group>"; };
+		18DB8BE7292395CF007D90CD /* SesacTitleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacTitleColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +220,7 @@
 		1870FAE92918F7DA00BCC159 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				18DB8BC0292255BC007D90CD /* UserInfo */,
 				1870FB0F29197D9200BCC159 /* TabBar */,
 				1870FAF52919000200BCC159 /* Main */,
 				1870FAF42918FFF900BCC159 /* Sign */,
@@ -217,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				1870FAEC2918FB5F00BCC159 /* Color.swift */,
+				18DB8BE7292395CF007D90CD /* SesacTitleColor.swift */,
 			);
 			path = Color;
 			sourceTree = "<group>";
@@ -262,6 +294,10 @@
 			children = (
 				1870FB05291926A100BCC159 /* BaseView.swift */,
 				1870FB07291926A800BCC159 /* BaseViewController.swift */,
+				18DB8BCE29226117007D90CD /* BaseCollectionViewCell.swift */,
+				18DB8BD029227B6F007D90CD /* BaseSignView.swift */,
+				18DB8BD229227B8B007D90CD /* BaseSignViewController.swift */,
+				18DB8BDD2923653C007D90CD /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -313,6 +349,7 @@
 				1870FB38291A53BE00BCC159 /* CustomSignLabel.swift */,
 				1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */,
 				1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */,
+				18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -373,6 +410,30 @@
 				18DB8BBC29221777007D90CD /* LaunchScreenViewController.swift */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		18DB8BC0292255BC007D90CD /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				18DB8BD429228818007D90CD /* UserDetail */,
+				18DB8BC1292255CE007D90CD /* UserInfoView.swift */,
+				18DB8BC329225602007D90CD /* UserInfoViewController.swift */,
+				18DB8BC52922560C007D90CD /* UserInfoViewModel.swift */,
+				18DB8BD929236502007D90CD /* UserInfoTableViewCell.swift */,
+				18DB8BDB2923650D007D90CD /* UserMenuTableViewCell.swift */,
+				18DB8BDF292371F1007D90CD /* UserMenu.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		18DB8BD429228818007D90CD /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				18DB8BD529228831007D90CD /* UserDetailView.swift */,
+				18DB8BE3292391C5007D90CD /* UserDetailHideView.swift */,
+				18DB8BD72922883C007D90CD /* UserDetailViewController.swift */,
+			);
+			path = UserDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,30 +530,41 @@
 			files = (
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
+				18DB8BC62922560C007D90CD /* UserInfoViewModel.swift in Sources */,
 				1870FB6E291CECC900BCC159 /* BirthCheckViewController.swift in Sources */,
 				18DB8BBF29222DEE007D90CD /* APICodeModel.swift in Sources */,
 				1870FB58291B699B00BCC159 /* NicknameViewModel.swift in Sources */,
 				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
 				1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */,
+				18DB8BC429225602007D90CD /* UserInfoViewController.swift in Sources */,
+				18DB8BD329227B8B007D90CD /* BaseSignViewController.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
+				18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
+				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */,
 				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,
+				18DB8BD629228831007D90CD /* UserDetailView.swift in Sources */,
 				1870FB6C291CECBC00BCC159 /* BirthCheckView.swift in Sources */,
 				1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */,
+				18DB8BE4292391C6007D90CD /* UserDetailHideView.swift in Sources */,
 				1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */,
 				1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */,
 				18DB8BB82920A07A007D90CD /* APIService.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
 				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
+				18DB8BDC2923650D007D90CD /* UserMenuTableViewCell.swift in Sources */,
 				1870FB4D291B2AA300BCC159 /* CheckCodeViewModel.swift in Sources */,
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
+				18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
+				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
+				18DB8BC2292255CF007D90CD /* UserInfoView.swift in Sources */,
 				1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */,
 				18380758291FBC21001755D5 /* GenderCheckViewController.swift in Sources */,
 				18380754291FB74D001755D5 /* EmailCheckViewModel.swift in Sources */,
@@ -500,14 +572,18 @@
 				18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1838074E291F8431001755D5 /* Date+Extension.swift in Sources */,
+				18DB8BD129227B6F007D90CD /* BaseSignView.swift in Sources */,
 				18DB8BBD29221777007D90CD /* LaunchScreenViewController.swift in Sources */,
 				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
 				1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */,
 				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
+				18DB8BDA29236502007D90CD /* UserInfoTableViewCell.swift in Sources */,
 				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
+				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
+				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
 				1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */,
 				18DB8BB62920A05E007D90CD /* Network.swift in Sources */,
 				1870FB3C291A54DD00BCC159 /* AuthenticationViewController.swift in Sources */,

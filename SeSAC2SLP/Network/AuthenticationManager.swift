@@ -5,7 +5,7 @@
 //  Created by Y on 2022/11/10.
 //
 
-import Foundation
+import UIKit
 
 import FirebaseAuth
 
@@ -49,6 +49,16 @@ class AuthenticationManager {
         }
     }
     
-
+    func updateIdToken() {
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            if error != nil {
+                let rootViewController = AuthenticationViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+            }
+            guard let id = idToken else { return }
+            print(id)
+            User.IDToken = id
+        }
+    }
     
 }

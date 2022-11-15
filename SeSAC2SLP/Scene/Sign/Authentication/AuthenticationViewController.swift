@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Toast
 
-final class AuthenticationViewController: BaseViewController {
+final class AuthenticationViewController: BaseSignViewController {
     let mainView = AuthenticationView()
     let viewModel = AuthenticationViewModel()
     let disposeBag = DisposeBag()
@@ -76,8 +76,10 @@ final class AuthenticationViewController: BaseViewController {
                         switch Bool {
                         case true:
                             self.mainView.makeToast("전화 번호 인증 시작", duration: 1.5, position: .center)
-                            let vc = CheckCodeViewController()
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                                let vc = CheckCodeViewController()
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         case false:
                             self.mainView.makeToast("잘못된 번호입니다.", duration: 1.5, position: .center)
                         }

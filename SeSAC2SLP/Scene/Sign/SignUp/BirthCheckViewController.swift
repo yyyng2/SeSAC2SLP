@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Toast
 
-final class BirthCheckViewController: BaseViewController {
+final class BirthCheckViewController: BaseSignViewController {
     let mainView = BirthCheckView()
     let viewModel = BirthCheckViewModel()
     let disposeBag = DisposeBag()

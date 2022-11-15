@@ -9,7 +9,7 @@ import UIKit
 
 import RxSwift
 
-class GenderCheckViewController: BaseViewController {
+class GenderCheckViewController: BaseSignViewController {
     let mainView = GenderCheckView()
     let viewModel = GenderCheckViewModel()
     let disposeBag = DisposeBag()

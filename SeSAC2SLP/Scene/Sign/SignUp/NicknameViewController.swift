@@ -12,7 +12,7 @@ import RxSwift
 import Toast
 import UIKit
 
-final class NicknameCheckViewController: BaseViewController {
+final class NicknameCheckViewController: BaseSignViewController {
     let mainView = NicknameCheckView()
     let viewModel = NicknameCheckViewModel()
     let disposeBag = DisposeBag()

@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
         Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)
         print("device:\(deviceToken)verificationID:\(User.authVerificationID)")
         Auth.auth().languageCode = "kr";
@@ -76,8 +77,8 @@ extension AppDelegate: MessagingDelegate {
         
         
         guard let fcm = fcmToken else { return }
-//      print("Firebase registration token: \(String(describing: fcmToken))")
-//       print("FCM",fcm)
+      print("Firebase registration token: \(String(describing: fcmToken))")
+       print("FCM",fcm)
         User.fcm = "\(fcm)"
       let dataDict: [String: String] = ["token": fcmToken ?? ""]
       NotificationCenter.default.post(

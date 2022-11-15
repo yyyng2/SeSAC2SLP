@@ -7,6 +7,44 @@
 
 import Foundation
 
+struct Login: Codable {
+    let uid: String
+    let phoneNumber: String
+    let email: String
+    let FCMtoken: String
+    let nick: String
+    let birth: String
+    let gender: Int
+    let study: String
+    let comment: [String]
+    let reputation: [Int]
+    let sesac: Int
+    let sesacCollection: [Int]
+    let background: Int
+    let backgroundCollection: [Int]
+    let purchaseToken: [String]
+    let transactionId: [String]
+    let reviewedBefore: [String]
+    let reportedNum: Int
+    let reportedUser: [String]
+    let dodgepenalty: Int
+    let dodgeNum: Int
+    let ageMin: Int
+    let ageMax: Int
+    let searchable: Int
+    let createdAt: String
+}
+
+struct WithDraw: Codable {
+    let token: String
+}
+
+struct UserInfo: Codable {
+    let photo: String
+    let email: String
+    let username: String
+}
+
 enum LoginCode: Int, Error {
     case success = 200
     case firebaseTokenError = 401
@@ -24,3 +62,67 @@ enum SignCode: Int, Error {
     case serverError = 500
     case clientError = 501
 }
+
+enum SesacCode: Int {
+    case sesac_face_1 = 0
+    case sesac_face_2 = 1
+    case sesac_face_3 = 2
+    case sesac_face_4 = 3
+    case sesac_face_5 = 4
+}
+
+extension SesacCode {
+    var sesacImageName: String? {
+        switch self {
+        case .sesac_face_1:
+            return "sesac_face_1"
+        case .sesac_face_2:
+            return "sesac_face_2"
+        case .sesac_face_3:
+            return "sesac_face_3"
+        case .sesac_face_4:
+            return "sesac_face_4"
+        case .sesac_face_5:
+            return "sesac_face_5"
+        }
+    }
+}
+
+enum BackgroundCode: Int {
+    case sesac_background_1 = 0
+    case sesac_background_2 = 1
+    case sesac_background_3 = 2
+    case sesac_background_4 = 3
+    case sesac_background_5 = 4
+    case sesac_background_6 = 5
+    case sesac_background_7 = 6
+    case sesac_background_8 = 7
+    case sesac_background_9 = 8
+    
+}
+
+extension BackgroundCode {
+    var backgroundImageName: String? {
+        switch self {
+        case .sesac_background_1:
+            return "sesac_background_1"
+        case .sesac_background_2:
+            return "sesac_background_2"
+        case .sesac_background_3:
+            return "sesac_background_3"
+        case .sesac_background_4:
+            return "sesac_background_4"
+        case .sesac_background_5:
+            return "sesac_background_5"
+        case .sesac_background_6:
+            return "sesac_background_6"
+        case .sesac_background_7:
+            return "sesac_background_7"
+        case .sesac_background_8:
+            return "sesac_background_8"
+        case .sesac_background_9:
+            return "sesac_background_9"
+        }
+    }
+}
+
