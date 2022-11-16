@@ -7,6 +7,8 @@
 
 import UIKit
 
+import MultiSlider
+
 class UserDetailViewController: BaseViewController {
     let mainView = UserDetailView()
     
@@ -34,6 +36,8 @@ class UserDetailViewController: BaseViewController {
         mainView.backgroundImageView.image = UIImage(named: backgroundImage)
         mainView.profileImageView.image = UIImage(named: profileImage)
         mainView.profileLabel.text = User.signedName
+        
+        mainView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
     }
 
     
@@ -66,4 +70,8 @@ class UserDetailViewController: BaseViewController {
             }
         }
     }
+    
+    @objc func sliderChanged(_ slider: MultiSlider) {
+        self.mainView.ageLabel.text = "\(Int(self.mainView.slider.value[0])) ~ \(Int(self.mainView.slider.value[1]))"
+        }
 }

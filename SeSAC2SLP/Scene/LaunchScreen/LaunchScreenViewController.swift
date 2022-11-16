@@ -18,18 +18,21 @@ class LaunchScreenViewController: BaseSignViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         AuthenticationManager.shared.updateIdToken()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
             self.checkStatus()
         }
+   
     }
     
     private func checkStatus() {
-
+        
         APIService().login { value in
             print(value)
             APIService().reactLoginAPI(value: value)
-
+            
         }
+        
     }
 }

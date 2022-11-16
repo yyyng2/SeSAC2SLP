@@ -42,9 +42,16 @@ enum keyEnum: String {
     case sesacCollection = "sesacCollection"
     case background = "background"
     case backgroundCollection = "backgroundCollection"
+    case studylist = "studylist"
     case signedName = "signedName"
     case comment = "comment"
     case reputation = "reputation"
+    //QueueState
+    case dodged = "dodged"
+    case matched = "matched"
+    case reviewed = "reviewed"
+    case matchedNick = "matchedNick"
+    case matchedUid = "matchedUid"
 }
 
 struct User {
@@ -78,10 +85,22 @@ struct User {
     static var background: Int
     @UserDefaultsHelper(key: keyEnum.backgroundCollection.rawValue, defaultValue: [0])
     static var backgroundCollection: [Int]
+    @UserDefaultsHelper(key: keyEnum.studylist.rawValue, defaultValue: [""])
+    static var studylist: [String]
     @UserDefaultsHelper(key: keyEnum.signedName.rawValue, defaultValue: "")
     static var signedName: String
     @UserDefaultsHelper(key: keyEnum.comment.rawValue, defaultValue: [""])
     static var comment: [String]
     @UserDefaultsHelper(key: keyEnum.reputation.rawValue, defaultValue: [0,0,0,0,0,0,0,0,0])
     static var reputation: [Int]
+    @UserDefaultsHelper(key: keyEnum.dodged.rawValue, defaultValue: 0)
+    static var dodged: Int
+    @UserDefaultsHelper(key: keyEnum.matched.rawValue, defaultValue: 2)
+    static var matced: Int
+    @UserDefaultsHelper(key: keyEnum.reviewed.rawValue, defaultValue: 0)
+    static var reviewed: Int
+    @UserDefaultsHelper(key: keyEnum.matchedNick.rawValue, defaultValue: "")
+    static var matchedNick: String
+    @UserDefaultsHelper(key: keyEnum.matchedUid.rawValue, defaultValue: "")
+    static var matchedUid: String
 }

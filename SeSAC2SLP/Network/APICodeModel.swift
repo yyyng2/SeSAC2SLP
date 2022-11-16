@@ -45,6 +45,33 @@ struct UserInfo: Codable {
     let username: String
 }
 
+struct SearchInfo: Codable {
+    let fromQueueDB, fromQueueDBRequested: [FromQueueDB]
+    let fromRecommend: [String]
+}
+
+struct FromQueueDB: Codable {
+    let uid: String
+    let nick: String
+    let lat: Double
+    let long: Double
+    let reputation: [Int]
+    let studylist: [String]
+    let reviews: [String]
+    let gender: Int
+    let type: Int
+    let sesac: Int
+    let background: Int
+}
+
+struct QueueState: Codable {
+    let dodged: Int
+    let matched: Int
+    let reviewed: Int
+    let matchedNick: String
+    let matchedUid: String
+}
+
 enum LoginCode: Int, Error {
     case success = 200
     case firebaseTokenError = 401
@@ -57,6 +84,15 @@ enum SignCode: Int, Error {
     case success = 200
     case already = 201
     case badNickname = 202
+    case firebaseTokenError = 401
+    case notMember = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+enum QueueStateCode: Int, Error {
+    case match = 200
+    case normal = 201
     case firebaseTokenError = 401
     case notMember = 406
     case serverError = 500

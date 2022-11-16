@@ -36,7 +36,7 @@ class APIService {
         updateFcmToken()
         
         AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
-
+            guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
             case .success(let data):
                 print(data)
@@ -52,12 +52,13 @@ class APIService {
                 User.reputation = data.reputation
                 User.comment = data.comment
                 
-                guard let statusCode = response.response?.statusCode else { return }
-                print(statusCode)
+           
+                print("QueueStateSuccess:",statusCode)
                 completionHandler(statusCode)
                 
             case .failure(let error):
-                print(error)
+
+                print("QueueStateError:",statusCode)
                 completionHandler(401)
             }
             
@@ -90,22 +91,77 @@ class APIService {
             case .failure(let error):
                 guard let errorCode = error.responseCode else { return }
                
-//                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//                let sceneDelegate = windowScene?.delegate as? SceneDelegate
-//
-//                if User.IDToken.count > 3 {
-//                    let rootViewController = AuthenticationViewController()
-//                    let navigationController = UINavigationController(rootViewController: rootViewController)
-//                    sceneDelegate?.window?.rootViewController = navigationController
-//                } else {
-//                    let rootViewController = OnboardingViewController()
-//                    let navigationController = UINavigationController(rootViewController: rootViewController)
-//                    sceneDelegate?.window?.rootViewController = navigationController
-//                }
-                
               
                 
             }
+        }
+    }
+    
+    func requestQueueState() {
+        
+        let api = SeSACAPI.myQueueState
+        
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
+            guard let statusCode = response.response?.statusCode else { return }
+            switch response.result {
+            case .success(let data):
+                print(data)
+                //로그인 후 필요 정보 여기서 관리할 것
+                
+                guard let data = response.value else { return }
+                
+                User.dodged = data.dodged
+           
+                User.reviewed = data.reviewed
+                User.matchedNick = data.matchedNick
+                User.matchedUid = data.matchedUid
+    
+                if statusCode == 200 {
+                    User.matced = data.matched
+                } else if statusCode == 201 {
+                    User.matced = 2
+                }
+      
+                print("QueueStateSuccess:",statusCode)
+//                completionHandler(statusCode)
+                
+            case .failure(let error):
+                print("QueueStateError:",statusCode)
+//                completionHandler(401)
+                
+                AuthenticationManager.shared.updateIdToken()
+            }
+            
+        }
+        
+    }
+    
+    func requestSearchQueue(lat: Double, long: Double, completionHandler: @escaping (SearchInfo?, Int?) -> Void) {
+
+        let api = SeSACAPI.searchQueue(lat: lat, long: long)
+
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: SearchInfo.self) { response in
+            print("requestSearchQueue:",response)
+            guard let statusCode = response.response?.statusCode else { return }
+            switch response.result {
+            case .success(let data):
+                //로그인 후 필요 정보 여기서 관리할 것
+          
+                print("requestQueueSuccess",data, statusCode)
+                completionHandler(data, statusCode)
+                
+            case .failure(let error):
+                print("requestQueueError", "", statusCode)
+                completionHandler(nil, statusCode)
+            }
+            
+          
         }
     }
     
@@ -116,23 +172,26 @@ class APIService {
         switch LoginCode(rawValue: value) {
         case .success:
             updateFcmToken()
-            print(value)
+            print("success: Login")
             let rootViewController = TabBarController()
 //            let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
             if User.phoneNumber.count > 3 {
+                print("error: firebaseTokenError case 1")
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
+                print("error: firebaseTokenError case 2")
                 let rootViewController = OnboardingViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             }
         case .notMember:
             print(value)
+            print("error: notMemeber")
             let rootViewController = NicknameCheckViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
@@ -141,10 +200,12 @@ class APIService {
         case .clientError:
             print(value)
             if User.phoneNumber.count > 3 {
+                print("error: clientError case 1")
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
+                print("error: clientError case 2")
                 let rootViewController = OnboardingViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
@@ -205,4 +266,7 @@ class APIService {
         }
     }
     
+    func reactQueue() {
+        
+    }
 }

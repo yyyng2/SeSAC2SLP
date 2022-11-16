@@ -60,6 +60,7 @@ class GenderCheckViewController: BaseSignViewController {
                 let left = self.mainView.leftButton.isSelected
                 let right = self.mainView.rightButton.isSelected
                 let result = self.viewModel.checkGender(leftBool: left, rightBool: right)
+                
                 switch result {
                 case .none:
                     self.mainView.makeToast("성별을 선택해 주세요.", duration: 1.5, position: .center)
@@ -78,6 +79,8 @@ class GenderCheckViewController: BaseSignViewController {
                     }
                     print(User.gender)
                 }
+                
+            
             }
             .disposed(by: disposeBag)
     }

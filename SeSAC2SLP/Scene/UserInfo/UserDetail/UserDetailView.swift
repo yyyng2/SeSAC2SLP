@@ -7,6 +7,8 @@
 
 import UIKit
 
+import MultiSlider
+
 class UserDetailView: BaseView {
     let backgroundImageView: UIImageView = {
        let view = UIImageView()
@@ -51,15 +53,22 @@ class UserDetailView: BaseView {
         return view
     }()
     let scrollView: UIScrollView = {
-      let scrollView = UIScrollView()
-      scrollView.backgroundColor = .clear
-      scrollView.translatesAutoresizingMaskIntoConstraints = false
-      return scrollView
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
-    
-    let view = UserDetailHideView()
-    let stackView: UIStackView = {
+    let heightView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    let contentStackView: UIStackView = {
        let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -134,22 +143,83 @@ class UserDetailView: BaseView {
         return label
     }()
     
+    let stackView: UIStackView = {
+       let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    /////////////////////////////// under part ////////////////////////////
+    let genderLabel: CustomSesacTitleLabel = {
+        let label = CustomSesacTitleLabel()
+        label.text = "내 성별"
+        label.textColor = Constants.BaseColor.black
+        return label
+    }()
+    let favoriteStudyLabel: CustomSesacTitleLabel = {
+        let label = CustomSesacTitleLabel()
+        label.text = "자주 하는 스터디"
+        label.textColor = Constants.BaseColor.black
+        return label
+    }()
+    let numberPublicStatusLabel: CustomSesacTitleLabel = {
+        let label = CustomSesacTitleLabel()
+        label.text = "내 번호 검색 허용"
+        label.textColor = Constants.BaseColor.black
+        return label
+    }()
+    let favoriteAgeLabel: CustomSesacTitleLabel = {
+        let label = CustomSesacTitleLabel()
+        label.text = "상대방 연령대"
+        label.textColor = Constants.BaseColor.black
+        return label
+    }()
+    let ageLabel: CustomSesacTitleLabel = {
+        let label = CustomSesacTitleLabel()
+        label.textColor = Constants.brandColor.green
+        return label
+    }()
+    let slider: MultiSlider = {
+       let slider = MultiSlider()
+        slider.minimumValue = 18
+        slider.maximumValue = 70
+        slider.value = [18, 25]
+        slider.orientation = .horizontal
+        slider.outerTrackColor = Constants.grayScale.gray2
+        slider.tintColor = Constants.brandColor.green
+        slider.thumbTintColor = Constants.brandColor.green
+        return slider
+    }()
+    let withDrawButton: UIButton = {
+       let button = UIButton()
+        return button
+    }()
+    
     override func configure() {
         [scrollView].forEach {
             self.addSubview($0)
         }
-        [backgroundImageView, profileImageView, expandButton, profileLabel, arrowImage, secondView, thirdView].forEach {
-            scrollView.addSubview($0)
+//        [backgroundImageView, profileImageView, expandButton, profileLabel, arrowImage, secondView, genderLabel, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawButton, heightView].forEach {
+//            scrollView.addSubview($0)
+//        }
+        [backgroundImageView, profileImageView, expandButton, profileLabel, arrowImage, secondView, genderLabel, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawButton, heightView].forEach {
+            contentStackView.addArrangedSubview($0)
         }
+        scrollView.addSubview(contentStackView)
+        
         [sesacTitleLabel, mannerTitleLabel, timeTitleLabel, responseTitleLabel, niceTitleLabel, handyTitleLabel, beneficialTitleLabel, sesacReviewLabel].forEach {
-            stackView.addSubview($0)
+            stackView.addArrangedSubview($0)
         }
         secondView.addSubview(stackView)
     }
     
     override func setConstraints() {
         scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
         backgroundImageView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(12)
@@ -185,16 +255,148 @@ class UserDetailView: BaseView {
             make.width.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(0)
         }
-        thirdView.snp.makeConstraints { make in
+        genderLabel.snp.makeConstraints { make in
             make.top.equalTo(secondView.snp.bottom).offset(20)
-            make.width.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.2)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
-        
+        favoriteStudyLabel.snp.makeConstraints { make in
+            make.top.equalTo(genderLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        numberPublicStatusLabel.snp.makeConstraints { make in
+            make.top.equalTo(favoriteStudyLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        favoriteAgeLabel.snp.makeConstraints { make in
+            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        ageLabel.snp.makeConstraints { make in
+            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        slider.snp.makeConstraints { make in
+            make.top.equalTo(favoriteAgeLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.8)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.centerX.equalTo(safeAreaLayoutGuide)
+        }
+        withDrawButton.snp.makeConstraints { make in
+            make.top.equalTo(slider.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        heightView.snp.makeConstraints { make in
+            make.top.equalTo(withDrawButton.snp.bottom).offset(20)
+            make.height.equalTo(1000)
+            make.bottom.equalTo(scrollView.snp.bottom)
+        }
+
+        contentStackView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+        }
+
         stackView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(300)
+            make.height.equalTo(0)
         }
+        
+//        backgroundImageView.snp.makeConstraints { make in
+//            make.top.equalTo(contentStackView).offset(12)
+//            make.width.equalTo(contentStackView).multipliedBy(0.9)
+//            make.height.equalTo(contentStackView).multipliedBy(0.3)
+//            make.centerX.equalTo(contentStackView)
+//        }
+//        profileImageView.snp.makeConstraints { make in
+//            make.bottom.equalTo(backgroundImageView.snp.bottom).multipliedBy(1)
+//            make.centerX.equalTo(contentStackView)
+//            make.width.equalTo(backgroundImageView.snp.width).multipliedBy(0.6)
+//            make.height.equalTo(backgroundImageView.snp.height).multipliedBy(0.85)
+//        }
+//        profileLabel.snp.makeConstraints { make in
+//            make.top.equalTo(expandButton.snp.top)
+//            make.centerX.equalTo(contentStackView)
+//            make.width.equalTo(contentStackView).multipliedBy(0.8)
+//            make.height.equalTo(contentStackView).multipliedBy(0.1)
+//        }
+//        arrowImage.snp.makeConstraints { make in
+//            make.centerY.equalTo(profileLabel.snp.centerY)
+//            make.width.equalTo(profileLabel.snp.width).multipliedBy(0.05)
+//            make.height.equalTo(arrowImage.snp.width)
+//            make.trailing.equalTo(profileLabel.snp.trailing)
+//        }
+//        expandButton.snp.makeConstraints { make in
+//            make.top.equalTo(backgroundImageView.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView)
+//            make.height.equalTo(contentStackView).multipliedBy(0.1)
+//        }
+//        secondView.snp.makeConstraints { make in
+//            make.top.equalTo(expandButton.snp.bottom)
+//            make.width.equalTo(contentStackView)
+//            make.height.equalTo(0)
+//        }
+//        genderLabel.snp.makeConstraints { make in
+//            make.top.equalTo(secondView.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        favoriteStudyLabel.snp.makeConstraints { make in
+//            make.top.equalTo(genderLabel.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        numberPublicStatusLabel.snp.makeConstraints { make in
+//            make.top.equalTo(favoriteStudyLabel.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        favoriteAgeLabel.snp.makeConstraints { make in
+//            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        ageLabel.snp.makeConstraints { make in
+//            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.trailing.equalTo(contentStackView)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        slider.snp.makeConstraints { make in
+//            make.top.equalTo(favoriteAgeLabel.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.8)
+//            make.height.equalTo(contentStackView).multipliedBy(0.1)
+//            make.centerX.equalTo(contentStackView)
+//        }
+//        withDrawButton.snp.makeConstraints { make in
+//            make.top.equalTo(slider.snp.bottom).offset(20)
+//            make.width.equalTo(contentStackView).multipliedBy(0.5)
+//            make.trailing.equalTo(contentStackView)
+//            make.height.equalTo(contentStackView).multipliedBy(0.05)
+//        }
+//        heightView.snp.makeConstraints { make in
+//            make.top.equalTo(withDrawButton.snp.bottom).offset(20)
+//            make.height.equalTo(1000)
+//            make.bottom.equalTo(scrollView.snp.bottom)
+//        }
+//
+//        contentStackView.snp.makeConstraints { make in
+//            make.edges.equalTo(scrollView.contentLayoutGuide)
+//            make.bottom.equalTo(scrollView.contentLayoutGuide)
+//        }
+//
+//        stackView.snp.makeConstraints { make in
+//            make.edges.equalTo(contentStackView)
+//            make.height.equalTo(0)
+//        }
+        
+        
         
         // hiddenView
         sesacTitleLabel.snp.makeConstraints { make in

@@ -17,6 +17,7 @@
 		1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */; };
 		1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075E291FC08E001755D5 /* CustomGenderButton.swift */; };
 		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
+		1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */; };
 		1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD32918B5A000BCC159 /* AppDelegate.swift */; };
 		1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD52918B5A000BCC159 /* SceneDelegate.swift */; };
 		1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1870FADC2918B5A300BCC159 /* Assets.xcassets */; };
@@ -85,6 +86,10 @@
 		18DB8BE4292391C6007D90CD /* UserDetailHideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE3292391C5007D90CD /* UserDetailHideView.swift */; };
 		18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */; };
 		18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BE7292395CF007D90CD /* SesacTitleColor.swift */; };
+		18DB8BF02923AFAB007D90CD /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 18DB8BEF2923AFAB007D90CD /* MultiSlider */; };
+		18DB8BF52923C975007D90CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF42923C974007D90CD /* HomeView.swift */; };
+		18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF62923C98F007D90CD /* HomeViewController.swift */; };
+		18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +103,7 @@
 		1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignDetailLabel.swift; sourceTree = "<group>"; };
 		1838075E291FC08E001755D5 /* CustomGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenderButton.swift; sourceTree = "<group>"; };
 		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC2SLP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1870FAD32918B5A000BCC159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1870FAD52918B5A000BCC159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +166,9 @@
 		18DB8BE3292391C5007D90CD /* UserDetailHideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailHideView.swift; sourceTree = "<group>"; };
 		18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSesacTitleLabel.swift; sourceTree = "<group>"; };
 		18DB8BE7292395CF007D90CD /* SesacTitleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacTitleColor.swift; sourceTree = "<group>"; };
+		18DB8BF42923C974007D90CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18DB8BF62923C98F007D90CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,12 +185,21 @@
 				1870FB65291B8F4600BCC159 /* FirebaseCrashlytics in Frameworks */,
 				1870FB63291B8F4600BCC159 /* FirebaseAuth in Frameworks */,
 				1870FB31291A518000BCC159 /* RxCocoa in Frameworks */,
+				18DB8BF02923AFAB007D90CD /* MultiSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1861CAA8292528E700C6AA70 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
 		1870FAC72918B5A000BCC159 = {
 			isa = PBXGroup;
 			children = (
@@ -220,9 +238,11 @@
 		1870FAE92918F7DA00BCC159 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				18DB8BF32923C968007D90CD /* Friends */,
+				18DB8BF12923C95B007D90CD /* Shop */,
 				18DB8BC0292255BC007D90CD /* UserInfo */,
 				1870FB0F29197D9200BCC159 /* TabBar */,
-				1870FAF52919000200BCC159 /* Main */,
+				1870FAF52919000200BCC159 /* Home */,
 				1870FAF42918FFF900BCC159 /* Sign */,
 				1870FAF32918FFEB00BCC159 /* Onboarding */,
 				18DB8BB92922173F007D90CD /* LaunchScreen */,
@@ -240,6 +260,7 @@
 				1870FB042919269A00BCC159 /* Base */,
 				1870FAF02918FCB200BCC159 /* UserDefaultsHelper.swift */,
 				1870FAEB2918F7FF00BCC159 /* Color */,
+				1861CAA8292528E700C6AA70 /* Annotation */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -272,11 +293,13 @@
 			path = Sign;
 			sourceTree = "<group>";
 		};
-		1870FAF52919000200BCC159 /* Main */ = {
+		1870FAF52919000200BCC159 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18DB8BF42923C974007D90CD /* HomeView.swift */,
+				18DB8BF62923C98F007D90CD /* HomeViewController.swift */,
 			);
-			path = Main;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		1870FAFB2919262200BCC159 /* OnboardingPage */ = {
@@ -399,6 +422,7 @@
 				18DB8BB52920A05E007D90CD /* Network.swift */,
 				18DB8BB72920A07A007D90CD /* APIService.swift */,
 				18DB8BBE29222DEE007D90CD /* APICodeModel.swift */,
+				18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -436,6 +460,20 @@
 			path = UserDetail;
 			sourceTree = "<group>";
 		};
+		18DB8BF12923C95B007D90CD /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		18DB8BF32923C968007D90CD /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,6 +500,7 @@
 				1870FB64291B8F4600BCC159 /* FirebaseCrashlytics */,
 				1870FB66291B8F4600BCC159 /* FirebaseMessaging */,
 				18DB8BB129209AC2007D90CD /* Alamofire */,
+				18DB8BEF2923AFAB007D90CD /* MultiSlider */,
 			);
 			productName = SeSAC2SLP;
 			productReference = 1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */;
@@ -497,6 +536,7 @@
 				1870FB2F291A517F00BCC159 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				1870FB5F291B8F4600BCC159 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				18DB8BB029209AC2007D90CD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				18DB8BEE2923AFAB007D90CD /* XCRemoteSwiftPackageReference "MultiSlider" */,
 			);
 			productRefGroup = 1870FAD12918B5A000BCC159 /* Products */;
 			projectDirPath = "";
@@ -537,16 +577,19 @@
 				1870FB3F291A557000BCC159 /* CustomSignTextField.swift in Sources */,
 				1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */,
 				18DB8BC429225602007D90CD /* UserInfoViewController.swift in Sources */,
+				18DB8BF52923C975007D90CD /* HomeView.swift in Sources */,
 				18DB8BD329227B8B007D90CD /* BaseSignViewController.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
 				18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */,
+				18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
 				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */,
 				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,
+				1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */,
 				18DB8BD629228831007D90CD /* UserDetailView.swift in Sources */,
 				1870FB6C291CECBC00BCC159 /* BirthCheckView.swift in Sources */,
 				1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */,
@@ -581,6 +624,7 @@
 				18DB8BDA29236502007D90CD /* UserInfoTableViewCell.swift in Sources */,
 				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
+				18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
 				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
@@ -851,6 +895,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		18DB8BEE2923AFAB007D90CD /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -898,6 +950,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 18DB8BB029209AC2007D90CD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		18DB8BEF2923AFAB007D90CD /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18DB8BEE2923AFAB007D90CD /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

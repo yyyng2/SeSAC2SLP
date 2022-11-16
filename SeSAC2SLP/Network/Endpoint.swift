@@ -15,6 +15,10 @@ enum SeSACAPI {
     case login
     case withDraw
     case updateFcmToken(FCMtoken: String)
+    case myQueueState
+    case queue(lat: Double, long: Double, studylist: [String])
+    case stopQueue
+    case searchQueue(lat: Double, long: Double)
 }
 
 extension SeSACAPI {
@@ -28,6 +32,14 @@ extension SeSACAPI {
             return URL(string: "http://api.sesac.co.kr:1207/v1/user/withdraw")!
         case .updateFcmToken:
             return URL(string: "http://api.sesac.co.kr:1207/v1/user/update_fcm_token")!
+        case .myQueueState:
+            return URL(string: "http://api.sesac.co.kr:1207/v1/queue/myQueueState")!
+        case .queue:
+            return URL(string: "http://api.sesac.co.kr:1207/v1/queue")!
+        case .stopQueue:
+            return URL(string: "http://api.sesac.co.kr:1207/v1/queue")!
+        case .searchQueue:
+            return URL(string: "http://api.sesac.co.kr:1207/v1/queue/search")!
         }
     }
     
@@ -38,14 +50,12 @@ extension SeSACAPI {
                 "idtoken":"\(User.IDToken)",
                 "Content-Type":"application/x-www-form-urlencoded"
             ]
-        case .login:
-            return ["idtoken":"\(User.IDToken)"]
         case .withDraw:
             return [
                 "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)",
                 "Content-Type":"application/x-www-form-urlencoded"
             ]
-        case .updateFcmToken:
+        default:
             return ["idtoken":"\(User.IDToken)"]
         }
     }
@@ -63,6 +73,10 @@ extension SeSACAPI {
             ]
         case .updateFcmToken(let FCMToken):
             return ["FCMtoken" : FCMToken]
+        case .queue(let lat, let long, let studylist):
+            return ["lat" : lat, "long": long, "studylist": studylist]
+        case .searchQueue(let lat, let long):
+            return ["lat" : lat, "long": long]
         default:
             return ["":""]
         }
