@@ -12,12 +12,15 @@ import CoreLocation
 class HomeViewController: BaseViewController {
     let mainView = HomeView()
     
-    var queueResult = [FromQueueDB]()
+    var queueResult: [FromQueueDB] = []
     
     var pins: [CustomAnnotation] = []
     
-    var man
+    var man: [FromQueueDB] = []
     
+    var woman: [FromQueueDB] = []
+    
+    var currentGender: Int = 2
     
     let locationManager = CLLocationManager()
     
@@ -56,7 +59,17 @@ class HomeViewController: BaseViewController {
     }
     
     func setGender() {
-        let man = queueResult.forEach { $0.gender }
+        
+        for i in queueResult {
+            if i.gender == 1 {
+                man.append(i)
+            } else if i.gender == 0 {
+                woman.append(i)
+            } else {
+                
+            }
+        }
+
     }
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D){
@@ -73,20 +86,20 @@ class HomeViewController: BaseViewController {
         mainView.mapView.addAnnotation(pin)
     }
     
-    func addAnnotation(gender: Int?, mapView: MKMapView, completion: @escaping() -> Void) {
-
+    func addAnnotation(gender: Int?, mapView: MKMapView) {
+        setGender()
         switch gender {
         case 0:
-            maleSesacArray.value?.forEach({ sesacs in
-                let anno = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
+            woman.forEach({ sesacs in
+                let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
                 
-                self.pins.append(anno)
+                self.pins.append(pin)
             })
         case 1:
-            femaleSesacArray.value?.forEach({ sesacs in
-                let anno = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
+            man.forEach({ sesacs in
+                let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
                 
-                self.annotations.append(anno)
+                self.pins.append(pin)
             })
             
             
@@ -109,7 +122,7 @@ class HomeViewController: BaseViewController {
             })
         }
         
-            mainView.mapView.addAnnotations(self.pins)
+        mainView.mapView.addAnnotations(self.pins)
 
     }
     
@@ -192,6 +205,8 @@ extension HomeViewController: CLLocationManagerDelegate{
         //ex. 지도 다시 세팅
         if let coordinate = locations.last?.coordinate{
             setRegionAndAnnotation(center: coordinate)
+            
+            addAnnotation(gender: 2, mapView: mainView.mapView)
 //            let latitude = coordinate.latitude
 //            let longitude = coordinate.longitude
 //            let center = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
@@ -230,7 +245,7 @@ extension HomeViewController: CLLocationManagerDelegate{
             
 //            self.lat = latitude
 //            self.long = longitude
-
+            self.searchQueue(lat: latitude, long: longitude)
       
 //            self.searchFriend(region: region, lat: latitude, long: longitude)
         }
@@ -244,13 +259,22 @@ extension HomeViewController: CLLocationManagerDelegate{
             print("code:",code)
             guard let results = result?.fromQueueDB else { return }
             self.queueResult = results
-            
         }
-
-        searchFriendAllAnnotations()
+        
+        switch self.currentGender {
+        case 0:
+            addAnnotation(gender: 0, mapView: mainView.mapView)
+        case 1:
+            addAnnotation(gender: 1, mapView: mainView.mapView)
+        case 2:
+            addAnnotation(gender: 2, mapView: mainView.mapView)
+        default:
+            addAnnotation(gender: 2, mapView: mainView.mapView)
+        }
+      
     }
     
-    private func searchFriendAllAnnotations() {
+    private func searchSesacAllAnnotations() {
         let annotations = mainView.mapView.annotations
         mainView.mapView.removeAnnotations(annotations)
         
@@ -305,20 +329,7 @@ extension HomeViewController: MKMapViewDelegate {
         
         let sesacImage: UIImage!
         
-        switch annotation.sesac_image {
-        case 0:
-            sesacImage = UIImage(named: "sesac_face_1")
-        case 1:
-            sesacImage = UIImage(named: "sesac_face_2")
-        case 2:
-            sesacImage = UIImage(named: "sesac_face_3")
-        case 3:
-            sesacImage = UIImage(named: "sesac_face_4")
-        case 4:
-            sesacImage = UIImage(named: "sesac_face_5")
-        default:
-            sesacImage = UIImage(named: "sesac_face_1")
-        }
+        sesacImage = UIImage(named: "sesac_face_\(annotation.sesac_image)")
         
         annotationView!.snp.makeConstraints { make in
             make.width.height.equalTo(110)
