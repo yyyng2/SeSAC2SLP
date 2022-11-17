@@ -17,10 +17,15 @@
 		1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */; };
 		1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075E291FC08E001755D5 /* CustomGenderButton.swift */; };
 		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
+		183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */; };
 		1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */; };
 		1861CAAD2926829E00C6AA70 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */; };
 		1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAE2926949E00C6AA70 /* CObservable.swift */; };
 		1861CAB12926A11100C6AA70 /* CustomMapGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */; };
+		1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */; };
+		1861CAB62926B89C00C6AA70 /* SearchQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */; };
+		1861CAB82926B8A500C6AA70 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB72926B8A500C6AA70 /* SearchResultView.swift */; };
+		1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */; };
 		1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD32918B5A000BCC159 /* AppDelegate.swift */; };
 		1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD52918B5A000BCC159 /* SceneDelegate.swift */; };
 		1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1870FADC2918B5A300BCC159 /* Assets.xcassets */; };
@@ -106,10 +111,15 @@
 		1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignDetailLabel.swift; sourceTree = "<group>"; };
 		1838075E291FC08E001755D5 /* CustomGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenderButton.swift; sourceTree = "<group>"; };
 		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewCell.swift; sourceTree = "<group>"; };
 		1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1861CAAE2926949E00C6AA70 /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
 		1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapGenderButton.swift; sourceTree = "<group>"; };
+		1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueView.swift; sourceTree = "<group>"; };
+		1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueViewController.swift; sourceTree = "<group>"; };
+		1861CAB72926B8A500C6AA70 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC2SLP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1870FAD32918B5A000BCC159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1870FAD52918B5A000BCC159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +214,18 @@
 				1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */,
 			);
 			path = Annotation;
+			sourceTree = "<group>";
+		};
+		1861CAB22926B85600C6AA70 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */,
+				183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */,
+				1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */,
+				1861CAB72926B8A500C6AA70 /* SearchResultView.swift */,
+				1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */,
+			);
+			path = Queue;
 			sourceTree = "<group>";
 		};
 		1870FAC72918B5A000BCC159 = {
@@ -303,6 +325,7 @@
 		1870FAF52919000200BCC159 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1861CAB22926B85600C6AA70 /* Queue */,
 				18DB8BF42923C974007D90CD /* HomeView.swift */,
 				18DB8BF62923C98F007D90CD /* HomeViewController.swift */,
 				1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */,
@@ -597,6 +620,7 @@
 				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
 				1861CAB12926A11100C6AA70 /* CustomMapGenderButton.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
+				1861CAB62926B89C00C6AA70 /* SearchQueueViewController.swift in Sources */,
 				1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */,
 				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,
 				1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */,
@@ -609,13 +633,16 @@
 				18DB8BB82920A07A007D90CD /* APIService.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
+				1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */,
 				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
 				18DB8BDC2923650D007D90CD /* UserMenuTableViewCell.swift in Sources */,
 				1870FB4D291B2AA300BCC159 /* CheckCodeViewModel.swift in Sources */,
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
+				1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
+				183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
 				18DB8BC2292255CF007D90CD /* UserInfoView.swift in Sources */,
 				1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */,
@@ -638,6 +665,7 @@
 				18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
+				1861CAB82926B8A500C6AA70 /* SearchResultView.swift in Sources */,
 				1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */,
 				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
 				1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */,

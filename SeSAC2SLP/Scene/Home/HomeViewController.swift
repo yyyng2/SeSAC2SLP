@@ -24,8 +24,10 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        APIService().requestQueueState()
         
+        navigationController?.navigationBar.topItem?.title = ""
+        
+        APIService().requestQueueState()
       
         setQueueButtonImage()
      
@@ -48,8 +50,7 @@ class HomeViewController: BaseViewController {
             self.viewModel.queueResult = results
         }
             
-//        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-//             setRegionAndAnnotation(center: center)
+        userCurrentLocationButtonTapped()
         
         self.locationManager.requestWhenInUseAuthorization()
     }
@@ -76,6 +77,7 @@ class HomeViewController: BaseViewController {
         }
         mainView.allGenderButton.isSelected = true
         mainView.userCurrentLocationButton.addTarget(self, action: #selector(userCurrentLocationButtonTapped), for: .touchUpInside)
+        mainView.statusButton.addTarget(self, action: #selector(statusButtonTapped), for: .touchUpInside)
     }
     
     func setQueueButtonImage() {
@@ -115,6 +117,22 @@ class HomeViewController: BaseViewController {
     
     @objc func userCurrentLocationButtonTapped() {
         locationManager.startUpdatingLocation()
+    }
+    
+    @objc func statusButtonTapped() {
+        switch User.matched {
+        case 0:
+            let vc = SearchResultViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            let vc = SearchQueueViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = SearchQueueViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
+        }
     }
     
   
@@ -158,6 +176,9 @@ extension HomeViewController {
               
           case .restricted, .denied:
               print("Denied, 아이폰 설정으로 유도")
+              //기본 새싹 센터로
+              let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+              setRegionAndAnnotation(coordinate: center)
               //얼럿을 띄워 설정으로 유도
               showRequestLocationServiceAlert()
           case .authorizedWhenInUse:
@@ -195,9 +216,7 @@ extension HomeViewController: CLLocationManagerDelegate{
         if let coordinate = locations.last?.coordinate {
             
             setRegionAndAnnotation(coordinate: coordinate)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-              
-            }
+         
             self.viewModel.currentGender.value = self.gender
         
         }

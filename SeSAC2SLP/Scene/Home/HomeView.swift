@@ -104,7 +104,7 @@ class HomeView: BaseView {
             make.center.equalTo(safeAreaLayoutGuide)
         }
         genderButtonStackView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(52)
+            make.top.equalToSuperview().offset(60)
             make.leading.equalTo(safeAreaLayoutGuide).offset(16)
         }
         [allGenderButton, maleButton, femaleButton].forEach { button in
