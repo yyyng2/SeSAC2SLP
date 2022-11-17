@@ -264,8 +264,16 @@ extension HomeViewController: CLLocationManagerDelegate{
         APIService().requestSearchQueue(lat: lat, long: long) { result, code in
             print("Queue:",result)
             print("code:",code)
-            guard let results = result?.fromQueueDB else { return }
-            self.viewModel.queueResult = results
+            guard let results = result else { return }
+            self.viewModel.queueResult = results.fromQueueDB
+            User.fromRecommend = results.fromRecommend
+            var studyList: [String] = []
+            for i in results.fromQueueDB {
+                studyList.append("\(i.studylist)")
+            }
+            studyList.removeAll(where: { $0 == "anything" })
+            let studyResult = Set(studyList)
+            User.studylistFromDB = Array(studyResult)
         }
         
         switch self.viewModel.currentGender.value {
@@ -288,8 +296,8 @@ extension HomeViewController: CLLocationManagerDelegate{
 extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        let lat = mapView.centerCoordinate.latitude
-//        let long = mapView.centerCoordinate.longitude
+        let lat = mapView.centerCoordinate.latitude
+        let long = mapView.centerCoordinate.longitude
 //
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
 //            APIService().requestSearchQueue(lat: lat, long: long) { result, code in
@@ -297,6 +305,9 @@ extension HomeViewController: MKMapViewDelegate {
 //                self.viewModel.queueResult = results
 //            }
 //        }
+        User.currentLat = lat
+        User.currentLong = long
+        
         viewModel.currentGender.value = gender
     }
     

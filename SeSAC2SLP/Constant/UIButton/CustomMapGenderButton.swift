@@ -22,6 +22,8 @@ class CustomMapGenderButton: UIButton {
               var config = button.configuration
             config?.baseForegroundColor = button.isSelected ? Constants.BaseColor.white : Constants.BaseColor.black
             config?.background.backgroundColor = button.isSelected ? Constants.brandColor.green : Constants.BaseColor.white
+            config?.background.cornerRadius = 0
+            config?.cornerStyle = .fixed
             button.configuration = config
         }
     }

@@ -72,6 +72,10 @@ struct QueueState: Codable {
     let matchedUid: String
 }
 
+struct Queue: Codable {
+    
+}
+
 enum MatchedCode: Int {
     case match0 = 0
     case match1 = 1

@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.overrideUserInterfaceStyle = .light
         
         let viewController = LaunchScreenViewController()
-//        let viewController = AuthenticationViewController()
+//        let viewController = BirthCheckViewController()
         let navi = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navi   
       

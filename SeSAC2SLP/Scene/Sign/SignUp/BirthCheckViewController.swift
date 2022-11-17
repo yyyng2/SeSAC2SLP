@@ -42,21 +42,37 @@ final class BirthCheckViewController: BaseSignViewController {
         output.yearValidStatus
             .withUnretained(self)
             .bind { (vc, value) in
-                vc.setUIColor(value: value)
+                switch value {
+                case true:
+                    vc.setUIColor(value: value)
+                case false:
+                    vc.mainView.yearTextField.text = ""
+                }
+             
             }
             .disposed(by: disposeBag)
         
         output.monthValidStatus
             .withUnretained(self)
             .bind { (vc, value) in
-                vc.setUIColor(value: value)
+                switch value {
+                case true:
+                    vc.setUIColor(value: value)
+                case false:
+                    vc.mainView.monthTextField.text = ""
+                }
             }
             .disposed(by: disposeBag)
         
         output.dayValidStatus
             .withUnretained(self)
             .bind { (vc, value) in
-                vc.setUIColor(value: value)
+                switch value {
+                case true:
+                    vc.setUIColor(value: value)
+                case false:
+                    vc.mainView.dayTextField.text = ""
+                }
             }
             .disposed(by: disposeBag)
         

@@ -165,6 +165,18 @@ class APIService {
         }
     }
     
+    func requestQueue(lat: Double, long: Double, studylist: [String]) {
+        let api = SeSACAPI.queue(lat: lat, long: long, studylist: studylist)
+            
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).response { response in
+            print("requestQueue:",response)
+        }
+        
+    }
+    
     func reactLoginAPI(value: Int) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate

@@ -52,6 +52,11 @@ enum keyEnum: String {
     case reviewed = "reviewed"
     case matchedNick = "matchedNick"
     case matchedUid = "matchedUid"
+    case currentLat = "lat"
+    case currentLong = "long"
+    case fromRecommend = "fromRecommend"
+    case studylistFromDB = "studylistFromDB"
+    case studylistFromDBRequest = "studylistFromDBRequest"
 }
 
 struct User {
@@ -103,4 +108,14 @@ struct User {
     static var matchedNick: String
     @UserDefaultsHelper(key: keyEnum.matchedUid.rawValue, defaultValue: "")
     static var matchedUid: String
+    @UserDefaultsHelper(key: keyEnum.currentLat.rawValue, defaultValue: 0)
+    static var currentLat: Double
+    @UserDefaultsHelper(key: keyEnum.currentLong.rawValue, defaultValue: 0)
+    static var currentLong: Double
+    @UserDefaultsHelper(key: keyEnum.fromRecommend.rawValue, defaultValue: [""])
+    static var fromRecommend: [String]
+    @UserDefaultsHelper(key: keyEnum.studylistFromDB.rawValue, defaultValue: [""])
+    static var studylistFromDB: [String]
+    @UserDefaultsHelper(key: keyEnum.studylistFromDBRequest.rawValue, defaultValue: [""])
+    static var studylistFromDBRequest: [String]
 }
