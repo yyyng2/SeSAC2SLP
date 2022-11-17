@@ -44,6 +44,7 @@ class HomeViewController: BaseViewController {
         
         locationManager.delegate = self
         
+        mainView.mapView.delegate = self
         
         APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
             print("Queue:",result)
@@ -101,8 +102,6 @@ class HomeViewController: BaseViewController {
                 
                 self.pins.append(pin)
             })
-            
-            
         case 2:
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
@@ -111,18 +110,16 @@ class HomeViewController: BaseViewController {
         case .none:
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
-                
-                mainView.mapView.addAnnotation(pin)
+                self.pins.append(pin)
             })
         case .some(_):
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
-                
-                mainView.mapView.addAnnotation(pin)
+                self.pins.append(pin)
             })
         }
         
-        mainView.mapView.addAnnotations(self.pins)
+        mapView.addAnnotations(self.pins)
 
     }
     
@@ -307,15 +304,9 @@ extension HomeViewController: CLLocationManagerDelegate{
 
 extension HomeViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-          _ = getCenterLocation(for: mapView)
-      }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        guard let annotation = annotation as? CustomAnnotation else {
-            return nil
-        }
+        guard let annotation = annotation as? CustomAnnotation else { return nil }
         
         var annotationView = self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         
@@ -329,7 +320,22 @@ extension HomeViewController: MKMapViewDelegate {
         
         let sesacImage: UIImage!
         
-        sesacImage = UIImage(named: "sesac_face_\(annotation.sesac_image)")
+        print("annotation:",annotation.sesac_image)
+        
+        switch annotation.sesac_image {
+        case 0:
+            sesacImage = UIImage(named: "sesac_face_1")
+        case 1:
+            sesacImage = UIImage(named: "sesac_face_2")
+        case 2:
+            sesacImage = UIImage(named: "sesac_face_3")
+        case 3:
+            sesacImage = UIImage(named: "sesac_face_4")
+        case 4:
+            sesacImage = UIImage(named: "sesac_face_5")
+        default:
+            sesacImage = UIImage(named: "sesac_face_1")
+        }
         
         annotationView!.snp.makeConstraints { make in
             make.width.height.equalTo(110)

@@ -11,6 +11,7 @@ import MapKit
 class HomeView: BaseView {
     let mapView: MKMapView = {
        let view = MKMapView()
+        view.userTrackingMode = .follow
         return view
     }()
     
