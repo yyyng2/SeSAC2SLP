@@ -19,6 +19,7 @@ class HomeView: BaseView {
     lazy var statusButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "match2"), for: .normal)
+        button.tintColor = Constants.BaseColor.black
         button.backgroundColor = .clear
         return button
     }()
@@ -99,10 +100,6 @@ class HomeView: BaseView {
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        statusButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
         centerPin.snp.makeConstraints { make in
             make.center.equalTo(safeAreaLayoutGuide)
         }
@@ -121,6 +118,12 @@ class HomeView: BaseView {
             make.top.equalTo(genderButtonStackView.snp.bottom).offset(16)
             make.width.equalTo(allGenderButton.snp.width)
             make.height.equalTo(allGenderButton)
+        }
+        statusButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.width.equalTo(allGenderButton.snp.width)
+            make.height.equalTo(allGenderButton.snp.height)
         }
     }
 }

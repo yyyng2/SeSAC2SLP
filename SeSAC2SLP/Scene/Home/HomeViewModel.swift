@@ -22,7 +22,9 @@ class HomeViewModel {
     
     var currentGender: CObservable<Int> = CObservable(2)
     
-    private func setGender() {
+    func setGender() {
+        man = []
+        woman = []
         for i in queueResult {
             if i.gender == 1 {
                 man.append(i)
@@ -37,7 +39,7 @@ class HomeViewModel {
     func addAnnotation(gender: Int?, mapView: MKMapView) {
         setGender()
         
-        pins = []
+        pins.removeAll()
         
         switch gender {
         case 0:

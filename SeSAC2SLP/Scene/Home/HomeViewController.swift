@@ -16,6 +16,8 @@ class HomeViewController: BaseViewController {
     
     let viewModel = HomeViewModel()
     
+    var gender = 2
+    
     override func loadView() {
         self.view = mainView
     }
@@ -57,10 +59,13 @@ class HomeViewController: BaseViewController {
             switch int {
             case 0:
                 self.viewModel.addAnnotation(gender: 0, mapView: self.mainView.mapView)
+                self.gender = 0
             case 1:
                 self.viewModel.addAnnotation(gender: 1, mapView: self.mainView.mapView)
+                self.gender = 1
             default:
                 self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
+                self.gender = 2
             }
         }
     }
@@ -69,6 +74,7 @@ class HomeViewController: BaseViewController {
         [mainView.allGenderButton, mainView.maleButton, mainView.femaleButton].forEach {
             $0.addTarget(self, action: #selector(genderButtonTapped(sender:)), for: .touchUpInside)
         }
+        mainView.allGenderButton.isSelected = true
         mainView.userCurrentLocationButton.addTarget(self, action: #selector(userCurrentLocationButtonTapped), for: .touchUpInside)
     }
     
@@ -99,6 +105,7 @@ class HomeViewController: BaseViewController {
         }
         
         viewModel.currentGender.value = sender.tag
+        gender = sender.tag
     }
     
     @objc func userCurrentLocationButtonTapped() {
@@ -180,15 +187,14 @@ extension HomeViewController: CLLocationManagerDelegate{
         
         //ex. 위도경도 기반 날씨 조회
         //ex. 지도 다시 세팅
-        if let coordinate = locations.last?.coordinate{
+        if let coordinate = locations.last?.coordinate {
             
             setRegionAndAnnotation(coordinate: coordinate)
-            
-            viewModel.currentGender.value = 2
-            
-//            let latitude = coordinate.latitude
-//            let longitude = coordinate.longitude
-//            let center = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+              
+            }
+            self.viewModel.currentGender.value = self.gender
+        
         }
         
         
@@ -224,8 +230,6 @@ extension HomeViewController: CLLocationManagerDelegate{
             
 //            self.lat = latitude
 //            self.long = longitude
-            self.searchQueue(lat: latitude, long: longitude)
-      
 //            self.searchFriend(region: region, lat: latitude, long: longitude)
         }
         
@@ -237,49 +241,23 @@ extension HomeViewController: CLLocationManagerDelegate{
             print("Queue:",result)
             print("code:",code)
             guard let results = result?.fromQueueDB else { return }
+            self.viewModel.pins = []
             self.viewModel.queueResult = results
         }
         
         switch self.viewModel.currentGender.value {
         case 0:
-            viewModel.addAnnotation(gender: 0, mapView: mainView.mapView)
+            self.viewModel.currentGender.value = self.gender
         case 1:
-            viewModel.addAnnotation(gender: 1, mapView: mainView.mapView)
+            self.viewModel.currentGender.value = self.gender
         case 2:
-            viewModel.addAnnotation(gender: 2, mapView: mainView.mapView)
+            self.viewModel.currentGender.value = self.gender
         default:
-            viewModel.addAnnotation(gender: 2, mapView: mainView.mapView)
+            self.viewModel.currentGender.value = self.gender
         }
       
     }
-    
-    private func searchSesacAllAnnotations() {
-//        let annotations = mainView.mapView.annotations
-//        mainView.mapView.removeAnnotations(annotations)
-//
-//        for location in viewModel.queueResult {
-//            let queueCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
-//            let queueAnnotation = MKPointAnnotation()
-//
-//            queueAnnotation.coordinate = queueCoordinate
-//            mainView.mapView.addAnnotation(queueAnnotation)
-//        }
-    }
-    
-    private func searchFriendGenderAnnotations(_ gender: Int) {
-//        let annotations = homeView.mapView.annotations
-//        homeView.mapView.removeAnnotations(annotations)
-//
-//        for location in friends {
-//            if location.gender == gender {
-//                let friendsCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
-//                let friendsAnnotation = MKPointAnnotation()
-//
-//                friendsAnnotation.coordinate = friendsCoordinate
-//                homeView.mapView.addAnnotation(friendsAnnotation)
-//            }
-//        }
-    }
+
     
     
 }
@@ -287,16 +265,16 @@ extension HomeViewController: CLLocationManagerDelegate{
 extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let lat = mapView.centerCoordinate.latitude
-        let long = mapView.centerCoordinate.longitude
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            APIService().requestSearchQueue(lat: lat, long: long) { result, code in
-                guard let results = result?.fromQueueDB else { return }
-                self.viewModel.queueResult = results
-            }
-        }
-      
+//        let lat = mapView.centerCoordinate.latitude
+//        let long = mapView.centerCoordinate.longitude
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+//            APIService().requestSearchQueue(lat: lat, long: long) { result, code in
+//                guard let results = result?.fromQueueDB else { return }
+//                self.viewModel.queueResult = results
+//            }
+//        }
+        viewModel.currentGender.value = gender
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -320,21 +298,7 @@ extension HomeViewController: MKMapViewDelegate {
         guard let image = SesacCode(rawValue: num)?.sesacImageName else { return nil }
         
         sesacImage = UIImage(named: image)
-        
-//        switch annotation.sesac_image {
-//        case 0:
-//            sesacImage = UIImage(named: "sesac_face_1")
-//        case 1:
-//            sesacImage = UIImage(named: "sesac_face_2")
-//        case 2:
-//            sesacImage = UIImage(named: "sesac_face_3")
-//        case 3:
-//            sesacImage = UIImage(named: "sesac_face_4")
-//        case 4:
-//            sesacImage = UIImage(named: "sesac_face_5")
-//        default:
-//            sesacImage = UIImage(named: "sesac_face_1")
-//        }
+
         
         annotationView!.snp.makeConstraints { make in
             make.width.height.equalTo(110)
