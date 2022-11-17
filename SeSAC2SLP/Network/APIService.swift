@@ -120,9 +120,9 @@ class APIService {
                 User.matchedUid = data.matchedUid
     
                 if statusCode == 200 {
-                    User.matced = data.matched
+                    User.matched = data.matched
                 } else if statusCode == 201 {
-                    User.matced = 2
+                    User.matched = 2
                 }
       
                 print("QueueStateSuccess:",statusCode)

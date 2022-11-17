@@ -96,7 +96,7 @@ struct User {
     @UserDefaultsHelper(key: keyEnum.dodged.rawValue, defaultValue: 0)
     static var dodged: Int
     @UserDefaultsHelper(key: keyEnum.matched.rawValue, defaultValue: 2)
-    static var matced: Int
+    static var matched: Int
     @UserDefaultsHelper(key: keyEnum.reviewed.rawValue, defaultValue: 0)
     static var reviewed: Int
     @UserDefaultsHelper(key: keyEnum.matchedNick.rawValue, defaultValue: "")

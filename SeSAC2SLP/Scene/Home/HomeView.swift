@@ -11,19 +11,26 @@ import MapKit
 class HomeView: BaseView {
     let mapView: MKMapView = {
        let view = MKMapView()
-        view.userTrackingMode = .follow
+        view.showsUserLocation = true
+        view.setUserTrackingMode(.follow, animated: true)
         return view
     }()
     
     let statusButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "match\(User.matced)"), for: .normal)
+        button.setImage(UIImage(named: "match\(User.matched)"), for: .normal)
         button.backgroundColor = .clear
         return button
     }()
     
+    let centerPin: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "map_marker")
+        return image
+    }()
+    
     override func configure() {
-        [mapView, statusButton].forEach {
+        [mapView, statusButton, centerPin].forEach {
             self.addSubview($0)
         }
     }
@@ -37,6 +44,9 @@ class HomeView: BaseView {
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.145)
             make.height.equalTo(statusButton.snp.width)
             make.trailing.equalTo(safeAreaLayoutGuide).offset(-8)
+        }
+        centerPin.snp.makeConstraints { make in
+            make.center.equalTo(safeAreaLayoutGuide)
         }
     }
 }
