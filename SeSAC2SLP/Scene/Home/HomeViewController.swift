@@ -27,8 +27,8 @@ class HomeViewController: BaseViewController {
         APIService().requestQueueState()
         
       
-        
-        mainView.statusButton.setImage(UIImage(named: "matched\(User.matched)"), for: .normal)
+        setQueueButtonImage()
+     
         print(mainView.statusButton.isEnabled)
     }
     
@@ -76,6 +76,11 @@ class HomeViewController: BaseViewController {
         }
         mainView.allGenderButton.isSelected = true
         mainView.userCurrentLocationButton.addTarget(self, action: #selector(userCurrentLocationButtonTapped), for: .touchUpInside)
+    }
+    
+    func setQueueButtonImage() {
+        guard let image = MatchedCode(rawValue: User.matched)?.maatchedImageName else { return }
+        mainView.statusButton.setImage(UIImage(named: image), for: .normal)
     }
     
     
@@ -241,7 +246,6 @@ extension HomeViewController: CLLocationManagerDelegate{
             print("Queue:",result)
             print("code:",code)
             guard let results = result?.fromQueueDB else { return }
-            self.viewModel.pins = []
             self.viewModel.queueResult = results
         }
         

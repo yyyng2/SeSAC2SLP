@@ -72,6 +72,25 @@ struct QueueState: Codable {
     let matchedUid: String
 }
 
+enum MatchedCode: Int {
+    case match0 = 0
+    case match1 = 1
+    case match2 = 2
+}
+
+extension MatchedCode {
+    var maatchedImageName: String? {
+        switch self {
+        case .match0:
+            return "match0"
+        case .match1:
+            return "match1"
+        case .match2:
+            return "match2"
+        }
+    }
+}
+
 enum LoginCode: Int, Error {
     case success = 200
     case firebaseTokenError = 401
