@@ -35,9 +35,7 @@ class HomeView: BaseView {
         var titleAttr = AttributedString.init("전체")
         titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         config.attributedTitle = titleAttr
-        
-        config.buttonSize = .large
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        config.titleAlignment = .center
         
         let button = CustomMapGenderButton(configuration: config)
         button.layer.cornerRadius = 0
@@ -51,9 +49,7 @@ class HomeView: BaseView {
         var titleAttr = AttributedString.init("남자")
         titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         config.attributedTitle = titleAttr
-        
-        config.buttonSize = .large
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        config.titleAlignment = .center
         
         let button = CustomMapGenderButton(configuration: config)
         button.layer.cornerRadius = 0
@@ -66,9 +62,7 @@ class HomeView: BaseView {
         var titleAttr = AttributedString.init("여자")
         titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         config.attributedTitle = titleAttr
-        
-        config.buttonSize = .large
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        config.titleAlignment = .center
         
         let button = CustomMapGenderButton(configuration: config)
         button.layer.cornerRadius = 0
@@ -77,6 +71,9 @@ class HomeView: BaseView {
     }()
     let userCurrentLocationButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = Constants.BaseColor.white
+        button.setImage(UIImage(named: "GPS"), for: .normal)
+        button.layer.cornerRadius = 10
         return button
     }()
     let genderButtonStackView: UIStackView = {
@@ -100,11 +97,11 @@ class HomeView: BaseView {
     
     override func setConstraints() {
         mapView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
         statusButton.snp.makeConstraints { make in
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
-            make.trailing.equalTo(safeAreaLayoutGuide).offset(-16)
+            make.bottom.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         centerPin.snp.makeConstraints { make in
             make.center.equalTo(safeAreaLayoutGuide)
@@ -115,12 +112,15 @@ class HomeView: BaseView {
         }
         [allGenderButton, maleButton, femaleButton].forEach { button in
             button.snp.makeConstraints { make in
-                make.width.height.equalTo(49)
+                make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.15)
+                make.height.equalTo(button.snp.width)
             }
         }
         userCurrentLocationButton.snp.makeConstraints { make in
-            make.leading.equalTo(safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(16)
             make.top.equalTo(genderButtonStackView.snp.bottom).offset(16)
+            make.width.equalTo(allGenderButton.snp.width)
+            make.height.equalTo(allGenderButton)
         }
     }
 }

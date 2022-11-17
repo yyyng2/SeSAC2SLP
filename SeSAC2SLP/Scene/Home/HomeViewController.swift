@@ -67,8 +67,9 @@ class HomeViewController: BaseViewController {
   
     override func configure() {
         [mainView.allGenderButton, mainView.maleButton, mainView.femaleButton].forEach {
-            $0.addTarget(self, action: #selector(onSearchGenderButtonTapped(sender:)), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(genderButtonTapped(sender:)), for: .touchUpInside)
         }
+        mainView.userCurrentLocationButton.addTarget(self, action: #selector(userCurrentLocationButtonTapped), for: .touchUpInside)
     }
     
     
@@ -85,7 +86,7 @@ class HomeViewController: BaseViewController {
         mainView.mapView.addAnnotation(pin)
     }
     
-    @objc func onSearchGenderButtonTapped(sender: UIButton) {
+    @objc func genderButtonTapped(sender: UIButton) {
         mainView.allGenderButton.isSelected = false
         mainView.maleButton.isSelected = false
         mainView.femaleButton.isSelected = false
@@ -98,8 +99,10 @@ class HomeViewController: BaseViewController {
         }
         
         viewModel.currentGender.value = sender.tag
-//        viewModel.addAnnotation(gender: sender.tag, mapView: mainView.mapView)
-
+    }
+    
+    @objc func userCurrentLocationButtonTapped() {
+        locationManager.startUpdatingLocation()
     }
     
   
