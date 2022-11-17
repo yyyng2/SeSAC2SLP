@@ -20,6 +20,7 @@
 		1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */; };
 		1861CAAD2926829E00C6AA70 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */; };
 		1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAE2926949E00C6AA70 /* CObservable.swift */; };
+		1861CAB12926A11100C6AA70 /* CustomMapGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */; };
 		1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD32918B5A000BCC159 /* AppDelegate.swift */; };
 		1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD52918B5A000BCC159 /* SceneDelegate.swift */; };
 		1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1870FADC2918B5A300BCC159 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1861CAAE2926949E00C6AA70 /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
+		1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapGenderButton.swift; sourceTree = "<group>"; };
 		1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC2SLP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1870FAD32918B5A000BCC159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1870FAD52918B5A000BCC159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			children = (
 				1870FB36291A52CC00BCC159 /* CustomSignButton.swift */,
 				1838075E291FC08E001755D5 /* CustomGenderButton.swift */,
+				1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
 				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
+				1861CAB12926A11100C6AA70 /* CustomMapGenderButton.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1870FB6A291C36BA00BCC159 /* AuthenticationManager.swift in Sources */,
 				1870FB56291B698D00BCC159 /* NicknameCheckView.swift in Sources */,

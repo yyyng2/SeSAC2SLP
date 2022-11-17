@@ -52,13 +52,30 @@ class HomeViewController: BaseViewController {
         self.locationManager.requestWhenInUseAuthorization()
     }
     
+    override func bind() {
+        viewModel.currentGender.bind { int in
+            switch int {
+            case 0:
+                self.viewModel.addAnnotation(gender: 0, mapView: self.mainView.mapView)
+            case 1:
+                self.viewModel.addAnnotation(gender: 1, mapView: self.mainView.mapView)
+            default:
+                self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
+            }
+        }
+    }
   
+    override func configure() {
+        [mainView.allGenderButton, mainView.maleButton, mainView.femaleButton].forEach {
+            $0.addTarget(self, action: #selector(onSearchGenderButtonTapped(sender:)), for: .touchUpInside)
+        }
+    }
     
     
     func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mainView.mapView.setRegion(region, animated: true)
-//
+        
 //        let annotation = CustomAnnotation(sesac_image: User.sesac, coordinate: coordinate)
 //        mainView.mapView.addAnnotation(annotation)
     }
@@ -68,7 +85,22 @@ class HomeViewController: BaseViewController {
         mainView.mapView.addAnnotation(pin)
     }
     
-   
+    @objc func onSearchGenderButtonTapped(sender: UIButton) {
+        mainView.allGenderButton.isSelected = false
+        mainView.maleButton.isSelected = false
+        mainView.femaleButton.isSelected = false
+        
+        sender.isSelected = true
+        
+        
+        viewModel.removeAnnotations(mapView: mainView.mapView) {
+            
+        }
+        
+        viewModel.currentGender.value = sender.tag
+//        viewModel.addAnnotation(gender: sender.tag, mapView: mainView.mapView)
+
+    }
     
   
 }
@@ -149,7 +181,8 @@ extension HomeViewController: CLLocationManagerDelegate{
             
             setRegionAndAnnotation(coordinate: coordinate)
             
-            viewModel.addAnnotation(gender: 2, mapView: mainView.mapView)
+            viewModel.currentGender.value = 2
+            
 //            let latitude = coordinate.latitude
 //            let longitude = coordinate.longitude
 //            let center = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
@@ -218,16 +251,16 @@ extension HomeViewController: CLLocationManagerDelegate{
     }
     
     private func searchSesacAllAnnotations() {
-        let annotations = mainView.mapView.annotations
-        mainView.mapView.removeAnnotations(annotations)
-        
-        for location in viewModel.queueResult {
-            let queueCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
-            let queueAnnotation = MKPointAnnotation()
-            
-            queueAnnotation.coordinate = queueCoordinate
-            mainView.mapView.addAnnotation(queueAnnotation)
-        }
+//        let annotations = mainView.mapView.annotations
+//        mainView.mapView.removeAnnotations(annotations)
+//
+//        for location in viewModel.queueResult {
+//            let queueCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+//            let queueAnnotation = MKPointAnnotation()
+//
+//            queueAnnotation.coordinate = queueCoordinate
+//            mainView.mapView.addAnnotation(queueAnnotation)
+//        }
     }
     
     private func searchFriendGenderAnnotations(_ gender: Int) {
@@ -253,9 +286,14 @@ extension HomeViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
-        APIService().requestSearchQueue(lat: lat, long: long) { result, code in
-            print("testMoving:",result,code)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            APIService().requestSearchQueue(lat: lat, long: long) { result, code in
+                guard let results = result?.fromQueueDB else { return }
+                self.viewModel.queueResult = results
+            }
         }
+      
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

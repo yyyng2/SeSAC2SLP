@@ -22,26 +22,6 @@ class HomeViewModel {
     
     var currentGender: CObservable<Int> = CObservable(2)
     
-//    struct Input {
-//        let currentGender: ControlProperty<Int>
-//        let genderButtonTap: ControlEvent<Void>
-//        let queueStateButtonTap: ControlEvent<Void>
-//    }
-//
-//    struct Output {
-//        let validStatus: Observable<Bool>
-//        let nameCheck: Observable<nameRange>
-//        let buttonTap: ControlEvent<Void>
-//    }
-//
-//    func transform(input: Input) -> Output {
-//        let gender = input.currentGender
-//                  .share()
-//        addAnnotation(gender: gender.rawValue, mapView: self.mapView)
-//
-//        return Output(validStatus: nameTextResult, nameCheck: nameCheck, buttonTap: input.buttonTap)
-//    }
-    
     private func setGender() {
         for i in queueResult {
             if i.gender == 1 {
@@ -49,37 +29,45 @@ class HomeViewModel {
             } else if i.gender == 0 {
                 woman.append(i)
             } else {
-                
+                break
             }
         }
     }
     
     func addAnnotation(gender: Int?, mapView: MKMapView) {
         setGender()
+        
+        pins = []
+        
         switch gender {
         case 0:
             woman.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
                 self.pins.append(pin)
+                print("statud:Woman",pins)
             })
         case 1:
             man.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
                 self.pins.append(pin)
+                print("statud:Man",pins)
             })
         case 2:
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
                 self.pins.append(pin)
+                print("statud:ALl",pins)
             })
         case .none:
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
+                print("statud:none")
                 self.pins.append(pin)
             })
         case .some(_):
             queueResult.forEach({ sesacs in
                 let pin = CustomAnnotation(sesac_image: sesacs.sesac, coordinate: CLLocationCoordinate2D(latitude: sesacs.lat, longitude: sesacs.long))
+                print("statud:some")
                 self.pins.append(pin)
             })
         }
