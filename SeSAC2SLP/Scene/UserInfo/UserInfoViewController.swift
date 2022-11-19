@@ -21,8 +21,6 @@ class UserInfoViewController: BaseViewController {
         
         self.mainView.tableView.delegate = self
         self.mainView.tableView.dataSource = self
-        
- 
     }
     
 }

@@ -46,6 +46,8 @@ enum keyEnum: String {
     case signedName = "signedName"
     case comment = "comment"
     case reputation = "reputation"
+    case ageMin = "ageMin"
+    case ageMax = "ageMax"
     //QueueState
     case dodged = "dodged"
     case matched = "matched"
@@ -98,6 +100,12 @@ struct User {
     static var comment: [String]
     @UserDefaultsHelper(key: keyEnum.reputation.rawValue, defaultValue: [0,0,0,0,0,0,0,0,0])
     static var reputation: [Int]
+    @UserDefaultsHelper(key: keyEnum.ageMin.rawValue, defaultValue: 0)
+    static var ageMin: Int
+    @UserDefaultsHelper(key: keyEnum.ageMax.rawValue, defaultValue: 0)
+    static var ageMax: Int
+    
+    //QueueState
     @UserDefaultsHelper(key: keyEnum.dodged.rawValue, defaultValue: 0)
     static var dodged: Int
     @UserDefaultsHelper(key: keyEnum.matched.rawValue, defaultValue: 2)

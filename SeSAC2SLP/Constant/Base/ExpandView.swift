@@ -1,19 +1,19 @@
 //
-//  UserDetailHideView.swift
+//  ExpandView.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/15.
+//  Created by Y on 2022/11/19.
 //
 
 import UIKit
 
-class UserDetailHideView: BaseView {
-    let titleLabel: UILabel = {
+class ExpandView: BaseView {
+    let sesacTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constants.BaseColor.black
         label.backgroundColor = .clear
         label.text = "새싹 타이틀"
-        label.font = UIFont(name: "NotoSansKR-Medium", size: 12)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 12)
         label.textAlignment = .left
         return label
     }()
@@ -22,6 +22,7 @@ class UserDetailHideView: BaseView {
        let label = CustomSesacTitleLabel()
         label.text = "좋은 매너"
         label.textColor = sesacTitleTextColor(i: User.reputation[0]).foregroundColor
+        label.textColor = Constants.BaseColor.black
         label.backgroundColor = sesacTitleBackgroundColor(i: User.reputation[0]).foregroundColor
         return label
     }()
@@ -66,70 +67,94 @@ class UserDetailHideView: BaseView {
         return label
     }()
     
-    let reviewLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.BaseColor.black
-        label.backgroundColor = .clear
-        label.text = "새싹 리뷰"
-        label.font = UIFont(name: "NotoSansKR-Medium", size: 12)
-        label.textAlignment = .left
-        return label
+    let sesacReviewButton: UIButton = {
+      
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = Constants.BaseColor.black
+        
+        var titleAttr = AttributedString.init("새싹 리뷰")
+        titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 12)
+        config.attributedTitle = titleAttr
+        config.titleAlignment = .leading
+
+        let button = UIButton(configuration: config)
+        return button
+    }()
+    
+    let sesacReviewTextView: UITextView = {
+       let view = UITextView()
+        view.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        return view
+    }()
+    
+    let stackView: UIStackView = {
+       let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     override func configure() {
-        [titleLabel, mannerTitleLabel, timeTitleLabel, responseTitleLabel, niceTitleLabel, handyTitleLabel, beneficialTitleLabel, reviewLabel].forEach {
-            self.addSubview($0)
+        self.addSubview(stackView)
+        
+        [sesacTitleLabel, mannerTitleLabel, timeTitleLabel, responseTitleLabel, niceTitleLabel, handyTitleLabel, beneficialTitleLabel, sesacReviewButton, sesacReviewTextView].forEach {
+            stackView.addArrangedSubview($0)
         }
     }
     
     override func setConstraints() {
-        titleLabel.snp.makeConstraints { make in
+        sesacTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(8)
-            make.leading.equalTo(safeAreaLayoutGuide)
             make.width.equalTo(safeAreaLayoutGuide)
+            make.centerX.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).offset(0.1)
         }
         mannerTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.leading.equalTo(titleLabel.snp.leading)
+            make.top.equalTo(sesacTitleLabel.snp.bottom)
+            make.leading.equalTo(sesacTitleLabel.snp.leading)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
         timeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.top.equalTo(sesacTitleLabel.snp.bottom)
+            make.trailing.equalTo(sesacTitleLabel.snp.trailing)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
         responseTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(mannerTitleLabel.snp.bottom)
-            make.leading.equalTo(titleLabel.snp.leading)
+            make.leading.equalTo(sesacTitleLabel.snp.leading)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
         niceTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(mannerTitleLabel.snp.bottom)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalTo(sesacTitleLabel.snp.trailing)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
         handyTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(responseTitleLabel.snp.bottom)
-            make.leading.equalTo(titleLabel.snp.leading)
+            make.leading.equalTo(sesacTitleLabel.snp.leading)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
         beneficialTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(responseTitleLabel.snp.bottom)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalTo(sesacTitleLabel.snp.trailing)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
-            make.height.equalTo(titleLabel.snp.height)
+            make.height.equalTo(sesacTitleLabel.snp.height)
         }
-        reviewLabel.snp.makeConstraints { make in
+        sesacReviewButton.snp.makeConstraints { make in
             make.top.equalTo(beneficialTitleLabel.snp.bottom)
             make.leading.equalTo(safeAreaLayoutGuide)
             make.width.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).offset(0.1)
         }
+//        sesacReviewTextView.snp.makeConstraints { make in
+//            make.
+//        }
     }
 }

@@ -27,13 +27,13 @@ class HomeViewController: BaseViewController {
         
         navigationController?.navigationBar.topItem?.title = ""
         
-        APIService().requestQueueState()
-        
-        DispatchQueue.main.async {
-            self.setQueueButtonImage()
+        APIService().requestQueueState { code in
+            DispatchQueue.main.async {
+                self.setQueueButtonImage()
+            }
         }
-     
-     
+        
+   
         print(mainView.statusButton.isEnabled)
     }
     
@@ -92,9 +92,6 @@ class HomeViewController: BaseViewController {
     func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mainView.mapView.setRegion(region, animated: true)
-        
-//        let annotation = CustomAnnotation(sesac_image: User.sesac, coordinate: coordinate)
-//        mainView.mapView.addAnnotation(annotation)
     }
     
     func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
@@ -208,7 +205,7 @@ extension HomeViewController {
       }
 }
 
-extension HomeViewController: CLLocationManagerDelegate{
+extension HomeViewController: CLLocationManagerDelegate {
     
     //location 5. 사용자의 위치를 성공적으로 가지고 온 경우
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -299,8 +296,8 @@ extension HomeViewController: CLLocationManagerDelegate{
 extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        _ = getCenterLocation(for: mapView)
-        
+        _ = self.getCenterLocation(for: mapView)
+      
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
 //

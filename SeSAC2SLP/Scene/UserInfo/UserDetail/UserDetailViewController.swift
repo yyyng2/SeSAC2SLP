@@ -24,7 +24,9 @@ class UserDetailViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "정보 관리"
         
-        mainView.expandButton.addTarget(self, action: #selector(buttonEvent), for: .touchUpInside)
+        mainView.topView.expandButton.addTarget(self, action: #selector(buttonEvent), for: .touchUpInside)
+        
+        mainView.scrollView.delegate = self
         
         print(User.reputation[0], User.reputation[1])
     }
@@ -33,11 +35,14 @@ class UserDetailViewController: BaseViewController {
         super.configure()
         guard let profileImage = SesacCode(rawValue: User.sesac)?.sesacImageName else { return }
         guard let backgroundImage = BackgroundCode(rawValue: User.background)?.backgroundImageName else { return }
-        mainView.backgroundImageView.image = UIImage(named: backgroundImage)
-        mainView.profileImageView.image = UIImage(named: profileImage)
-        mainView.profileLabel.text = User.signedName
+        mainView.topView.backgroundImageView.image = UIImage(named: backgroundImage)
+        mainView.topView.profileImageView.image = UIImage(named: profileImage)
+        mainView.topView.profileLabel.text = User.signedName
         
-        mainView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+        mainView.underView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+        
+        mainView.underView.slider.value = [CGFloat(User.ageMin), CGFloat(User.ageMax)]
+        sliderChanged(mainView.underView.slider)
     }
 
     
@@ -46,12 +51,12 @@ class UserDetailViewController: BaseViewController {
         if isExpanded == true {
             
             isExpanded = false
-            
-            self.mainView.secondView.snp.updateConstraints { make in
+          
+            self.mainView.middleView.snp.updateConstraints { make in
                 make.height.equalTo(300)
             }
 
-            self.mainView.arrowImage.image = UIImage(systemName: "chevron.up")
+            self.mainView.topView.arrowImage.image = UIImage(systemName: "chevron.up")
             UIView.animate(withDuration: 1) {
                 self.view.layoutIfNeeded()
             }
@@ -60,11 +65,11 @@ class UserDetailViewController: BaseViewController {
             
             isExpanded = true
             
-            self.mainView.secondView.snp.updateConstraints { make in
+            self.mainView.middleView.snp.updateConstraints { make in
                 make.height.equalTo(0)
             }
 
-            self.mainView.arrowImage.image = UIImage(systemName: "chevron.down")
+            self.mainView.topView.arrowImage.image = UIImage(systemName: "chevron.down")
             UIView.animate(withDuration: 1) {
                 self.view.layoutIfNeeded()
             }
@@ -72,6 +77,15 @@ class UserDetailViewController: BaseViewController {
     }
     
     @objc func sliderChanged(_ slider: MultiSlider) {
-        self.mainView.ageLabel.text = "\(Int(self.mainView.slider.value[0])) ~ \(Int(self.mainView.slider.value[1]))"
+        self.mainView.underView.ageLabel.text = "\(Int(self.mainView.underView.slider.value[0])) ~ \(Int(self.mainView.underView.slider.value[1]))"
         }
+}
+
+extension UserDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x > 0 {
+            scrollView.contentOffset.x = 0
+        }
+        scrollView.isPagingEnabled = false
+    }
 }

@@ -51,6 +51,8 @@ class APIService {
                 User.signedName = data.nick
                 User.reputation = data.reputation
                 User.comment = data.comment
+                User.ageMin = data.ageMin
+                User.ageMax = data.ageMax
                 
            
                 print("QueueStateSuccess:",statusCode)
@@ -95,14 +97,14 @@ class APIService {
         }
     }
     
-    func requestQueueState() {
+    func requestQueueState(completionHandler: @escaping (Int) -> Void) {
         
         let api = SeSACAPI.myQueueState
         
         AuthenticationManager.shared.updateIdToken()
         updateFcmToken()
-        
-        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
+
+        AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
             case .success(let data):
@@ -119,18 +121,17 @@ class APIService {
     
                 if statusCode == 200 {
                     User.matched = data.matched
-                } else if statusCode == 201 {
-                    User.matched = 2
                 }
-      
+                completionHandler(statusCode)
                 print("QueueStateSuccess:",statusCode)
 //                completionHandler(statusCode)
                 
             case .failure(let error):
                 print("QueueStateError:",statusCode)
-//                completionHandler(401)
-                
-                AuthenticationManager.shared.updateIdToken()
+                if statusCode == 201 {
+                    User.matched = 2
+                }
+                completionHandler(statusCode)
             }
             
         }
@@ -176,6 +177,19 @@ class APIService {
         }
     }
     
+    func stopQueueFinding(completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.stopQueue
+        
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
+            guard let code = response.response?.statusCode else { return }
+            print("stopQueueFinding:",code, api.url, api.headers,api.parameters)
+            completionHandler(code)
+
+        }
+    }
 
     
     func reactLoginAPI(value: Int) {
