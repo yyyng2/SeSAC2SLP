@@ -10,13 +10,15 @@ import Foundation
 import Alamofire
 import FirebaseAuth
 
+
+
 enum SeSACAPI {
     case signUp(phoneNumber: String, FCMtoken: String, nick: String, birth: String, email: String, gender: Int)
     case login
     case withDraw
     case updateFcmToken(FCMtoken: String)
     case myQueueState
-    case queue(lat: Double, long: Double, studylist: [String])
+    case queue(lat: Double, long: Double, studylist: String)        //   'studylist[]': 'anything' }
     case stopQueue
     case searchQueue(lat: Double, long: Double)
 }
@@ -25,21 +27,21 @@ extension SeSACAPI {
     var url: URL {
         switch self {
         case .signUp:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/user")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/user")!
         case .login:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/user")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/user")!
         case .withDraw:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/user/withdraw")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/user/withdraw")!
         case .updateFcmToken:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/user/update_fcm_token")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/user/update_fcm_token")!
         case .myQueueState:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/queue/myQueueState")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/queue/myQueueState")!
         case .queue:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/queue")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/queue")!
         case .stopQueue:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/queue")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/queue")!
         case .searchQueue:
-            return URL(string: "http://api.sesac.co.kr:1207/v1/queue/search")!
+            return URL(string: "http://api.sesac.co.kr:1210/v1/queue/search")!
         }
     }
     
@@ -74,9 +76,17 @@ extension SeSACAPI {
         case .updateFcmToken(let FCMToken):
             return ["FCMtoken" : FCMToken]
         case .queue(let lat, let long, let studylist):
-            return ["lat" : lat, "long": long, "studylist": studylist]
+            return [
+                "lat" : lat,
+                "long" : long,
+                "studylist" : studylist
+      
+            ]
         case .searchQueue(let lat, let long):
-            return ["lat" : lat, "long": long]
+            return [
+                "lat" : lat,
+                "long" : long
+            ]
         default:
             return ["":""]
         }

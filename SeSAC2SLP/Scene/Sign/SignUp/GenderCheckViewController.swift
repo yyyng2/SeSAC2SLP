@@ -56,6 +56,7 @@ class GenderCheckViewController: BaseSignViewController {
         
         output.buttonTap
             .withUnretained(self)
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance) 
             .bind { (vc, _) in
                 let left = self.mainView.leftButton.isSelected
                 let right = self.mainView.rightButton.isSelected

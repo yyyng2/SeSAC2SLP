@@ -42,8 +42,4 @@ class SearchQueueCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
-        contentView.addSubview(titleLabel)
-        contentView.layer.cornerRadius = 8
-    }
 }

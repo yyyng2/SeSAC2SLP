@@ -122,6 +122,18 @@ enum QueueStateCode: Int, Error {
     case clientError = 501
 }
 
+enum QueueCode: Int, Error {
+    case success = 200
+    case block = 201
+    case penaltyFirst = 203
+    case penaltySecond = 204
+    case penaltyThird = 205
+    case firebaseTokenError = 401
+    case notMember = 406
+    case serverError = 500
+    case clientError = 501
+}
+
 enum SesacCode: Int {
     case sesac_face_1 = 0
     case sesac_face_2 = 1

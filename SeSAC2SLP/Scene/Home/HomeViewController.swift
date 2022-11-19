@@ -28,8 +28,11 @@ class HomeViewController: BaseViewController {
         navigationController?.navigationBar.topItem?.title = ""
         
         APIService().requestQueueState()
-      
-        setQueueButtonImage()
+        
+        DispatchQueue.main.async {
+            self.setQueueButtonImage()
+        }
+     
      
         print(mainView.statusButton.isEnabled)
     }
@@ -247,11 +250,11 @@ extension HomeViewController: CLLocationManagerDelegate{
     private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
         let latitude = mainView.mapView.centerCoordinate.latitude
         let longitude = mainView.mapView.centerCoordinate.longitude
-                
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             self.searchQueue(lat: latitude, long: longitude)
-            
+
 //            self.lat = latitude
 //            self.long = longitude
 //            self.searchFriend(region: region, lat: latitude, long: longitude)
@@ -296,6 +299,8 @@ extension HomeViewController: CLLocationManagerDelegate{
 extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        _ = getCenterLocation(for: mapView)
+        
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
 //

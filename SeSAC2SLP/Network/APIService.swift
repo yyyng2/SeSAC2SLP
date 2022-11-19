@@ -90,9 +90,7 @@ class APIService {
                 print(response.response?.statusCode)
             case .failure(let error):
                 guard let errorCode = error.responseCode else { return }
-               
-              
-                
+
             }
         }
     }
@@ -165,17 +163,20 @@ class APIService {
         }
     }
     
-    func requestQueue(lat: Double, long: Double, studylist: [String]) {
-        let api = SeSACAPI.queue(lat: lat, long: long, studylist: studylist)
-            
+    func requestQueue(lat: Double, long: Double, studylist: [String], completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.queue(lat: lat, long: long, studylist: "\(studylist)")
+        
         AuthenticationManager.shared.updateIdToken()
         updateFcmToken()
         
-        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).response { response in
-            print("requestQueue:",response)
+        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
+            guard let code = response.response?.statusCode else { return }
+            print("requestQueueAPI:",code, api.url, api.headers,api.parameters)
+            completionHandler(code)
         }
-        
     }
+    
+
     
     func reactLoginAPI(value: Int) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
@@ -278,7 +279,8 @@ class APIService {
         }
     }
     
-    func reactQueue() {
-        
+    func reactQueue(alue: Int) {
+      
     }
+    
 }

@@ -38,9 +38,15 @@ class SearchQueueView: BaseView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return view
     }()
+    let searchButton: CustomSignButton = {
+       let button = CustomSignButton()
+        button.backgroundColor = Constants.brandColor.green
+        button.setTitle("새싹 찾기", for: .normal)
+        return button
+    }()
     
     override func configure() {
-        [aroundLabel, aroundCollectionView, hopeLabel, hopeCollectionView].forEach {
+        [aroundLabel, aroundCollectionView, hopeLabel, hopeCollectionView, searchButton].forEach {
             self.addSubview($0)
         }
     }
@@ -61,6 +67,13 @@ class SearchQueueView: BaseView {
         hopeCollectionView.snp.makeConstraints { make in
             make.top.equalTo(hopeLabel.snp.bottom).offset(12)
             make.leading.equalTo(aroundLabel.snp.leading)
+        }
+        searchButton.snp.makeConstraints { make in
+            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.07)
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(1.5)
+            
         }
     }
 }

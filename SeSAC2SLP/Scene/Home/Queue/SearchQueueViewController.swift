@@ -12,13 +12,19 @@ class SearchQueueViewController: BaseViewController {
     
     var studyList = User.studylist
     
+    var recommendLists = ["":[""]]
+    
+    var userRecommend = User.studylistFromDB
+    
+    var recommend = User.fromRecommend
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("searchQueueVC",APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: ["code","test"]))
+    
         print("studylist:",User.studylistFromDB)
     }
     
@@ -31,10 +37,37 @@ class SearchQueueViewController: BaseViewController {
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
         
-        mainView.aroundCollectionView.register(SearchQueueCollectionViewCell.self, forCellWithReuseIdentifier: "aroundCollectionView")
+        mainView.aroundCollectionView.dataSource = self
+        mainView.aroundCollectionView.delegate = self
+        mainView.aroundCollectionView.register(SearchQueueCollectionViewCell.self, forCellWithReuseIdentifier: "SearchQueueCollectionViewCell")
         mainView.hopeCollectionView.register(SearchQueueCollectionViewCell.self, forCellWithReuseIdentifier: "hopeCollectionView")
+        
+        mainView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
   
+    func isRecommend() {
+        recommendLists["recommend"] = recommend
+        recommendLists["unrecommend"] = userRecommend
+    }
+    
+    @objc func searchButtonTapped() {
+        var list = [""]
+        if User.studylist == [""] {
+            list = ["anything"]
+        } else {
+            list = User.studylist
+        }
+        APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
+            print("requestQueueLocation",User.currentLat, User.currentLong, list)
+            print("requestQueue:",code)
+            if code == 200 {
+                User.matched = 0
+                let vc = SearchResultViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
 }
 
 extension SearchQueueViewController: UISearchBarDelegate {
@@ -77,21 +110,20 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
     
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-//            return section == 0 ? viewModel.aroundItems.count : viewModel.wantItems.count
+        return section == 0 ? recommendLists.count : studyList.count
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = mainView.aroundCollectionView.dequeueReusableCell(withReuseIdentifier: "aroundCollectionView", for: indexPath) as? SearchQueueCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = mainView.aroundCollectionView.dequeueReusableCell(withReuseIdentifier: "SearchQueueCollectionViewCell", for: indexPath) as? SearchQueueCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.titleLabel.text = "diffkff"
-                
-        if collectionView == mainView.aroundCollectionView {
-            return cell
-        } else if collectionView == mainView.hopeCollectionView {
-            
-            
-//            return cell2
+        if indexPath.section == 0 {
+            cell.titleLabel.textColor = Constants.systemColor.error
+            cell.titleLabel.text = recommend[indexPath.row]
+            cell.removeButton.isHidden = true
+        } else {
+            cell.titleLabel.textColor = Constants.brandColor.green
+            cell.titleLabel.text = userRecommend[indexPath.row]
+            cell.removeButton.isHidden = false
         }
         
         return cell

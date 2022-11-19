@@ -11,14 +11,14 @@ import MapKit
 class HomeView: BaseView {
     let mapView: MKMapView = {
        let view = MKMapView()
-        view.showsUserLocation = true
-        view.setUserTrackingMode(.follow, animated: true)
+//        view.showsUserLocation = true
+//        view.setUserTrackingMode(.follow, animated: true)
         return view
     }()
     
     lazy var statusButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "match2"), for: .normal)
+//        button.setImage(UIImage(named: "match2"), for: .normal)
         button.tintColor = Constants.BaseColor.black
         button.backgroundColor = .clear
         return button
