@@ -10,6 +10,8 @@
 		1818C5152928C82E0010625E /* ExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5142928C82E0010625E /* ExpandView.swift */; };
 		1818C5172928D73E0010625E /* UserDetailUnderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5162928D73E0010625E /* UserDetailUnderView.swift */; };
 		1818C5192928D97E0010625E /* ExpandTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5182928D97E0010625E /* ExpandTopView.swift */; };
+		181CB4C62929158200B7F0E5 /* CustomUserDetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB4C52929158200B7F0E5 /* CustomUserDetailLabel.swift */; };
+		181CB4C829291D0100B7F0E5 /* ExpandBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB4C729291D0100B7F0E5 /* ExpandBackgroundView.swift */; };
 		1838074E291F8431001755D5 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838074D291F8431001755D5 /* Date+Extension.swift */; };
 		18380750291FB73B001755D5 /* EmailCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838074F291FB73B001755D5 /* EmailCheckView.swift */; };
 		18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380751291FB746001755D5 /* EmailCheckViewController.swift */; };
@@ -107,6 +109,8 @@
 		1818C5142928C82E0010625E /* ExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandView.swift; sourceTree = "<group>"; };
 		1818C5162928D73E0010625E /* UserDetailUnderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailUnderView.swift; sourceTree = "<group>"; };
 		1818C5182928D97E0010625E /* ExpandTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTopView.swift; sourceTree = "<group>"; };
+		181CB4C52929158200B7F0E5 /* CustomUserDetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDetailLabel.swift; sourceTree = "<group>"; };
+		181CB4C729291D0100B7F0E5 /* ExpandBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandBackgroundView.swift; sourceTree = "<group>"; };
 		1838074D291F8431001755D5 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		1838074F291FB73B001755D5 /* EmailCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckView.swift; sourceTree = "<group>"; };
 		18380751291FB746001755D5 /* EmailCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 				18DB8BD229227B8B007D90CD /* BaseSignViewController.swift */,
 				18DB8BDD2923653C007D90CD /* BaseTableViewCell.swift */,
 				1818C5182928D97E0010625E /* ExpandTopView.swift */,
+				181CB4C729291D0100B7F0E5 /* ExpandBackgroundView.swift */,
 				1818C5142928C82E0010625E /* ExpandView.swift */,
 			);
 			path = Base;
@@ -413,6 +418,7 @@
 				1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */,
 				1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */,
 				18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */,
+				181CB4C52929158200B7F0E5 /* CustomUserDetailLabel.swift */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
 				18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */,
 				18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */,
+				181CB4C829291D0100B7F0E5 /* ExpandBackgroundView.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
 				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
@@ -649,6 +656,7 @@
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
+				181CB4C62929158200B7F0E5 /* CustomUserDetailLabel.swift in Sources */,
 				1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */,

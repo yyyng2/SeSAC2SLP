@@ -7,11 +7,11 @@
 
 import UIKit
 
-enum SesacTitleBackgroundColor {
+enum SesacTitleColor {
     case none
     case value
     
-    var foregroundColor: UIColor {
+    var backgroundColor: UIColor {
         switch self {
         case .none:
             return Constants.BaseColor.white!
@@ -19,21 +19,8 @@ enum SesacTitleBackgroundColor {
             return Constants.brandColor.green!
         }
     }
-}
-
-func sesacTitleBackgroundColor(i: Int) -> SesacTitleBackgroundColor {
-    if i == 0 {
-        return SesacTitleBackgroundColor.none
-    } else {
-        return SesacTitleBackgroundColor.value
-    }
-}
-
-enum SesacTitleTextColor {
-    case none
-    case value
     
-    var foregroundColor: UIColor {
+    var textColor: UIColor {
         switch self {
         case .none:
             return Constants.BaseColor.black!
@@ -41,13 +28,22 @@ enum SesacTitleTextColor {
             return Constants.BaseColor.white!
         }
     }
+    
+    var borderColor: CGColor {
+        switch self {
+        case .none:
+            return Constants.grayScale.gray4!.cgColor
+        case .value:
+            return Constants.brandColor.green!.cgColor
+        }
+    }
+    
 }
 
-func sesacTitleTextColor(i: Int) -> SesacTitleTextColor {
+func sesacTitleColor(i: Int) -> SesacTitleColor {
     if i == 0 {
-        return SesacTitleTextColor.none
+        return SesacTitleColor.none
     } else {
-        return SesacTitleTextColor.value
+        return SesacTitleColor.value
     }
 }
-

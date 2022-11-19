@@ -75,8 +75,8 @@ final class OnboardingViewController: BaseSignViewController {
     @objc func startButtonTapped() {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        
-        if Auth.auth().currentUser == nil {
+        print("onboarding",User.nickname)
+        if User.nickname == "" {
             let rootViewController = AuthenticationViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController

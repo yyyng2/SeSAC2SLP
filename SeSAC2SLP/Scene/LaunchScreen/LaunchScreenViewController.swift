@@ -29,7 +29,7 @@ class LaunchScreenViewController: BaseSignViewController {
     private func checkStatus() {
         
         APIService().login { value in
-            print(value)
+            print("launchScreen",value)
             APIService().reactLoginAPI(value: value)
             
         }

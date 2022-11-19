@@ -1,13 +1,13 @@
 //
-//  CustomSesacTitleLabel.swift
+//  CustomUserDetailLabel.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/15.
+//  Created by Y on 2022/11/19.
 //
 
 import UIKit
 
-class CustomSesacTitleLabel: UILabel {
+class CustomUserDetailLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -19,8 +19,7 @@ class CustomSesacTitleLabel: UILabel {
     
     func configure() {
         font = UIFont(name: "NotoSansKR-Regular", size: 14)
-        layer.cornerRadius = 10
-        layer.borderWidth = 1
-        textAlignment = .center
+        textColor = Constants.BaseColor.black
+        textAlignment = .left
     }
 }

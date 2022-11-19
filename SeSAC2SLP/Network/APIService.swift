@@ -32,8 +32,10 @@ class APIService {
 
         let api = SeSACAPI.login
 
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
+        if User.isSigned == true {
+            AuthenticationManager.shared.updateIdToken()
+            updateFcmToken()
+        }
         
         AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
@@ -55,12 +57,12 @@ class APIService {
                 User.ageMax = data.ageMax
                 
            
-                print("QueueStateSuccess:",statusCode)
+                print("loginSuccess:",statusCode)
                 completionHandler(statusCode)
                 
             case .failure(let error):
 
-                print("QueueStateError:",statusCode)
+                print("loginError:",statusCode)
                 completionHandler(401)
             }
             
@@ -68,16 +70,26 @@ class APIService {
         }
     }
 
-    func withDraw() {
+    func withDraw(completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.withDraw
+        
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
 
         AF.request(api.url, method: .post, headers: api.headers).responseDecodable(of: WithDraw.self) { response in
+            guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
-
+                
             case .success(let data):
                 print(data)
+                print("withDrawSuccess",data, statusCode)
+                completionHandler(statusCode)
+      
+    
             case .failure(_):
-                print(response, response.response?.statusCode)
+                print("withDrawQueueError", statusCode)
+                completionHandler(statusCode)
+           
             }
         }
     }
@@ -195,24 +207,25 @@ class APIService {
     func reactLoginAPI(value: Int) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        
+        print("reactLogin",value)
         switch LoginCode(rawValue: value) {
         case .success:
             updateFcmToken()
+            User.isSigned = true
             print("success: Login")
             let rootViewController = TabBarController()
 //            let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
-            if User.phoneNumber.count > 3 {
+            if User.nickname == "" {
                 print("error: firebaseTokenError case 1")
-                let rootViewController = AuthenticationViewController()
+                let rootViewController = NicknameCheckViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
                 print("error: firebaseTokenError case 2")
-                let rootViewController = OnboardingViewController()
+                let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             }
@@ -263,19 +276,28 @@ class APIService {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         case .firebaseTokenError:
-            if User.phoneNumber.count > 3 {
+            print("firebaseTokenError",User.fcm)
+            if User.fcm == "" {
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
-                let rootViewController = OnboardingViewController()
+                let rootViewController = NicknameCheckViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             }
         case .notMember:
-            let rootViewController = NicknameCheckViewController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            sceneDelegate?.window?.rootViewController = navigationController
+            print("NotMember",User.authVerificationID)
+            if User.authVerificationID == "" {
+                let rootViewController = AuthenticationViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                sceneDelegate?.window?.rootViewController = navigationController
+            } else {
+                let rootViewController = NicknameCheckViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                sceneDelegate?.window?.rootViewController = navigationController
+            }
+           
         case .serverError:
             print("serverError")
         case .clientError:

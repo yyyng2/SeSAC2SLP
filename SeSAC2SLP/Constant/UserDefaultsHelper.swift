@@ -27,7 +27,7 @@ import Foundation
 }
 
 enum keyEnum: String {
-    case isAppFirstLaunch = "isAppFirstLaunch"
+    case isSigned = "isSigned"
     case signStatus = "signStatus"
     case phoneNumber = "phoneNumber"
     case authVerificationID = "authVerificationID"
@@ -62,8 +62,8 @@ enum keyEnum: String {
 }
 
 struct User {
-    @UserDefaultsHelper(key: keyEnum.isAppFirstLaunch.rawValue, defaultValue: true)
-    static var isAppFirstLaunch: Bool
+    @UserDefaultsHelper(key: keyEnum.isSigned.rawValue, defaultValue: true)
+    static var isSigned: Bool
     @UserDefaultsHelper(key: keyEnum.signStatus.rawValue, defaultValue: 0)
     static var signStatus: Int
     @UserDefaultsHelper(key: keyEnum.phoneNumber.rawValue, defaultValue: "")

@@ -12,8 +12,8 @@ import MultiSlider
 class UserDetailView: BaseView {
     
     let topView = ExpandTopView(frame: .zero)
-    
-    let middleView = ExpandView(frame: .zero)
+    let backgroundView = ExpandBackgroundView(frame: .zero)
+    lazy var middleView = ExpandView(frame: .zero)
    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -51,10 +51,12 @@ class UserDetailView: BaseView {
         [scrollView].forEach {
             self.addSubview($0)
         }
+        scrollView.addSubview(backgroundView)
         [topView, middleView, underView].forEach {
             contentStackView.addArrangedSubview($0)
         }
         scrollView.addSubview(contentStackView)
+   
         
 //        stackView.addArrangedSubview(middleView)
         
@@ -73,7 +75,15 @@ class UserDetailView: BaseView {
             make.height.equalTo(contentStackView.snp.width).multipliedBy(0.6)
         }
         
-        topView.backgroundColor = .yellow
+        backgroundView.snp.makeConstraints { make in
+            make.top.equalTo(topView.backgroundImageView.snp.bottom)
+            make.width.equalTo(topView.backgroundImageView.snp.width)
+            make.leading.equalTo(topView.backgroundImageView.snp.leading)
+            make.height.equalTo(50)
+        }
+        backgroundView.layer.borderColor = Constants.grayScale.gray2!.cgColor
+        backgroundView.layer.borderWidth = 1
+        backgroundView.layer.cornerRadius = 8
         
         middleView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
@@ -83,17 +93,13 @@ class UserDetailView: BaseView {
             make.bottom.equalTo(underView.snp.top)
         }
         
-        middleView.backgroundColor = .green
-        
         underView.snp.makeConstraints { make in
-            make.top.equalTo(middleView.snp.bottom)
+            make.top.equalTo(middleView.snp.bottom).offset(12)
             make.leading.equalTo(contentStackView.snp.leading)
             make.trailing.equalTo(contentStackView.snp.trailing)
             make.width.equalTo(UIScreen.main.bounds.width)
             make.height.equalTo(contentStackView.snp.width).multipliedBy(0.8)
         }
-           
-        underView.backgroundColor = .blue
 
         contentStackView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)

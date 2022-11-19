@@ -10,32 +10,29 @@ import UIKit
 import MultiSlider
 
 class UserDetailUnderView: BaseView {
-    let genderLabel: CustomSesacTitleLabel = {
-        let label = CustomSesacTitleLabel()
+    let genderLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
         label.text = "내 성별"
-        label.textColor = Constants.BaseColor.black
         return label
     }()
-    let favoriteStudyLabel: CustomSesacTitleLabel = {
-        let label = CustomSesacTitleLabel()
+    let favoriteStudyLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
         label.text = "자주 하는 스터디"
-        label.textColor = Constants.BaseColor.black
         return label
     }()
-    let numberPublicStatusLabel: CustomSesacTitleLabel = {
-        let label = CustomSesacTitleLabel()
+    let numberPublicStatusLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
         label.text = "내 번호 검색 허용"
-        label.textColor = Constants.BaseColor.black
         return label
     }()
-    let favoriteAgeLabel: CustomSesacTitleLabel = {
-        let label = CustomSesacTitleLabel()
+    let favoriteAgeLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
         label.text = "상대방 연령대"
-        label.textColor = Constants.BaseColor.black
         return label
     }()
-    let ageLabel: CustomSesacTitleLabel = {
-        let label = CustomSesacTitleLabel()
+    let ageLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
+        label.textAlignment = .right
         label.textColor = Constants.brandColor.green
         return label
     }()
@@ -50,14 +47,18 @@ class UserDetailUnderView: BaseView {
         slider.thumbTintColor = Constants.brandColor.green
         return slider
     }()
+    let withDrawLabel: CustomUserDetailLabel = {
+        let label = CustomUserDetailLabel()
+        label.text = "회원 탈퇴"
+        return label
+    }()
     let withDrawButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("회원 탈퇴", for: .normal)
+        let button = UIButton()
         return button
     }()
     
     override func configure() {
-        [genderLabel, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawButton].forEach {
+        [genderLabel, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawLabel, withDrawButton].forEach {
             self.addSubview($0)
         }
     }
@@ -66,27 +67,31 @@ class UserDetailUnderView: BaseView {
         genderLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.leading.equalTo(12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         favoriteStudyLabel.snp.makeConstraints { make in
             make.top.equalTo(genderLabel.snp.bottom).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         numberPublicStatusLabel.snp.makeConstraints { make in
             make.top.equalTo(favoriteStudyLabel.snp.bottom).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         favoriteAgeLabel.snp.makeConstraints { make in
             make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         ageLabel.snp.makeConstraints { make in
             make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
-            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(-12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         slider.snp.makeConstraints { make in
@@ -95,11 +100,14 @@ class UserDetailUnderView: BaseView {
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
             make.centerX.equalTo(safeAreaLayoutGuide)
         }
-        withDrawButton.snp.makeConstraints { make in
+        withDrawLabel.snp.makeConstraints { make in
             make.top.equalTo(slider.snp.bottom).offset(20)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
-            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        withDrawButton.snp.makeConstraints { make in
+            make.edges.equalTo(withDrawLabel)
         }
     }
     
