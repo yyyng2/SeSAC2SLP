@@ -63,7 +63,7 @@ class APIService {
             case .failure(let error):
 
                 print("loginError:",statusCode)
-                completionHandler(401)
+                completionHandler(statusCode)
             }
             
           
@@ -245,15 +245,15 @@ class APIService {
             print(value)
             print("error: notMemeber")
             print("NotMember",User.authVerificationID)
-//            if User.verificationCode == 0 {
-//                let rootViewController = AuthenticationViewController()
-//                let navigationController = UINavigationController(rootViewController: rootViewController)
-//                sceneDelegate?.window?.rootViewController = navigationController
-//            } else {
+            if User.phoneNumber.count < 5 {
+                let rootViewController = AuthenticationViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                sceneDelegate?.window?.rootViewController = navigationController
+            } else {
                 let rootViewController = NicknameCheckViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
-//            }
+            }
         case .serverError:
             print("serverError")
         case .clientError:

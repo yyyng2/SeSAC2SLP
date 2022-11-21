@@ -76,7 +76,7 @@ final class OnboardingViewController: BaseSignViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         print("onboarding",User.nickname)
-        if User.nickname == "" {
+        if User.phoneNumber.count < 5 {
             let rootViewController = AuthenticationViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController

@@ -76,7 +76,6 @@ final class CheckCodeViewController: BaseSignViewController {
                             APIService().login { value in
                                 print("CheckCode:",value)
                                 APIService().reactLoginAPI(value: value)
-                               
                             }
                           
                         case false:

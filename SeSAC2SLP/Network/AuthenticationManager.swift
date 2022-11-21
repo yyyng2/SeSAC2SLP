@@ -37,7 +37,7 @@ class AuthenticationManager {
                 return
             }
             print("checkVerifyID",result)
-            print(result?.credential)
+            print(result?.user)
 //            User.fcm = result?.credential
             Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                 if error != nil {
