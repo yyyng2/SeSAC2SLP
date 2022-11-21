@@ -97,6 +97,7 @@ class ExpandView: BaseView {
     let sesacReviewTextView: UITextView = {
        let view = UITextView()
         view.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        view.backgroundColor = .clear
         view.sizeToFit()
         return view
     }()
@@ -121,7 +122,7 @@ class ExpandView: BaseView {
     override func setConstraints() {
         sesacTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(8)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.85)
             make.centerX.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
         }
@@ -138,32 +139,32 @@ class ExpandView: BaseView {
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         responseTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(mannerTitleLabel.snp.bottom)
+            make.top.equalTo(mannerTitleLabel.snp.bottom).offset(4)
             make.leading.equalTo(sesacTitleLabel.snp.leading)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         niceTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(mannerTitleLabel.snp.bottom)
+            make.top.equalTo(mannerTitleLabel.snp.bottom).offset(4)
             make.trailing.equalTo(sesacTitleLabel.snp.trailing)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         handyTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(responseTitleLabel.snp.bottom)
+            make.top.equalTo(responseTitleLabel.snp.bottom).offset(4)
             make.leading.equalTo(sesacTitleLabel.snp.leading)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         beneficialTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(responseTitleLabel.snp.bottom)
+            make.top.equalTo(responseTitleLabel.snp.bottom).offset(4)
             make.trailing.equalTo(sesacTitleLabel.snp.trailing)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         sesacReviewLabel.snp.makeConstraints { make in
             make.top.equalTo(beneficialTitleLabel.snp.bottom)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.85)
             make.centerX.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
         }

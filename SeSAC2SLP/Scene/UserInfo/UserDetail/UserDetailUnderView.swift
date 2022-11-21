@@ -162,7 +162,7 @@ class UserDetailUnderView: BaseView {
             make.centerX.equalTo(safeAreaLayoutGuide)
         }
         withDrawLabel.snp.makeConstraints { make in
-            make.top.equalTo(slider.snp.bottom).offset(40)
+            make.top.equalTo(slider.snp.bottom).offset(30)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)

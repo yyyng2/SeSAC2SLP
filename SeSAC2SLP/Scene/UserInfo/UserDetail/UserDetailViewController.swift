@@ -181,6 +181,7 @@ class UserDetailViewController: BaseViewController {
             }
         }
     }
+    
 }
 
 extension UserDetailViewController: UIScrollViewDelegate {
@@ -189,5 +190,11 @@ extension UserDetailViewController: UIScrollViewDelegate {
             scrollView.contentOffset.x = 0
         }
         scrollView.isPagingEnabled = false
+        
+
+        self.mainView.underView.favoriteStudyTextField.resignFirstResponder()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.mainView.underView.favoriteStudyTextField.endEditing(true)
     }
 }
