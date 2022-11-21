@@ -36,7 +36,9 @@ class AuthenticationManager {
                 completionHandler(false)
                 return
             }
-            
+            print("checkVerifyID",result)
+            print(result?.credential)
+//            User.fcm = result?.credential
             Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                 if error != nil {
                     return
@@ -53,8 +55,8 @@ class AuthenticationManager {
         Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if error != nil {
                 print("error: updateIdTotken")
-                let rootViewController = AuthenticationViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                let rootViewController = AuthenticationViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
             }
             guard let id = idToken else { return }
             print("success: updateIdTotken")

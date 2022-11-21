@@ -12,7 +12,7 @@ import MultiSlider
 
 class UserDetailViewController: BaseViewController {
     let mainView = UserDetailView()
-    
+    let viewModel = UserDetailViewModel()
     var viewHeight: CGFloat = 300
     
     var isExpanded = false
@@ -23,7 +23,6 @@ class UserDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "정보 관리"
         
         mainView.topView.expandButton.addTarget(self, action: #selector(buttonEvent), for: .touchUpInside)
         
@@ -43,8 +42,36 @@ class UserDetailViewController: BaseViewController {
         mainView.underView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
         mainView.underView.withDrawButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
         
+        if User.comment == [""] {
+            mainView.middleView.sesacReviewTextView.text = "첫 리뷰를 기다리는 중이에요!"
+            mainView.middleView.sesacReviewTextView.textColor = Constants.grayScale.gray6
+        } else {
+            mainView.middleView.sesacReviewTextView.text = ""
+        }
+        
         mainView.underView.slider.value = [CGFloat(User.ageMin), CGFloat(User.ageMax)]
         sliderChanged(mainView.underView.slider)
+        
+    }
+    
+    override func bind() {
+        viewModel.userGender.bind { int in
+            switch int {
+            case 0:
+                self.viewModel.setButtonUI(genderButton: self.mainView.underView.femaleButton)
+            case 1:
+                self.viewModel.setButtonUI(genderButton: self.mainView.underView.maleButton)
+            default:
+               break
+            }
+        }
+    }
+    
+    override func setNavigationUI() {
+        self.title = "정보 관리"
+        navigationController?.navigationBar.isHidden = false
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonTapped))
+        self.navigationItem.rightBarButtonItem = saveButton
     }
 
     
@@ -105,6 +132,18 @@ class UserDetailViewController: BaseViewController {
                 self.mainView.makeToast("Error")
             }
         }
+    }
+    
+    @objc func genderButtonTapped() {
+        if mainView.underView.maleButton.isSelected == true {
+            mainView.underView.femaleButton.isSelected == false
+        } else {
+            mainView.underView.femaleButton.isSelected == true
+        }
+    }
+    
+    @objc func saveButtonTapped() {
+//        APIService().mapageUpdate(searchable: <#T##Int#>, ageMin: <#T##Int#>, ageMax: <#T##Int#>, gender: <#T##Int#>, study: <#T##String#>, completionHandler: <#T##(Int) -> Void#>)
     }
 }
 

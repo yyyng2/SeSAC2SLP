@@ -15,6 +15,32 @@ class UserDetailUnderView: BaseView {
         label.text = "내 성별"
         return label
     }()
+    let maleButton: CustomMapGenderButton = {
+        var config = CustomMapGenderButton.Configuration.plain()
+        var titleAttr = AttributedString.init("남자")
+        titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        config.attributedTitle = titleAttr
+        config.titleAlignment = .center
+        
+        let button = CustomMapGenderButton(configuration: config)
+        button.layer.cornerRadius = 8
+        button.tag = 1
+        
+        return button
+    }()
+    let femaleButton: CustomMapGenderButton = {
+        var config = CustomMapGenderButton.Configuration.plain()
+        var titleAttr = AttributedString.init("여자")
+        titleAttr.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        config.attributedTitle = titleAttr
+        config.titleAlignment = .center
+        
+        let button = CustomMapGenderButton(configuration: config)
+        button.layer.cornerRadius = 8
+        button.tag = 0
+        
+        return button
+    }()
     let favoriteStudyLabel: CustomUserDetailLabel = {
         let label = CustomUserDetailLabel()
         label.text = "자주 하는 스터디"
@@ -58,7 +84,7 @@ class UserDetailUnderView: BaseView {
     }()
     
     override func configure() {
-        [genderLabel, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawLabel, withDrawButton].forEach {
+        [genderLabel, maleButton, femaleButton, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawLabel, withDrawButton].forEach {
             self.addSubview($0)
         }
     }
@@ -69,6 +95,18 @@ class UserDetailUnderView: BaseView {
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        maleButton.snp.makeConstraints { make in
+            make.centerY.equalTo(genderLabel)
+            make.trailing.equalTo(femaleButton.snp.leading).offset(8)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.height.equalTo(femaleButton.snp.width)
+        }
+        femaleButton.snp.makeConstraints { make in
+            make.centerY.equalTo(genderLabel)
+            make.trailing.equalTo(-12)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.height.equalTo(femaleButton.snp.width)
         }
         favoriteStudyLabel.snp.makeConstraints { make in
             make.top.equalTo(genderLabel.snp.bottom).offset(20)

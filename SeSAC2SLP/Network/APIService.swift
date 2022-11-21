@@ -109,6 +109,19 @@ class APIService {
         }
     }
     
+    func mapageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.mypage(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
+        
+        AuthenticationManager.shared.updateIdToken()
+        updateFcmToken()
+        
+        AF.request(api.url, method: .put, parameters: api.parameters, headers: api.headers).responseString { response in
+            guard let code = response.response?.statusCode else { return }
+            print("mapageUpdate:",code, api.url, api.headers,api.parameters)
+            completionHandler(code)
+        }
+    }
+    
     func requestQueueState(completionHandler: @escaping (Int) -> Void) {
         
         let api = SeSACAPI.myQueueState
@@ -151,7 +164,7 @@ class APIService {
     }
     
     func requestSearchQueue(lat: Double, long: Double, completionHandler: @escaping (SearchInfo?, Int?) -> Void) {
-
+        print("requestSearchQueue")
         let api = SeSACAPI.searchQueue(lat: lat, long: long)
 
         AuthenticationManager.shared.updateIdToken()
@@ -218,23 +231,29 @@ class APIService {
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
-            if User.nickname == "" {
-                print("error: firebaseTokenError case 1")
-                let rootViewController = NicknameCheckViewController()
+            AuthenticationManager.shared.updateIdToken()
+            if User.verificationCode == 0 {
+                let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
-                print("error: firebaseTokenError case 2")
-                let rootViewController = AuthenticationViewController()
+                let rootViewController = NicknameCheckViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             }
         case .notMember:
             print(value)
             print("error: notMemeber")
-            let rootViewController = NicknameCheckViewController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            sceneDelegate?.window?.rootViewController = navigationController
+            print("NotMember",User.authVerificationID)
+//            if User.verificationCode == 0 {
+//                let rootViewController = AuthenticationViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                sceneDelegate?.window?.rootViewController = navigationController
+//            } else {
+                let rootViewController = NicknameCheckViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                sceneDelegate?.window?.rootViewController = navigationController
+//            }
         case .serverError:
             print("serverError")
         case .clientError:

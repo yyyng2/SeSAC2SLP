@@ -17,6 +17,7 @@ enum SeSACAPI {
     case login
     case withDraw
     case updateFcmToken(FCMtoken: String)
+    case mypage(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String)
     case myQueueState
     case queue(lat: Double, long: Double, studylist: String)        //   'studylist[]': 'anything' }
     case stopQueue
@@ -34,6 +35,8 @@ extension SeSACAPI {
             return URL(string: "http://api.sesac.co.kr:1210/v1/user/withdraw")!
         case .updateFcmToken:
             return URL(string: "http://api.sesac.co.kr:1210/v1/user/update_fcm_token")!
+        case .mypage:
+            return URL(string: "http://api.sesac.co.kr:1210/v1/user/mypage")!
         case .myQueueState:
             return URL(string: "http://api.sesac.co.kr:1210/v1/queue/myQueueState")!
         case .queue:
@@ -81,6 +84,14 @@ extension SeSACAPI {
             return [
                 "lat" : lat,
                 "long" : long
+            ]
+        case .mypage(let searchable, let ageMin, let ageMax, let gender, let study):
+            return [
+                "searchable" : searchable,
+                "ageMin" : ageMin,
+                "ageMax" : ageMax,
+                "gender" : gender,
+                "study" : study
             ]
         default:
             return ["":""]

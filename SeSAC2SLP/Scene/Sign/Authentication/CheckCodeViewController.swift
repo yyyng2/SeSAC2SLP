@@ -70,10 +70,13 @@ final class CheckCodeViewController: BaseSignViewController {
                 case true:
                     
                     AuthenticationManager().checkVerifyId(code: text) { value in
+                     
                         switch value {
                         case true:
                             APIService().login { value in
+                                print("CheckCode:",value)
                                 APIService().reactLoginAPI(value: value)
+                               
                             }
                           
                         case false:

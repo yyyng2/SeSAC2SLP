@@ -77,6 +77,7 @@
 		1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */; };
 		1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */; };
 		1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */; };
+		18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */; };
 		18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BAE29209A7D007D90CD /* Endpoint.swift */; };
 		18DB8BB229209AC2007D90CD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18DB8BB129209AC2007D90CD /* Alamofire */; };
 		18DB8BB429209C64007D90CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DB8BB329209C64007D90CD /* GoogleService-Info.plist */; };
@@ -171,6 +172,7 @@
 		1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckViewModel.swift; sourceTree = "<group>"; };
 		1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthTextField.swift; sourceTree = "<group>"; };
 		1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthLabel.swift; sourceTree = "<group>"; };
+		18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		18DB8BAE29209A7D007D90CD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		18DB8BB329209C64007D90CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18DB8BB52920A05E007D90CD /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				18DB8BD529228831007D90CD /* UserDetailView.swift */,
 				1818C5162928D73E0010625E /* UserDetailUnderView.swift */,
 				18DB8BD72922883C007D90CD /* UserDetailViewController.swift */,
+				18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
 				1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */,
 				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
+				18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */,
 				18DB8BDC2923650D007D90CD /* UserMenuTableViewCell.swift in Sources */,
 				1870FB4D291B2AA300BCC159 /* CheckCodeViewModel.swift in Sources */,
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,

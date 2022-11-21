@@ -48,6 +48,7 @@ enum keyEnum: String {
     case reputation = "reputation"
     case ageMin = "ageMin"
     case ageMax = "ageMax"
+
     //QueueState
     case dodged = "dodged"
     case matched = "matched"
