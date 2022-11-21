@@ -22,7 +22,7 @@ final class BirthCheckView: BaseView {
         picker.preferredDatePickerStyle = .wheels
         picker.datePickerMode = .date
         picker.sizeToFit()
-        picker.locale = Locale(identifier: Locale.current.identifier)
+        picker.locale = Locale(identifier: "ko-KR")
 //        picker.timeZone = TimeZone(identifier: TimeZone.current.identifier)
         return picker
     }()

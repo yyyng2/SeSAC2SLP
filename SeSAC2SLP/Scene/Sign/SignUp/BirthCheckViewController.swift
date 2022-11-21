@@ -99,11 +99,12 @@ final class BirthCheckViewController: BaseSignViewController {
                 guard let day = vc.mainView.dayTextField.text else { return }
                 
                 let string = "\(year)-\(month)-\(day)"
+                print(string.changeToDate())
                 let result = vc.viewModel.checkAge(date: string.changeToDate())
-                
                 switch result {
                 case true:
-                    User.birth = "\(string.changeToBirthSave())"
+                    User.birth = string.changeToBirthSave
+                    print(User.birth)
 //                    print("\(string.changeToBirthSave())")
 //                    print(User.birth, User.fcm)
                     let vc = EmailCheckViewController()

@@ -39,7 +39,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(User.birth)
         navigationController?.navigationBar.isHidden = true
         
         locationManager.delegate = self

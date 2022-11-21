@@ -104,7 +104,7 @@ extension String {
         let date: String = self
      
         let formatter = DateFormatter()
-        
+        formatter.timeZone = TimeZone(identifier: "ko-KR")
         formatter.dateFormat = "yyyy-MM-dd"
         
         guard let result = formatter.date(from: date) else { return Date() }
@@ -112,16 +112,26 @@ extension String {
         return result
     }
     
-    func changeToBirthSave() -> Date {
-        let date: String = self
+//    func changeToBirthSave() -> Date {
+//        let date: String = self
+//
+//        let formatter = DateFormatter()
+//
+//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//        formatter.timeZone = TimeZone(identifier: "ko-KR")
+//        guard let result = formatter.date(from: date) else { return Date() }
+//
+//        return result
+//    }
+    
+    public var changeToBirthSave: String {
+        
+        var string: String = self
      
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        
-        guard let result = formatter.date(from: date) else { return Date() }
+        let result = "\(string)T08:30:20.000Z"
         
         return result
+        
     }
     
 }
