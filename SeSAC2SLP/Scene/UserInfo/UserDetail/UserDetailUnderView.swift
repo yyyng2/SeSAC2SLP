@@ -46,10 +46,21 @@ class UserDetailUnderView: BaseView {
         label.text = "자주 하는 스터디"
         return label
     }()
+    let favoriteStudyTextField: CustomSignTextField = {
+        let textfield = CustomSignTextField()
+         textfield.placeholder = "스터디를 입력해 주세요"
+         textfield.keyboardType = .default
+         return textfield
+    }()
     let numberPublicStatusLabel: CustomUserDetailLabel = {
         let label = CustomUserDetailLabel()
         label.text = "내 번호 검색 허용"
         return label
+    }()
+    let numberPublicStatusSwitch: UISwitch = {
+        let button = UISwitch()
+        button.onTintColor = Constants.brandColor.green
+        return button
     }()
     let favoriteAgeLabel: CustomUserDetailLabel = {
         let label = CustomUserDetailLabel()
@@ -65,7 +76,7 @@ class UserDetailUnderView: BaseView {
     let slider: MultiSlider = {
        let slider = MultiSlider()
         slider.minimumValue = 18
-        slider.maximumValue = 70
+        slider.maximumValue = 65
         slider.value = [18, 25]
         slider.orientation = .horizontal
         slider.outerTrackColor = Constants.grayScale.gray2
@@ -84,50 +95,62 @@ class UserDetailUnderView: BaseView {
     }()
     
     override func configure() {
-        [genderLabel, maleButton, femaleButton, favoriteStudyLabel, numberPublicStatusLabel, favoriteAgeLabel, ageLabel, slider, withDrawLabel, withDrawButton].forEach {
+        [genderLabel, maleButton, femaleButton, favoriteStudyLabel, favoriteStudyTextField, numberPublicStatusLabel, numberPublicStatusSwitch, favoriteAgeLabel, ageLabel, slider, withDrawLabel, withDrawButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
         genderLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(safeAreaLayoutGuide).offset(28)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         maleButton.snp.makeConstraints { make in
             make.centerY.equalTo(genderLabel)
-            make.trailing.equalTo(femaleButton.snp.leading).offset(8)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.trailing.equalTo(femaleButton.snp.leading).offset(-8)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.14)
             make.height.equalTo(femaleButton.snp.width)
         }
         femaleButton.snp.makeConstraints { make in
             make.centerY.equalTo(genderLabel)
             make.trailing.equalTo(-12)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.14)
             make.height.equalTo(femaleButton.snp.width)
         }
         favoriteStudyLabel.snp.makeConstraints { make in
-            make.top.equalTo(genderLabel.snp.bottom).offset(20)
+            make.top.equalTo(genderLabel.snp.bottom).offset(40)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
+        }
+        favoriteStudyTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(favoriteStudyLabel)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.leading.equalTo(favoriteStudyLabel.snp.trailing)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
         }
         numberPublicStatusLabel.snp.makeConstraints { make in
-            make.top.equalTo(favoriteStudyLabel.snp.bottom).offset(20)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
+            make.top.equalTo(favoriteStudyLabel.snp.bottom).offset(40)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.45)
             make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
+        numberPublicStatusSwitch.snp.makeConstraints { make in
+            make.centerY.equalTo(numberPublicStatusLabel)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.14)
+            make.trailing.equalTo(safeAreaLayoutGuide).offset(-12)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.08)
+        }
         favoriteAgeLabel.snp.makeConstraints { make in
-            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(40)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         ageLabel.snp.makeConstraints { make in
-            make.top.equalTo(numberPublicStatusLabel.snp.bottom).offset(20)
+            make.top.equalTo(favoriteAgeLabel.snp.top)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.trailing.equalTo(-12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
@@ -139,13 +162,16 @@ class UserDetailUnderView: BaseView {
             make.centerX.equalTo(safeAreaLayoutGuide)
         }
         withDrawLabel.snp.makeConstraints { make in
-            make.top.equalTo(slider.snp.bottom).offset(20)
+            make.top.equalTo(slider.snp.bottom).offset(40)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(genderLabel.snp.leading)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)
         }
         withDrawButton.snp.makeConstraints { make in
-            make.edges.equalTo(withDrawLabel)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.6)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.08)
+            make.leading.equalTo(withDrawLabel.snp.leading)
+            make.centerY.equalTo(withDrawLabel)
         }
     }
     

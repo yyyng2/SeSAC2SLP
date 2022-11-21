@@ -28,7 +28,7 @@ class UserDetailViewController: BaseViewController {
         
         mainView.scrollView.delegate = self
         
-        print(User.reputation[0], User.reputation[1])
+        configureUnderView()
     }
     
     override func configure() {
@@ -39,30 +39,52 @@ class UserDetailViewController: BaseViewController {
         mainView.topView.profileImageView.image = UIImage(named: profileImage)
         mainView.topView.profileLabel.text = User.signedName
         
-        mainView.underView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
-        mainView.underView.withDrawButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
-        
         if User.comment == [""] {
             mainView.middleView.sesacReviewTextView.text = "첫 리뷰를 기다리는 중이에요!"
             mainView.middleView.sesacReviewTextView.textColor = Constants.grayScale.gray6
         } else {
             mainView.middleView.sesacReviewTextView.text = ""
         }
+    }
+    
+    func configureUnderView() {
+        mainView.underView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+        mainView.underView.withDrawButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
         
         mainView.underView.slider.value = [CGFloat(User.ageMin), CGFloat(User.ageMax)]
         sliderChanged(mainView.underView.slider)
         
+        [mainView.underView.maleButton, mainView.underView.femaleButton].forEach {
+            $0.addTarget(self, action: #selector(genderButtonTapped(sender:)), for: .touchUpInside)
+        }
+        
+        if User.study == "" {
+            mainView.underView.favoriteStudyTextField.text = ""
+        } else {
+            mainView.underView.favoriteStudyTextField.text = User.study
+        }
+
     }
     
     override func bind() {
         viewModel.userGender.bind { int in
             switch int {
             case 0:
-                self.viewModel.setButtonUI(genderButton: self.mainView.underView.femaleButton)
+                self.viewModel.setGenderButtonUI(genderButton: self.mainView.underView.femaleButton)
             case 1:
-                self.viewModel.setButtonUI(genderButton: self.mainView.underView.maleButton)
+                self.viewModel.setGenderButtonUI(genderButton: self.mainView.underView.maleButton)
             default:
                break
+            }
+        }
+        
+        viewModel.userSearchable.bind { int in
+            self.mainView.underView.numberPublicStatusSwitch.isOn = int == 1 ? true : false
+            switch self.mainView.underView.numberPublicStatusSwitch.isOn {
+            case true:
+                User.searchable = 1
+            case false:
+                User.searchable = 0
             }
         }
     }
@@ -113,37 +135,51 @@ class UserDetailViewController: BaseViewController {
     }
     
     @objc func sliderChanged(_ slider: MultiSlider) {
-        self.mainView.underView.ageLabel.text = "\(Int(self.mainView.underView.slider.value[0])) ~ \(Int(self.mainView.underView.slider.value[1]))"
+        let min = Int(self.mainView.underView.slider.value[0])
+        let max = Int(self.mainView.underView.slider.value[1])
+        self.mainView.underView.ageLabel.text = "\(min) ~ \(max)"
     }
     
     @objc func withDrawButtonTapped() {
-        APIService().withDraw { code in
-            switch code {
-            case 200:
-                for key in UserDefaults.standard.dictionaryRepresentation().keys {
-                    UserDefaults.standard.removeObject(forKey: key.description)
-                }
-                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                let sceneDelegate = windowScene?.delegate as? SceneDelegate
-                let rootViewController = LaunchScreenViewController()
-                let navi = UINavigationController(rootViewController: rootViewController)
-                sceneDelegate?.window?.rootViewController = navi
-            default:
-                self.mainView.makeToast("Error")
-            }
-        }
+        let vc = WithDrawViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
     }
     
-    @objc func genderButtonTapped() {
-        if mainView.underView.maleButton.isSelected == true {
-            mainView.underView.femaleButton.isSelected == false
-        } else {
-            mainView.underView.femaleButton.isSelected == true
-        }
+    
+    @objc func genderButtonTapped(sender: UIButton) {
+        mainView.underView.maleButton.isSelected = false
+        mainView.underView.femaleButton.isSelected = false
+        
+        sender.isSelected = true
+    
+        viewModel.userGender.value = sender.tag
+        User.gender = sender.tag
+        print(User.gender)
     }
     
     @objc func saveButtonTapped() {
-//        APIService().mapageUpdate(searchable: <#T##Int#>, ageMin: <#T##Int#>, ageMax: <#T##Int#>, gender: <#T##Int#>, study: <#T##String#>, completionHandler: <#T##(Int) -> Void#>)
+        let min = Int(mainView.underView.slider.value[0])
+        let max = Int(mainView.underView.slider.value[1])
+       
+        if mainView.underView.favoriteStudyTextField.text == "" {
+            User.study = ""
+        } else {
+            guard let study = mainView.underView.favoriteStudyTextField.text else { return }
+            User.study = study
+        }
+        
+        APIService().mapageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
+            print("mypageSave",code)
+            switch code {
+            case 200:
+                let vc = HomeViewController()
+                self.navigationController?.popViewController(animated: true)
+            default:
+                self.mainView.makeToast("정보 저장에 실패했습니다")
+            }
+        }
     }
 }
 

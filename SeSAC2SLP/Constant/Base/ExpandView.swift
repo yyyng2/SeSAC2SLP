@@ -128,37 +128,37 @@ class ExpandView: BaseView {
         mannerTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(sesacTitleLabel.snp.bottom)
             make.leading.equalTo(sesacTitleLabel.snp.leading)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         timeTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(sesacTitleLabel.snp.bottom)
             make.trailing.equalTo(sesacTitleLabel.snp.trailing)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         responseTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(mannerTitleLabel.snp.bottom)
             make.leading.equalTo(sesacTitleLabel.snp.leading)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         niceTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(mannerTitleLabel.snp.bottom)
             make.trailing.equalTo(sesacTitleLabel.snp.trailing)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         handyTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(responseTitleLabel.snp.bottom)
             make.leading.equalTo(sesacTitleLabel.snp.leading)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         beneficialTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(responseTitleLabel.snp.bottom)
             make.trailing.equalTo(sesacTitleLabel.snp.trailing)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.43)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.42)
             make.height.equalTo(sesacTitleLabel.snp.height)
         }
         sesacReviewLabel.snp.makeConstraints { make in

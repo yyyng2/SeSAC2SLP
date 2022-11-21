@@ -16,11 +16,21 @@ class UserInfoViewController: BaseViewController {
         self.view = mainView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        APIService().login { code in
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.mainView.tableView.delegate = self
         self.mainView.tableView.dataSource = self
+        
+        APIService().login { code in
+            
+        }
     }
     
 }

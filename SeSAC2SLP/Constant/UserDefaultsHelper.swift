@@ -48,6 +48,8 @@ enum keyEnum: String {
     case reputation = "reputation"
     case ageMin = "ageMin"
     case ageMax = "ageMax"
+    case searchable = "searchable"
+    case study = "study"
 
     //QueueState
     case dodged = "dodged"
@@ -105,6 +107,10 @@ struct User {
     static var ageMin: Int
     @UserDefaultsHelper(key: keyEnum.ageMax.rawValue, defaultValue: 0)
     static var ageMax: Int
+    @UserDefaultsHelper(key: keyEnum.searchable.rawValue, defaultValue: 1)
+    static var searchable: Int
+    @UserDefaultsHelper(key: keyEnum.study.rawValue, defaultValue: "")
+    static var study: String
     
     //QueueState
     @UserDefaultsHelper(key: keyEnum.dodged.rawValue, defaultValue: 0)

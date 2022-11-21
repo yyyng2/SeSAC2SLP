@@ -18,7 +18,9 @@ class UserDetailViewModel {
     
     var userGender: CObservable<Int> = CObservable(User.gender)
     
-    func setButtonUI(genderButton: UIButton) {
+    var userSearchable: CObservable<Int> = CObservable(User.searchable)
+    
+    func setGenderButtonUI(genderButton: UIButton) {
         genderButton.isSelected = true
     }
     

@@ -104,6 +104,8 @@
 		18DB8BF52923C975007D90CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF42923C974007D90CD /* HomeView.swift */; };
 		18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF62923C98F007D90CD /* HomeViewController.swift */; };
 		18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */; };
+		18ED0AF1292C1E6E00FF9384 /* WithDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */; };
+		18ED0AF3292C237F00FF9384 /* WithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,6 +199,8 @@
 		18DB8BF42923C974007D90CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18DB8BF62923C98F007D90CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawView.swift; sourceTree = "<group>"; };
+		18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +510,8 @@
 				1818C5162928D73E0010625E /* UserDetailUnderView.swift */,
 				18DB8BD72922883C007D90CD /* UserDetailViewController.swift */,
 				18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */,
+				18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */,
+				18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -660,6 +666,7 @@
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
+				18ED0AF1292C1E6E00FF9384 /* WithDrawView.swift in Sources */,
 				181CB4C62929158200B7F0E5 /* CustomUserDetailLabel.swift in Sources */,
 				1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
@@ -689,6 +696,7 @@
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
 				1861CAB82926B8A500C6AA70 /* SearchResultView.swift in Sources */,
+				18ED0AF3292C237F00FF9384 /* WithDrawViewController.swift in Sources */,
 				1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */,
 				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
 				183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */,

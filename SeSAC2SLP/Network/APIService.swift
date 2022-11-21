@@ -22,7 +22,6 @@ class APIService {
         
         AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             print(response, response.response?.statusCode)
-   
             guard let statusCode = response.response?.statusCode else { return }
             completionHandler(statusCode)
         }
@@ -55,6 +54,8 @@ class APIService {
                 User.comment = data.comment
                 User.ageMin = data.ageMin
                 User.ageMax = data.ageMax
+                User.gender = data.gender
+                User.searchable = data.searchable
                 
            
                 print("loginSuccess:",statusCode)
