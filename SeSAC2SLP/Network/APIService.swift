@@ -11,12 +11,7 @@ import Alamofire
 
 class APIService {
     
-   
-    
     func signUp(completionHandler: @escaping (Int) -> Void) {
-       
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
         
         let api = SeSACAPI.signUp(phoneNumber: User.phoneNumber, FCMtoken: User.fcm, nick: User.nickname, birth: User.birth, email: User.email, gender: User.gender)
         
@@ -30,11 +25,6 @@ class APIService {
     func login(completionHandler: @escaping (Int) -> Void) {
 
         let api = SeSACAPI.login
-
-        if User.isSigned == true {
-            AuthenticationManager.shared.updateIdToken()
-            updateFcmToken()
-        }
         
         AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
@@ -73,9 +63,6 @@ class APIService {
 
     func withDraw(completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.withDraw
-        
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
 
         AF.request(api.url, method: .post, headers: api.headers).responseDecodable(of: WithDraw.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
@@ -113,9 +100,6 @@ class APIService {
     func mapageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.mypage(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
         
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
-        
         AF.request(api.url, method: .put, parameters: api.parameters, headers: api.headers).responseString { response in
             guard let code = response.response?.statusCode else { return }
             print("mapageUpdate:",code, api.url, api.headers,api.parameters)
@@ -126,9 +110,6 @@ class APIService {
     func requestQueueState(completionHandler: @escaping (Int) -> Void) {
         
         let api = SeSACAPI.myQueueState
-        
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
 
         AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
@@ -165,11 +146,8 @@ class APIService {
     }
     
     func requestSearchQueue(lat: Double, long: Double, completionHandler: @escaping (SearchInfo?, Int?) -> Void) {
-        print("requestSearchQueue")
-        let api = SeSACAPI.searchQueue(lat: lat, long: long)
 
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
+        let api = SeSACAPI.searchQueue(lat: lat, long: long)
         
         AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: SearchInfo.self) { response in
             print("requestSearchQueue:",response)
@@ -193,9 +171,6 @@ class APIService {
     func requestQueue(lat: Double, long: Double, studylist: [String], completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.queue(lat: lat, long: long, studylist: "\(studylist)")
         
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
-        
         AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             guard let code = response.response?.statusCode else { return }
             print("requestQueueAPI:",code, api.url, api.headers,api.parameters)
@@ -205,9 +180,6 @@ class APIService {
     
     func stopQueueFinding(completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.stopQueue
-        
-        AuthenticationManager.shared.updateIdToken()
-        updateFcmToken()
         
         AF.request(api.url, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
             guard let code = response.response?.statusCode else { return }
@@ -224,7 +196,7 @@ class APIService {
         print("reactLogin",value)
         switch LoginCode(rawValue: value) {
         case .success:
-            updateFcmToken()
+        
             User.isSigned = true
             print("success: Login")
             let rootViewController = TabBarController()
@@ -233,15 +205,19 @@ class APIService {
         case .firebaseTokenError:
             print(value)
             AuthenticationManager.shared.updateIdToken()
-            if User.verificationCode == 0 {
-                let rootViewController = AuthenticationViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                sceneDelegate?.window?.rootViewController = navigationController
-            } else {
-                let rootViewController = NicknameCheckViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                sceneDelegate?.window?.rootViewController = navigationController
+            updateFcmToken()
+            APIService().login { value in
+                
             }
+//            if User.verificationCode == 0 {
+//                let rootViewController = AuthenticationViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                sceneDelegate?.window?.rootViewController = navigationController
+//            } else {
+//                let rootViewController = NicknameCheckViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                sceneDelegate?.window?.rootViewController = navigationController
+//            }
         case .notMember:
             print(value)
             print("error: notMemeber")
@@ -281,8 +257,8 @@ class APIService {
         
         switch SignCode(rawValue: value) {
         case .success:
-            AuthenticationManager.shared.updateIdToken()
-            updateFcmToken()
+//            AuthenticationManager.shared.updateIdToken()
+//            updateFcmToken()
             let rootViewController = TabBarController()
             sceneDelegate?.window?.rootViewController = rootViewController
         case .already:
@@ -296,16 +272,21 @@ class APIService {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         case .firebaseTokenError:
-            print("firebaseTokenError",User.fcm)
-            if User.fcm == "" {
-                let rootViewController = AuthenticationViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                sceneDelegate?.window?.rootViewController = navigationController
-            } else {
-                let rootViewController = NicknameCheckViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                sceneDelegate?.window?.rootViewController = navigationController
+            AuthenticationManager.shared.updateIdToken()
+            updateFcmToken()
+            APIService().signUp { value in
+                
             }
+//            print("firebaseTokenError",User.fcm)
+//            if User.fcm == "" {
+//                let rootViewController = AuthenticationViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                sceneDelegate?.window?.rootViewController = navigationController
+//            } else {
+//                let rootViewController = NicknameCheckViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                sceneDelegate?.window?.rootViewController = navigationController
+//            }
         case .notMember:
             print("NotMember",User.authVerificationID)
             if User.authVerificationID == "" {

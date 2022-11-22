@@ -39,11 +39,12 @@ class UserDetailViewController: BaseViewController {
         mainView.topView.profileImageView.image = UIImage(named: profileImage)
         mainView.topView.profileLabel.text = User.signedName
         
-        if User.comment == [""] {
+        if User.comment == [] {
             mainView.middleView.sesacReviewTextView.text = "첫 리뷰를 기다리는 중이에요!"
             mainView.middleView.sesacReviewTextView.textColor = Constants.grayScale.gray6
         } else {
             mainView.middleView.sesacReviewTextView.text = ""
+            mainView.middleView.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
     }
     

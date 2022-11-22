@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1811EE59292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */; };
 		1818C5152928C82E0010625E /* ExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5142928C82E0010625E /* ExpandView.swift */; };
 		1818C5172928D73E0010625E /* UserDetailUnderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5162928D73E0010625E /* UserDetailUnderView.swift */; };
 		1818C5192928D97E0010625E /* ExpandTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5182928D97E0010625E /* ExpandTopView.swift */; };
@@ -77,6 +78,7 @@
 		1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */; };
 		1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */; };
 		1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */; };
+		18826584292C4CB600737F45 /* studyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18826583292C4CB600737F45 /* studyModel.swift */; };
 		18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */; };
 		18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BAE29209A7D007D90CD /* Endpoint.swift */; };
 		18DB8BB229209AC2007D90CD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18DB8BB129209AC2007D90CD /* Alamofire */; };
@@ -109,6 +111,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		1818C5142928C82E0010625E /* ExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandView.swift; sourceTree = "<group>"; };
 		1818C5162928D73E0010625E /* UserDetailUnderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailUnderView.swift; sourceTree = "<group>"; };
 		1818C5182928D97E0010625E /* ExpandTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTopView.swift; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckViewModel.swift; sourceTree = "<group>"; };
 		1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthTextField.swift; sourceTree = "<group>"; };
 		1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthLabel.swift; sourceTree = "<group>"; };
+		18826583292C4CB600737F45 /* studyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyModel.swift; sourceTree = "<group>"; };
 		18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		18DB8BAE29209A7D007D90CD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		18DB8BB329209C64007D90CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			children = (
 				1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */,
 				183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */,
+				1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */,
 				1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */,
 				183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */,
 				1861CAB72926B8A500C6AA70 /* SearchResultView.swift */,
@@ -307,6 +312,7 @@
 				1870FAEB2918F7FF00BCC159 /* Color */,
 				1861CAA8292528E700C6AA70 /* Annotation */,
 				1861CAAE2926949E00C6AA70 /* CObservable.swift */,
+				18826583292C4CB600737F45 /* studyModel.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -671,6 +677,7 @@
 				1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */,
+				1811EE59292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
 				18DB8BC2292255CF007D90CD /* UserInfoView.swift in Sources */,
 				1870FB4B291B2A8E00BCC159 /* CheckCodeView.swift in Sources */,
@@ -693,6 +700,7 @@
 				1870FB1629198B2400BCC159 /* OnboardingView.swift in Sources */,
 				1818C5172928D73E0010625E /* UserDetailUnderView.swift in Sources */,
 				18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */,
+				18826584292C4CB600737F45 /* studyModel.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
 				1861CAB82926B8A500C6AA70 /* SearchResultView.swift in Sources */,

@@ -35,6 +35,10 @@ class SearchQueueCollectionViewCell: UICollectionViewCell {
         stack.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
+        titleLabel.snp.makeConstraints { make in
+            make.top.bottom.left.equalToSuperview()
+            make.right.equalToSuperview().priority(999)
+        }
         
     }
     

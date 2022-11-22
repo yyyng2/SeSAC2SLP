@@ -102,7 +102,7 @@ class UserDetailUnderView: BaseView {
     
     override func setConstraints() {
         genderLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(28)
+            make.top.equalTo(safeAreaLayoutGuide).offset(32)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.5)
             make.leading.equalTo(12)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.05)

@@ -62,6 +62,7 @@ enum keyEnum: String {
     case fromRecommend = "fromRecommend"
     case studylistFromDB = "studylistFromDB"
     case studylistFromDBRequest = "studylistFromDBRequest"
+    case allStudyList = "allStudyList"
 }
 
 struct User {
@@ -133,4 +134,6 @@ struct User {
     static var studylistFromDB: [String]
     @UserDefaultsHelper(key: keyEnum.studylistFromDBRequest.rawValue, defaultValue: [""])
     static var studylistFromDBRequest: [String]
+    @UserDefaultsHelper(key: keyEnum.allStudyList.rawValue, defaultValue: [Study.init(name: "", type: .recommend)])
+    static var allStudyList: [Study]
 }

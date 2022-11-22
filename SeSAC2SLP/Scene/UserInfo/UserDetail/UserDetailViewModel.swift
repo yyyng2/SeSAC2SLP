@@ -8,13 +8,6 @@
 import UIKit
 
 class UserDetailViewModel {
-    var queueResult: [FromQueueDB] = []
-    
-    var pins: [CustomAnnotation] = []
-    
-    var man: [FromQueueDB] = []
-    
-    var woman: [FromQueueDB] = []
     
     var userGender: CObservable<Int> = CObservable(User.gender)
     

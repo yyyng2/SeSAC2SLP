@@ -8,6 +8,11 @@
 import Foundation
 
 class SearchQueueViewModel {
+    
+    var userStudyList = CObservable(User.studylist)
+
+    var recommend = CObservable(User.fromRecommend)
+    
     func setCell() {
 //        APIService().
     }

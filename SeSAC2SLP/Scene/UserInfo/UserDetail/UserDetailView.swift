@@ -13,6 +13,7 @@ class UserDetailView: BaseView {
     
     let topView = ExpandTopView(frame: .zero)
     let backgroundView = ExpandBackgroundView(frame: .zero)
+    
     lazy var middleView = ExpandView(frame: .zero)
    
     let scrollView: UIScrollView = {
@@ -58,6 +59,10 @@ class UserDetailView: BaseView {
         scrollView.addSubview(contentStackView)
    
         
+        backgroundView.layer.borderColor = Constants.grayScale.gray2!.cgColor
+        backgroundView.layer.borderWidth = 1
+        backgroundView.layer.cornerRadius = 8
+        
 //        stackView.addArrangedSubview(middleView)
         
     }
@@ -76,14 +81,11 @@ class UserDetailView: BaseView {
         }
         
         backgroundView.snp.makeConstraints { make in
-            make.top.equalTo(topView.backgroundImageView.snp.bottom)
+            make.top.equalTo(topView.backgroundImageView.snp.bottom).offset(8)
             make.width.equalTo(topView.backgroundImageView.snp.width)
             make.leading.equalTo(topView.backgroundImageView.snp.leading)
             make.height.equalTo(50)
         }
-        backgroundView.layer.borderColor = Constants.grayScale.gray2!.cgColor
-        backgroundView.layer.borderWidth = 1
-        backgroundView.layer.cornerRadius = 8
         
         middleView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)

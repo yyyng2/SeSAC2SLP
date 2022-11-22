@@ -134,4 +134,12 @@ extension String {
         
     }
     
+    public var removeBackslash: String {
+        
+        let stringWithHyphen: String = self
+        var result = stringWithHyphen.components(separatedBy: ["\\"]).joined()
+
+        return result
+    }
+    
 }

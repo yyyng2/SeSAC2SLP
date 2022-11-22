@@ -16,6 +16,8 @@ class HomeViewController: BaseViewController {
     
     let viewModel = HomeViewModel()
     
+    var results = [Study]()
+    
     var gender = 2
     
     override func loadView() {
@@ -49,8 +51,27 @@ class HomeViewController: BaseViewController {
         APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
             print("Queue:",result)
             print("code:",code)
-            guard let results = result?.fromQueueDB else { return }
-            self.viewModel.queueResult = results
+            
+            let recommend = result?.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
+            var studyListFromDB = result?.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0, type: .fromStudyListDB) } ?? []
+            
+            // hf 안의 중복 제거해야함
+            
+            // "지금 주변에는", "내가 하고 싶은" 중복 제거
+            recommend.forEach { recommendValue in
+                studyListFromDB.forEach { studyListFromDBValue in
+                    if recommendValue.name == studyListFromDBValue.name {
+                        studyListFromDB.removeAll(where: {$0.name == studyListFromDBValue.name})
+                    }
+                }
+            }
+            
+          
+            self.results = recommend + studyListFromDB
+            self.results.removeAll(where: { $0.name == "anything" })
+            print("HomeViewAPI:", recommend, studyListFromDB, self.results)
+            let vc = SearchQueueViewController()
+            vc.results = self.results
         }
             
         userCurrentLocationButtonTapped()
@@ -122,7 +143,7 @@ class HomeViewController: BaseViewController {
     @objc func statusButtonTapped() {
         switch User.matched {
         case 0:
-            let vc = SearchResultViewController()
+            let vc = SearchQueueViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = SearchQueueViewController()
@@ -274,6 +295,23 @@ extension HomeViewController: CLLocationManagerDelegate {
             studyList.removeAll(where: { $0 == "anything" })
             let studyResult = Set(studyList)
             User.studylistFromDB = Array(studyResult)
+            
+            guard let resultsDB = result?.fromQueueDB else { return }
+            guard let resultRecommend = result?.fromRecommend else { return }
+            self.viewModel.queueResult = resultsDB
+            User.fromRecommend = resultRecommend
+            User.studylistFromDB = resultRecommend
+            User.allStudyList.removeAll()
+            for i in User.fromRecommend {
+                let result = i.removeBackslash
+                print(result)
+//                User.allStudyList.append(Study(name: result, type: .recommend))
+            }
+            for i in User.studylistFromDB {
+                let result = i.removeBackslash
+                print(result)
+//                User.allStudyList.append(Study(name: result, type: .fromStudyListDB))
+            }
         }
         
         switch self.viewModel.currentGender.value {
