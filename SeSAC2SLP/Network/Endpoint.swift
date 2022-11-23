@@ -25,26 +25,30 @@ enum SeSACAPI {
 }
 
 extension SeSACAPI {
-    var url: URL {
+    var baseURL: String {
+        return "http://api.sesac.co.kr:1210/v1"
+    }
+                   
+    var path: URL {
         switch self {
         case .signUp:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/user")!
+            return URL(string: baseURL+"/user")!
         case .login:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/user")!
+            return URL(string: baseURL+"/user")!
         case .withDraw:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/user/withdraw")!
+            return URL(string: baseURL+"/user/withdraw")!
         case .updateFcmToken:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/user/update_fcm_token")!
+            return URL(string: baseURL+"/user/update_fcm_token")!
         case .mypage:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/user/mypage")!
+            return URL(string: baseURL+"/user/mypage")!
         case .myQueueState:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/queue/myQueueState")!
+            return URL(string: baseURL+"/queue/myQueueState")!
         case .queue:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/queue")!
+            return URL(string: baseURL+"/queue")!
         case .stopQueue:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/queue")!
+            return URL(string: baseURL+"/queue")!
         case .searchQueue:
-            return URL(string: "http://api.sesac.co.kr:1210/v1/queue/search")!
+            return URL(string: baseURL+"/queue/search")!
         }
     }
     

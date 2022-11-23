@@ -35,9 +35,27 @@ class WithDrawViewController: BaseViewController {
                 let rootViewController = LaunchScreenViewController()
                 let navi = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navi
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().withDraw { code in
+                    switch code {
+                    case 200:
+                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                            UserDefaults.standard.removeObject(forKey: key.description)
+                        }
+                        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                        let rootViewController = LaunchScreenViewController()
+                        let navi = UINavigationController(rootViewController: rootViewController)
+                        sceneDelegate?.window?.rootViewController = navi
+                    default:
+                        self.mainView.makeToast("Error")
+                    }
+                }
             default:
                 self.mainView.makeToast("Error")
             }
         }
     }
+
 }

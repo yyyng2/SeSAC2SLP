@@ -22,6 +22,8 @@ class SearchQueueViewController: BaseViewController {
     
     var results = [Study]()
     
+    let viewModel = SearchQueueViewModel()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -34,40 +36,8 @@ class SearchQueueViewController: BaseViewController {
         print("AllStudy:",User.allStudyList)
         print("results:",results)
         
-        APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { result, code in
-            print("Queue:",result)
-            print("code:",code)
+        setFirstLoad()
             
-            let recommend = result?.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
-            var studyListFromDB = result?.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0, type: .fromStudyListDB) } ?? []
-            
-      
-            
-            // 중복 제거
-            recommend.forEach { recommendValue in
-                studyListFromDB.forEach { studyListFromDBValue in
-                    if recommendValue.name == studyListFromDBValue.name {
-                        studyListFromDB.removeAll(where: {$0.name == studyListFromDBValue.name})
-                    }
-                }
-            }
-            
-            var removedArray = [Study]()
-            for i in studyListFromDB {
-                if removedArray.contains(i) == false {
-                    removedArray.append(i)
-                }
-            }
-     
-            
-            
-            self.results = recommend + removedArray
-            self.results.removeAll(where: { $0.name == "anything" })
-            self.results.removeAll(where: { $0.name == "" })
-            print("HomeViewAPI:", recommend, studyListFromDB, self.results)
-            self.mainView.collectionView.reloadData()
-        }
-      
     }
     
     override func configure() {
@@ -88,11 +58,40 @@ class SearchQueueViewController: BaseViewController {
         
         mainView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
-  
-    func isRecommend() {
-        recommendLists["recommend"] = recommend
-        recommendLists["unrecommend"] = userRecommend
+    
+    override func bind() {
+        viewModel.result?.bind { value in
+            self.viewModel.setRecommend(result: value, collectionView: self.mainView.collectionView)
+        }
     }
+    
+    func setFirstLoad() {
+        APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { result, code in
+            print("Queue:",result)
+
+            switch code {
+            case 200:
+                guard let result = result else { return }
+                self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
+                    switch code {
+                    case 200:
+                        guard let result = response else { return }
+                        self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
+                    default:
+                        print("requestSearchQueue:Error", code)
+                    }
+                }
+                
+            default:
+                break
+            }
+        }
+    }
+  
+  
     
     @objc func searchButtonTapped() {
         var list = [""]
@@ -102,12 +101,21 @@ class SearchQueueViewController: BaseViewController {
             list = User.studylist
         }
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
-            print("requestQueueLocation",User.currentLat, User.currentLong, list)
-            print("requestQueue:",code)
             if code == 200 {
                 User.matched = 0
                 let vc = SearchResultViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
+            } else if code == 401 {
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
+                    if code == 200 {
+                        User.matched = 0
+                        let vc = SearchResultViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        print("requestQueueError",code)
+                    }
+                }
             }
         }
     }
@@ -199,39 +207,7 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.removeButton.isHidden = true
                 cell.titleLabel.text = item.name
             }
-//            cell.titleLabel.textColor = Constants.systemColor.error
-//            cell.layer.borderColor = Constants.systemColor.error?.cgColor
-//            cell.layer.borderWidth = 1
-//            cell.layer.cornerRadius = 8
-//            cell.removeButton.isHidden = true
-//            guard let result = User.allStudyList["fromRecommend"] else { return cell }
-//            cell.titleLabel.text = result[indexPath.row]
-//            for (key, value) in User.allStudyList {
-//                switch key {
-//                case "fromRecommend":
-//                    cell.titleLabel.textColor = Constants.systemColor.error
-//                    cell.layer.borderColor = Constants.systemColor.error?.cgColor
-//                    cell.layer.borderWidth = 1
-//                    cell.layer.cornerRadius = 8
-//                    cell.removeButton.isHidden = true
-//                    guard let result = User.allStudyList["fromRecommend"] else { return cell }
-//                    cell.titleLabel.text = value[indexPath.row]
-//                case "studylistFromDB":
-//                    if User.allStudyList["studylistFromDB"] == [] {
 //
-//                    } else {
-//                        cell.titleLabel.textColor = Constants.BaseColor.black
-//                        cell.layer.borderColor = Constants.grayScale.gray4?.cgColor
-//                        cell.layer.borderWidth = 1
-//                        cell.layer.cornerRadius = 8
-//                        cell.removeButton.isHidden = true
-//                        guard let result = User.allStudyList["studylistFromDB"] else { return cell }
-//                        cell.titleLabel.text = value[indexPath.row]
-//                    }
-//                default:
-//                    break
-//                }
-//            }
         default:
             if User.studylist == [""] {
                 
@@ -258,12 +234,12 @@ extension SearchQueueViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets.init(top: 0, left: 0, bottom: 24, right: 0)
     }
     
-    // Header View 크기
+    // headerView 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: 34)
     }
     
-    // Cell 크기
+    // cell 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
         

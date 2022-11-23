@@ -73,6 +73,9 @@ final class CheckCodeViewController: BaseSignViewController {
                      
                         switch value {
                         case true:
+                            
+                            User.isAuthentication = true
+                            
                             APIService().login { value in
                                 print("CheckCode:",value)
                                 APIService().reactLoginAPI(value: value)

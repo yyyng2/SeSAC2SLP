@@ -171,12 +171,24 @@ class UserDetailViewController: BaseViewController {
             User.study = study
         }
         
-        APIService().mapageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
+        APIService().mypageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
             print("mypageSave",code)
             switch code {
             case 200:
                 let vc = HomeViewController()
                 self.navigationController?.popViewController(animated: true)
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().mypageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
+                    print(code)
+                    switch code {
+                    case 200:
+                        let vc = HomeViewController()
+                        self.navigationController?.popViewController(animated: true)
+                    default:
+                        self.mainView.makeToast("정보 저장에 실패했습니다")
+                    }
+                }
             default:
                 self.mainView.makeToast("정보 저장에 실패했습니다")
             }

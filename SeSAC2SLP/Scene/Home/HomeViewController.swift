@@ -29,13 +29,8 @@ class HomeViewController: BaseViewController {
         
         navigationController?.navigationBar.topItem?.title = ""
         
-        APIService().requestQueueState { code in
-            DispatchQueue.main.async {
-                self.setQueueButtonImage()
-            }
-        }
+       setQueueState()
         
-   
         print(mainView.statusButton.isEnabled)
     }
     
@@ -48,31 +43,7 @@ class HomeViewController: BaseViewController {
         
         mainView.mapView.delegate = self
         
-        APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
-            print("Queue:",result)
-            print("code:",code)
-            
-            let recommend = result?.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
-            var studyListFromDB = result?.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0, type: .fromStudyListDB) } ?? []
-            
-            // hf 안의 중복 제거해야함
-            
-            // "지금 주변에는", "내가 하고 싶은" 중복 제거
-            recommend.forEach { recommendValue in
-                studyListFromDB.forEach { studyListFromDBValue in
-                    if recommendValue.name == studyListFromDBValue.name {
-                        studyListFromDB.removeAll(where: {$0.name == studyListFromDBValue.name})
-                    }
-                }
-            }
-            
-          
-            self.results = recommend + studyListFromDB
-            self.results.removeAll(where: { $0.name == "anything" })
-            print("HomeViewAPI:", recommend, studyListFromDB, self.results)
-            let vc = SearchQueueViewController()
-            vc.results = self.results
-        }
+        setQueueState()
             
         userCurrentLocationButtonTapped()
         
@@ -84,13 +55,10 @@ class HomeViewController: BaseViewController {
             switch int {
             case 0:
                 self.viewModel.addAnnotation(gender: 0, mapView: self.mainView.mapView)
-                self.gender = 0
             case 1:
                 self.viewModel.addAnnotation(gender: 1, mapView: self.mainView.mapView)
-                self.gender = 1
             default:
                 self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
-                self.gender = 2
             }
         }
     }
@@ -109,6 +77,39 @@ class HomeViewController: BaseViewController {
         mainView.statusButton.setImage(UIImage(named: image), for: .normal)
     }
     
+    func setQueueState() {
+        APIService().requestQueueState { code in
+            switch code {
+            case 200:
+                DispatchQueue.main.async {
+                    self.setQueueButtonImage()
+                }
+            case 201:
+                DispatchQueue.main.async {
+                    self.setQueueButtonImage()
+                }
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestQueueState { code in
+                    switch code {
+                    case 200:
+                        DispatchQueue.main.async {
+                            self.setQueueButtonImage()
+                        }
+                    case 201:
+                        DispatchQueue.main.async {
+                            self.setQueueButtonImage()
+                        }
+                    default:
+                        print("requestQueueStateError",code)
+                    }
+                }
+            default:
+                print("requestQueueStateError",code)
+            }
+           
+        }
+    }
     
     func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
@@ -118,6 +119,32 @@ class HomeViewController: BaseViewController {
     func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
        let pin = CustomAnnotation(sesac_image: sesac_image, coordinate: coordinate)
         mainView.mapView.addAnnotation(pin)
+    }
+    
+    func deniedMapPermissionCenter() {
+        APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
+            print("requestSearchQueue:",result)
+            print("requestSearchQueue:",code)
+            switch code {
+            case 200:
+                guard let results = result else { return }
+                self.viewModel.queueResult = results.fromQueueDB
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
+                    switch code {
+                    case 200:
+                        guard let results = result else { return }
+                        self.viewModel.queueResult = results.fromQueueDB
+                    default:
+                        print("requestSearchQueueError:",code)
+                    }
+                }
+            default:
+                print("requestSearchQueueError:",code)
+            }
+        }
+      
     }
     
     @objc func genderButtonTapped(sender: UIButton) {
@@ -143,10 +170,10 @@ class HomeViewController: BaseViewController {
     @objc func statusButtonTapped() {
         switch User.matched {
         case 0:
-            let vc = SearchQueueViewController()
+            let vc = SearchResultViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = SearchQueueViewController()
+            let vc = SearchResultViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = SearchQueueViewController()
@@ -200,6 +227,7 @@ extension HomeViewController {
               //기본 새싹 센터로
               let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
               setRegionAndAnnotation(coordinate: center)
+              deniedMapPermissionCenter()
               //얼럿을 띄워 설정으로 유도
               showRequestLocationServiceAlert()
           case .authorizedWhenInUse:
@@ -237,8 +265,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         if let coordinate = locations.last?.coordinate {
             
             setRegionAndAnnotation(coordinate: coordinate)
-         
-            self.viewModel.currentGender.value = self.gender
+
         
         }
         
@@ -272,10 +299,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             self.searchQueue(lat: latitude, long: longitude)
-
-//            self.lat = latitude
-//            self.long = longitude
-//            self.searchFriend(region: region, lat: latitude, long: longitude)
+            
         }
         
         return CLLocation(latitude: latitude, longitude: longitude)
@@ -285,44 +309,25 @@ extension HomeViewController: CLLocationManagerDelegate {
         APIService().requestSearchQueue(lat: lat, long: long) { result, code in
             print("Queue:",result)
             print("code:",code)
-            guard let results = result else { return }
-            self.viewModel.queueResult = results.fromQueueDB
-            User.fromRecommend = results.fromRecommend
-            var studyList: [String] = []
-            for i in results.fromQueueDB {
-                studyList.append("\(i.studylist)")
-            }
-            studyList.removeAll(where: { $0 == "anything" })
-            let studyResult = Set(studyList)
-            User.studylistFromDB = Array(studyResult)
             
-            guard let resultsDB = result?.fromQueueDB else { return }
-            guard let resultRecommend = result?.fromRecommend else { return }
-            self.viewModel.queueResult = resultsDB
-            User.fromRecommend = resultRecommend
-            User.studylistFromDB = resultRecommend
-            User.allStudyList.removeAll()
-            for i in User.fromRecommend {
-                let result = i.removeBackslash
-                print(result)
-//                User.allStudyList.append(Study(name: result, type: .recommend))
+            switch code {
+            case 200:
+                guard let results = result else { return }
+                self.viewModel.queueResult = results.fromQueueDB
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestSearchQueue(lat: lat, long: long) { result, code in
+                    switch code {
+                    case 200:
+                        guard let results = result else { return }
+                        self.viewModel.queueResult = results.fromQueueDB
+                    default:
+                        print("searchQueueError:",code)
+                    }
+                }
+            default:
+                print("searchQueueError:",code)
             }
-            for i in User.studylistFromDB {
-                let result = i.removeBackslash
-                print(result)
-//                User.allStudyList.append(Study(name: result, type: .fromStudyListDB))
-            }
-        }
-        
-        switch self.viewModel.currentGender.value {
-        case 0:
-            self.viewModel.currentGender.value = self.gender
-        case 1:
-            self.viewModel.currentGender.value = self.gender
-        case 2:
-            self.viewModel.currentGender.value = self.gender
-        default:
-            self.viewModel.currentGender.value = self.gender
         }
       
     }
@@ -338,13 +343,7 @@ extension HomeViewController: MKMapViewDelegate {
       
         let lat = mapView.centerCoordinate.latitude
         let long = mapView.centerCoordinate.longitude
-//
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-//            APIService().requestSearchQueue(lat: lat, long: long) { result, code in
-//                guard let results = result?.fromQueueDB else { return }
-//                self.viewModel.queueResult = results
-//            }
-//        }
+
         User.currentLat = lat
         User.currentLong = long
         

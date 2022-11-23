@@ -28,6 +28,7 @@ import Foundation
 
 enum keyEnum: String {
     case isSigned = "isSigned"
+    case isAuthentication = "isAuthentication"
     case signStatus = "signStatus"
     case phoneNumber = "phoneNumber"
     case authVerificationID = "authVerificationID"
@@ -66,8 +67,10 @@ enum keyEnum: String {
 }
 
 struct User {
-    @UserDefaultsHelper(key: keyEnum.isSigned.rawValue, defaultValue: true)
+    @UserDefaultsHelper(key: keyEnum.isSigned.rawValue, defaultValue: false)
     static var isSigned: Bool
+    @UserDefaultsHelper(key: keyEnum.isAuthentication.rawValue, defaultValue: false)
+    static var isAuthentication: Bool
     @UserDefaultsHelper(key: keyEnum.signStatus.rawValue, defaultValue: 0)
     static var signStatus: Int
     @UserDefaultsHelper(key: keyEnum.phoneNumber.rawValue, defaultValue: "")

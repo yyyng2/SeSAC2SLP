@@ -18,7 +18,7 @@ class UserInfoViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         APIService().login { code in
-            
+//            APIService().reactLoginAPI(value: code)
         }
     }
     
@@ -29,7 +29,7 @@ class UserInfoViewController: BaseViewController {
         self.mainView.tableView.dataSource = self
         
         APIService().login { code in
-            
+//            APIService().reactLoginAPI(value: code)
         }
     }
     

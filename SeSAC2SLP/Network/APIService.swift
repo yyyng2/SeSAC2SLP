@@ -15,7 +15,7 @@ class APIService {
         
         let api = SeSACAPI.signUp(phoneNumber: User.phoneNumber, FCMtoken: User.fcm, nick: User.nickname, birth: User.birth, email: User.email, gender: User.gender)
         
-        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             print(response, response.response?.statusCode)
             guard let statusCode = response.response?.statusCode else { return }
             completionHandler(statusCode)
@@ -26,7 +26,7 @@ class APIService {
 
         let api = SeSACAPI.login
         
-        AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
+        AF.request(api.path, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
             case .success(let data):
@@ -64,7 +64,7 @@ class APIService {
     func withDraw(completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.withDraw
 
-        AF.request(api.url, method: .post, headers: api.headers).responseDecodable(of: WithDraw.self) { response in
+        AF.request(api.path, method: .post, headers: api.headers).responseDecodable(of: WithDraw.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
                 
@@ -85,7 +85,7 @@ class APIService {
     func updateFcmToken() {
         let api = SeSACAPI.updateFcmToken(FCMtoken: User.fcm)
         
-        AF.request(api.url, method: .put, parameters: api.parameters, headers: api.headers).response { response in
+        AF.request(api.path, method: .put, parameters: api.parameters, headers: api.headers).response { response in
             print(User.fcm)
             switch response.result {
             case .success(let data):
@@ -97,12 +97,12 @@ class APIService {
         }
     }
     
-    func mapageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping (Int) -> Void) {
+    func mypageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.mypage(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
         
-        AF.request(api.url, method: .put, parameters: api.parameters, headers: api.headers).responseString { response in
+        AF.request(api.path, method: .put, parameters: api.parameters, headers: api.headers).responseString { response in
             guard let code = response.response?.statusCode else { return }
-            print("mapageUpdate:",code, api.url, api.headers,api.parameters)
+            print("mapageUpdate:",code, api.path, api.headers,api.parameters)
             completionHandler(code)
         }
     }
@@ -111,7 +111,7 @@ class APIService {
         
         let api = SeSACAPI.myQueueState
 
-        AF.request(api.url, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
+        AF.request(api.path, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: QueueState.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
             case .success(let data):
@@ -149,7 +149,7 @@ class APIService {
 
         let api = SeSACAPI.searchQueue(lat: lat, long: long)
         
-        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: SearchInfo.self) { response in
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: SearchInfo.self) { response in
             print("requestSearchQueue:",response)
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
@@ -171,9 +171,9 @@ class APIService {
     func requestQueue(lat: Double, long: Double, studylist: [String], completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.queue(lat: lat, long: long, studylist: "\(studylist)")
         
-        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             guard let code = response.response?.statusCode else { return }
-            print("requestQueueAPI:",code, api.url, api.headers,api.parameters)
+            print("requestQueueAPI:",code, api.path, api.headers,api.parameters)
             completionHandler(code)
         }
     }
@@ -181,9 +181,9 @@ class APIService {
     func stopQueueFinding(completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.stopQueue
         
-        AF.request(api.url, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
+        AF.request(api.path, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
             guard let code = response.response?.statusCode else { return }
-            print("stopQueueFinding:",code, api.url, api.headers,api.parameters)
+            print("stopQueueFinding:",code, api.path, api.headers,api.parameters)
             completionHandler(code)
 
         }
@@ -193,10 +193,10 @@ class APIService {
     func reactLoginAPI(value: Int) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        print("reactLogin",value)
+     
         switch LoginCode(rawValue: value) {
         case .success:
-        
+//            updateFcmToken()
             User.isSigned = true
             print("success: Login")
             let rootViewController = TabBarController()
@@ -205,8 +205,9 @@ class APIService {
         case .firebaseTokenError:
             print(value)
             AuthenticationManager.shared.updateIdToken()
-            updateFcmToken()
+//            updateFcmToken()
             APIService().login { value in
+                self.reactLoginAPI(value: value)
                 
             }
 //            if User.verificationCode == 0 {
@@ -222,7 +223,7 @@ class APIService {
             print(value)
             print("error: notMemeber")
             print("NotMember",User.authVerificationID)
-            if User.phoneNumber.count < 5 {
+            if User.isAuthentication == false {
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
@@ -273,9 +274,8 @@ class APIService {
             sceneDelegate?.window?.rootViewController = navigationController
         case .firebaseTokenError:
             AuthenticationManager.shared.updateIdToken()
-            updateFcmToken()
             APIService().signUp { value in
-                
+                self.reactSignAPI(value: value)
             }
 //            print("firebaseTokenError",User.fcm)
 //            if User.fcm == "" {

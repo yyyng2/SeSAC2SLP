@@ -24,13 +24,27 @@ class SearchResultViewController: BaseViewController {
     
     @objc func stopFindingButtonTapped() {
         APIService().stopQueueFinding { code in
-            print("stopQeueFinding:",code)
+            print("stopQeueFindingError:",code)
         switch code {
         case 200:
             let vc = HomeViewController()
             User.matched = 2
             vc.setQueueButtonImage()
             self.navigationController?.popViewController(animated: true)
+        case 400:
+            AuthenticationManager.shared.updateIdToken()
+            APIService().stopQueueFinding { code in
+                print("stopQeueFinding:",code)
+                switch code {
+                case 200:
+                    let vc = HomeViewController()
+                    User.matched = 2
+                    vc.setQueueButtonImage()
+                    self.navigationController?.popViewController(animated: true)
+                default:
+                    print("stopQeueFinding",code)
+                }
+            }
         default:
             self.mainView.makeToast("중단 에러")
         }
