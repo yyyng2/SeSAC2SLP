@@ -18,7 +18,7 @@ class SearchQueueViewModel {
     
     var result: CObservable<SearchInfo>?
     
-    var studyList: CObservable<Study>?
+    var studyList: CObservable<[Study]>?
     
     func setRecommend(result: SearchInfo, collectionView: UICollectionView) -> [Study] {
         let recommend = result.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
@@ -49,6 +49,8 @@ class SearchQueueViewModel {
         results.removeAll(where: { $0.name == "anything" })
         results.removeAll(where: { $0.name == "" })
         print("HomeViewAPI:", recommend, studyListFromDB, results)
+        
+        studyList?.value = results
         collectionView.reloadData()
         
         return results

@@ -114,6 +114,7 @@ class SearchQueueViewController: BaseViewController {
             case 200:
                 guard let result = result else { return }
                 self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
+                print("results:",self.results)
             case 401:
                 AuthenticationManager.shared.updateIdToken()
                 APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
@@ -142,9 +143,11 @@ class SearchQueueViewController: BaseViewController {
     }
     
     func checkUserStudyCount(string: String) {
-        if viewModel.userStudyList.value.count < 9 {
+        if viewModel.userStudyList.value.count < 8 {
             if viewModel.userStudyList.value.contains(string) == false {
                 viewModel.userStudyList.value.append(string)
+                viewModel.userStudyList.value.removeAll(where: { $0 == "" })
+                results.removeAll(where: { $0.name == string } )
                 mainView.collectionView.reloadData()                
             } else {
                 mainView.makeToast("이미 존재하는 스터디입니다", duration: 1.5, position: .center)
@@ -186,7 +189,8 @@ class SearchQueueViewController: BaseViewController {
 extension SearchQueueViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.searchTextField.text else { return }
-        let array = text.split(maxSplits: 1, omittingEmptySubsequences: false, whereSeparator: {$0 == " "})
+        let whiteSpaceCount = text.filter { ($0) == " " }.count
+        let array = text.split(maxSplits: whiteSpaceCount, omittingEmptySubsequences: false, whereSeparator: {$0 == " "})
         print(array)
         for i in array {
             let result = checkPattern(study: String(i))
@@ -228,6 +232,7 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
             return result
         case 1:
             var result = 0
+            
             if viewModel.userStudyList.value == [""] {
                 result = 0
             } else {
@@ -243,10 +248,12 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchQueueCollectionViewCell.identifier, for: indexPath) as? SearchQueueCollectionViewCell else { return UICollectionViewCell() }
         
-        let item = results[indexPath.row]
-        
+     
+          
         switch indexPath.section {
         case 0:
+            let item = results[indexPath.row]
+            
             switch item.type {
             case .recommend:
                 cell.titleLabel.textColor = Constants.systemColor.error
@@ -263,8 +270,7 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.removeButton.isHidden = true
                 cell.titleLabel.text = item.name
             }
-//
-        default:
+        case 1:
             if viewModel.userStudyList.value == [""] {
                 
             } else {
@@ -275,9 +281,34 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.titleLabel.text = viewModel.userStudyList.value[indexPath.row]
                 cell.removeButton.isHidden = false
             }
+        default:
+            break
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+       
+        
+        switch indexPath.section {
+        case 0:
+            let item = results[indexPath.row]
+            
+            let result = checkPattern(study: item.name)
+            switch result {
+            case true:
+               checkUserStudyCount(string: item.name)
+            case false:
+                mainView.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.5, position: .center)
+            }
+        case 1:
+            viewModel.userStudyList.value.remove(at: indexPath.row)
+            mainView.collectionView.reloadData()
+        default:
+           break
+        }
     }
     
     
@@ -302,8 +333,10 @@ extension SearchQueueViewController: UICollectionViewDelegateFlowLayout {
         switch indexPath.section {
         case 0:
             label.text = results[indexPath.row].name
-        default:
+        case 1:
             label.text = viewModel.userStudyList.value[indexPath.row]
+        default:
+           break
         }
         label.sizeToFit()
         return CGSize(width: label.frame.width + 30, height: 32)
@@ -312,7 +345,6 @@ extension SearchQueueViewController: UICollectionViewDelegateFlowLayout {
 
 extension SearchQueueViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
         searchBar.searchTextField.resignFirstResponder()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
