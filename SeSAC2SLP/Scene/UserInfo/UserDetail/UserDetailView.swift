@@ -33,15 +33,6 @@ class UserDetailView: BaseView {
         return view
     }()
     
-    let stackView: UIStackView = {
-       let view = UIStackView()
-        view.axis = .vertical
-        view.distribution = .fill
-        view.alignment = .fill
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     
     /////////////////////////////// under part ////////////////////////////
    
@@ -49,9 +40,9 @@ class UserDetailView: BaseView {
     
     
     override func configure() {
-        [scrollView].forEach {
-            self.addSubview($0)
-        }
+       
+        self.addSubview(scrollView)
+
         scrollView.addSubview(backgroundView)
         [topView, middleView, underView].forEach {
             contentStackView.addArrangedSubview($0)

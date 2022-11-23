@@ -10,7 +10,7 @@ import UIKit
 class SearchQueueViewController: BaseViewController {
     let mainView = SearchQueueView()
     
-    var studyList = User.studylist
+    var userStudyList = User.studylist
     
     var queueStudyList = CObservable(User.studylistFromDB)
     
@@ -24,8 +24,16 @@ class SearchQueueViewController: BaseViewController {
     
     let viewModel = SearchQueueViewModel()
     
+    let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 28, height: 0))
+    
     override func loadView() {
         self.view = mainView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true 
     }
     
     override func viewDidLoad() {
@@ -38,31 +46,64 @@ class SearchQueueViewController: BaseViewController {
         
         setFirstLoad()
             
+        setCollectionView()
+        setToolBarInTextField()
     }
     
     override func configure() {
         super.configure()
+        
+
+        
+        mainView.scrollView.delegate = self
+        
         navigationController?.navigationBar.isHidden = false
-        let bounds = UIScreen.main.bounds
-        let width = bounds.size.width //화면 너비
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: width - 28, height: 0))
+       
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
+        searchBar.delegate = self
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
         
+        mainView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    }
+    
+    func setCollectionView() {
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.register(SearchQueueCollectionViewCell.self, forCellWithReuseIdentifier: SearchQueueCollectionViewCell.identifier)
         mainView.collectionView.register(SearchQueueCollectionViewHeaderCell.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                          withReuseIdentifier: SearchQueueCollectionViewHeaderCell.identifier)
+    }
+    
+    func setToolBarInTextField() {
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//        toolbar.backgroundColor = Constants.brandColor.green
+//        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(searchButtonTapped))
+//        toolbar.setItems([doneButton], animated: false)
         
-        mainView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        let searchButtonInKeyboard: CustomSignButton = {
+            let button = CustomSignButton()
+            button.backgroundColor = Constants.brandColor.green
+            button.layer.cornerRadius = 0
+            button.setTitle("새싹 찾기", for: .normal)
+            return button
+         }()
+        searchButtonInKeyboard.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButtonInKeyboard.sizeToFit()
+         
+        searchBar.searchTextField.inputAccessoryView = searchButtonInKeyboard
+        searchBar.searchTextField.returnKeyType = .send
+
     }
     
     override func bind() {
-        viewModel.result?.bind { value in
-            self.viewModel.setRecommend(result: value, collectionView: self.mainView.collectionView)
-        }
+        
+//        viewModel.result?.bind { value in
+//            self.viewModel.setRecommend(result: value, collectionView: self.mainView.collectionView)
+//        }
+        
     }
     
     func setFirstLoad() {
@@ -91,7 +132,27 @@ class SearchQueueViewController: BaseViewController {
         }
     }
   
-  
+    func checkPattern(study: String) -> Bool {
+     
+        let pattern = "^[가-힣A-Za-z0-9]{1,8}$"
+        let result = NSPredicate(format:"SELF MATCHES %@", pattern)
+        
+        return result.evaluate(with: study)
+      
+    }
+    
+    func checkUserStudyCount(string: String) {
+        if viewModel.userStudyList.value.count < 9 {
+            if viewModel.userStudyList.value.contains(string) == false {
+                viewModel.userStudyList.value.append(string)
+                mainView.collectionView.reloadData()                
+            } else {
+                mainView.makeToast("이미 존재하는 스터디입니다", duration: 1.5, position: .center)
+            }
+        } else {
+            mainView.makeToast("스터디를 더 이상 추가할 수 없습니다", duration: 1.5, position: .center)
+        }
+    }
     
     @objc func searchButtonTapped() {
         var list = [""]
@@ -123,22 +184,17 @@ class SearchQueueViewController: BaseViewController {
 }
 
 extension SearchQueueViewController: UISearchBarDelegate {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.searchTextField.text else { return }
         let array = text.split(maxSplits: 1, omittingEmptySubsequences: false, whereSeparator: {$0 == " "})
-        if array.count > 1 && array.count < 9 {
-            for i in array {
-                studyList.append("\(i)")
-            }
-            User.studylist = studyList
-        } else if array.count > 9 {
-            mainView.makeToast("8개까지 추가가 가능합니다.", duration: 1.5, position: .center)
-        } else {
-            if studyList.count > 8 {
-                mainView.makeToast("8개까지 추가가 가능합니다.", duration: 1.5, position: .center)
-            } else {
-                studyList.append(text)
-                User.studylist = studyList
+        print(array)
+        for i in array {
+            let result = checkPattern(study: String(i))
+            switch result {
+            case true:
+               checkUserStudyCount(string: String(i))
+            case false:
+                mainView.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", duration: 1.5, position: .center)
             }
         }
     }
@@ -172,10 +228,10 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
             return result
         case 1:
             var result = 0
-            if User.studylist == [""] {
+            if viewModel.userStudyList.value == [""] {
                 result = 0
             } else {
-                result = User.studylist.count
+                result = viewModel.userStudyList.value.count
             }
             return result
         default:
@@ -209,14 +265,14 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
             }
 //
         default:
-            if User.studylist == [""] {
+            if viewModel.userStudyList.value == [""] {
                 
             } else {
                 cell.titleLabel.textColor = Constants.brandColor.green
                 cell.layer.borderColor = Constants.brandColor.green?.cgColor
                 cell.layer.borderWidth = 1
                 cell.layer.cornerRadius = 8
-                cell.titleLabel.text = User.studylist[indexPath.row]
+                cell.titleLabel.text = viewModel.userStudyList.value[indexPath.row]
                 cell.removeButton.isHidden = false
             }
         }
@@ -234,12 +290,12 @@ extension SearchQueueViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets.init(top: 0, left: 0, bottom: 24, right: 0)
     }
     
-    // headerView 크기
+    // 헤더 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: 34)
     }
     
-    // cell 크기
+    // 셀 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
         
@@ -247,9 +303,19 @@ extension SearchQueueViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             label.text = results[indexPath.row].name
         default:
-            label.text = User.studylist[indexPath.row]
+            label.text = viewModel.userStudyList.value[indexPath.row]
         }
         label.sizeToFit()
-        return CGSize(width: label.frame.width + 50, height: 32)
+        return CGSize(width: label.frame.width + 30, height: 32)
+    }
+}
+
+extension SearchQueueViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        searchBar.searchTextField.resignFirstResponder()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.searchTextField.endEditing(true)
     }
 }

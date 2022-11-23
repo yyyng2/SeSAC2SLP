@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class SearchQueueViewModel {
     
     var userStudyList = CObservable(User.studylist)
@@ -17,13 +20,10 @@ class SearchQueueViewModel {
     
     var studyList: CObservable<Study>?
     
-    func setCell() {
-
-    }
-    
     func setRecommend(result: SearchInfo, collectionView: UICollectionView) -> [Study] {
         let recommend = result.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
         var studyListFromDB = result.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0, type: .fromStudyListDB) } ?? []
+        var userStudy = User.studylist
         
         // 중복 제거
         recommend.forEach { recommendValue in
@@ -34,14 +34,18 @@ class SearchQueueViewModel {
             }
         }
         
-        var removedArray = [Study]()
+        var dataDeduplication = [Study]()
         for i in studyListFromDB {
-            if removedArray.contains(i) == false {
-                removedArray.append(i)
+            if dataDeduplication.contains(i) == false {
+                dataDeduplication.append(i)
             }
         }
+        
+        for i in userStudy {
+            dataDeduplication.removeAll(where: { $0.name == "\(i)" })
+        }
 
-        var results = recommend + removedArray
+        var results = recommend + dataDeduplication
         results.removeAll(where: { $0.name == "anything" })
         results.removeAll(where: { $0.name == "" })
         print("HomeViewAPI:", recommend, studyListFromDB, results)

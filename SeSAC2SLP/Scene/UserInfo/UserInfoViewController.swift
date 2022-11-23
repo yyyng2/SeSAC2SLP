@@ -17,6 +17,9 @@ class UserInfoViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isTranslucent = false
         APIService().login { code in
 //            APIService().reactLoginAPI(value: code)
         }

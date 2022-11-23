@@ -28,10 +28,10 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.topItem?.title = ""
+        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isTranslucent = false
         
-       setQueueState()
-        
-        print(mainView.statusButton.isEnabled)
+        setQueueState()
     }
     
     override func viewDidLoad() {

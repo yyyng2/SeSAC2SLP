@@ -8,12 +8,15 @@
 import UIKit
 
 class SearchQueueView: BaseView {
-//    let aroundLabel: UILabel = {
-//       let label = UILabel()
-//        label.text = "지금 주변에는"
-//        label.font = UIFont(name: "NotoSansKR-Regular", size: 12)
-//        return label
-//    }()
+    
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+
     let collectionView: UICollectionView = {
         let layout = LeftAlignedCollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -21,21 +24,7 @@ class SearchQueueView: BaseView {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         return collectionView
     }()
-//    let hopeLabel: UILabel = {
-//       let label = UILabel()
-//        label.text = "내가 하고 싶은"
-//        label.font = UIFont(name: "NotoSansKR-Regular", size: 12)
-//        return label
-//    }()
-//    let hopeCollectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.minimumLineSpacing = 10
-//
-//        layout.scrollDirection = .vertical
-//        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        return view
-//    }()
+
     let searchButton: CustomSignButton = {
        let button = CustomSignButton()
         button.backgroundColor = Constants.brandColor.green
@@ -43,35 +32,49 @@ class SearchQueueView: BaseView {
         return button
     }()
     
+    let contentStackView: UIStackView = {
+       let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func configure() {
+        self.addSubview(scrollView)
+        
         [collectionView, searchButton].forEach {
-            self.addSubview($0)
+            contentStackView.addArrangedSubview($0)
         }
+        
+        scrollView.addSubview(contentStackView)
     }
     
     override func setConstraints() {
-//        aroundLabel.snp.makeConstraints { make in
-//            make.top.equalTo(safeAreaLayoutGuide).offset(12)
-//            make.leading.equalTo(safeAreaLayoutGuide).offset(12)
-//        }
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(32)
-            make.leading.trailing.bottom.equalToSuperview()
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
         }
-//        hopeLabel.snp.makeConstraints { make in
-//            make.top.equalTo(aroundCollectionView.snp.bottom).offset(12)
-//            make.leading.equalTo(aroundLabel.snp.leading)
-//        }
-//        hopeCollectionView.snp.makeConstraints { make in
-//            make.top.equalTo(hopeLabel.snp.bottom).offset(12)
-//            make.leading.equalTo(aroundLabel.snp.leading)
-//        }
+
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(contentStackView.snp.top).offset(12)
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.leading.equalTo(contentStackView.snp.leading)
+            make.trailing.equalTo(contentStackView.snp.trailing)
+            make.height.equalTo(contentStackView.snp.width).multipliedBy(1.5)
+        }
+
         searchButton.snp.makeConstraints { make in
-            make.centerX.equalTo(safeAreaLayoutGuide)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
-            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.07)
-            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(1.5)
-            
+            make.centerX.equalTo(contentStackView)
+            make.top.equalTo(collectionView.snp.bottom).offset(12)
+            make.leading.equalTo(contentStackView.snp.leading).offset(12)
+            make.trailing.equalTo(contentStackView.snp.trailing).offset(-12)
+//            make.width.equalTo(UIScreen.main.bounds.width).multipliedBy(0.6)
+            make.height.equalTo(contentStackView.snp.width).multipliedBy(0.15)
+        }
+        
+        contentStackView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
         }
     }
 
