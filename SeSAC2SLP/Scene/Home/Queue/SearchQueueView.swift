@@ -69,7 +69,6 @@ class SearchQueueView: BaseView {
             make.top.equalTo(collectionView.snp.bottom).offset(12)
             make.leading.equalTo(contentStackView.snp.leading).offset(12)
             make.trailing.equalTo(contentStackView.snp.trailing).offset(-12)
-//            make.width.equalTo(UIScreen.main.bounds.width).multipliedBy(0.6)
             make.height.equalTo(contentStackView.snp.width).multipliedBy(0.15)
         }
         

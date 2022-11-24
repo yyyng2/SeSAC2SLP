@@ -81,6 +81,7 @@ class HomeViewController: BaseViewController {
         APIService().requestQueueState { code in
             switch code {
             case 200:
+                print("requestQueueState1:",code)
                 DispatchQueue.main.async {
                     self.setQueueButtonImage()
                 }
@@ -101,11 +102,11 @@ class HomeViewController: BaseViewController {
                             self.setQueueButtonImage()
                         }
                     default:
-                        print("requestQueueStateError",code)
+                        print("requestQueueStateError1",code)
                     }
                 }
             default:
-                print("requestQueueStateError",code)
+                print("requestQueueStateError1",code)
             }
            
         }
@@ -123,8 +124,8 @@ class HomeViewController: BaseViewController {
     
     func deniedMapPermissionCenter() {
         APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
-            print("requestSearchQueue:",result)
-            print("requestSearchQueue:",code)
+            print("requestSearchQueue2:",result)
+//            print("requestSearchQueue2:",code)
             switch code {
             case 200:
                 guard let results = result else { return }
@@ -137,14 +138,29 @@ class HomeViewController: BaseViewController {
                         guard let results = result else { return }
                         self.viewModel.queueResult = results.fromQueueDB
                     default:
-                        print("requestSearchQueueError:",code)
+                        print("requestSearchQueueError2:",code)
                     }
                 }
             default:
-                print("requestSearchQueueError:",code)
+                print("requestSearchQueueError2:",code)
             }
         }
       
+    }
+    
+    override func setNavigationUI() {
+        self.navigationController?.navigationBar.tintColor = Constants.BaseColor.black
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+        
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backTapped))
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
+    }
+    
+    @objc func backTapped() {
+        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
+                                                   animated: true)
     }
     
     @objc func genderButtonTapped(sender: UIButton) {
@@ -167,16 +183,26 @@ class HomeViewController: BaseViewController {
         locationManager.startUpdatingLocation()
     }
     
+    @objc override func backButtonTapped() {
+//            navigationController?.popToRootViewController(animated: true)
+//        navigationController?.viewControllers
+        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
+                                                   animated: true)
+       
+    }
+    
     @objc func statusButtonTapped() {
         switch User.matched {
         case 0:
-            let vc = SearchResultViewController()
+            let vc = SearchQueueViewController()
+            vc.queueState = 1
             navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = SearchResultViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = SearchQueueViewController()
+            vc.queueState = 0
             navigationController?.pushViewController(vc, animated: true)
         default:
             break
@@ -307,8 +333,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     private func searchQueue(lat: Double, long: Double) {
         APIService().requestSearchQueue(lat: lat, long: long) { result, code in
-            print("Queue:",result)
-            print("code:",code)
+            print("requestSearchQueue1:",result)
+//            print("code1:",code)
             
             switch code {
             case 200:
@@ -322,11 +348,11 @@ extension HomeViewController: CLLocationManagerDelegate {
                         guard let results = result else { return }
                         self.viewModel.queueResult = results.fromQueueDB
                     default:
-                        print("searchQueueError:",code)
+                        print("searchQueueError1:",code)
                     }
                 }
             default:
-                print("searchQueueError:",code)
+                print("searchQueueError1:",code)
             }
         }
       

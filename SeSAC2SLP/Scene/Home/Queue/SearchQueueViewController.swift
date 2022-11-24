@@ -24,6 +24,8 @@ class SearchQueueViewController: BaseViewController {
     
     let viewModel = SearchQueueViewModel()
     
+    var queueState = 0
+    
     let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 28, height: 0))
     
     override func loadView() {
@@ -33,7 +35,18 @@ class SearchQueueViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        self.tabBarController?.tabBar.isTranslucent = true 
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        switch queueState {
+        case 0:
+            break
+        case 1:
+            searchButtonTapped()
+        case 2:
+            navigationController?.popViewController(animated: true)
+        default:
+            break
+        }
     }
     
     override func viewDidLoad() {
@@ -45,6 +58,8 @@ class SearchQueueViewController: BaseViewController {
         print("results:",results)
         
         setFirstLoad()
+        
+        setBackButton()
             
         setCollectionView()
         setToolBarInTextField()
@@ -97,7 +112,31 @@ class SearchQueueViewController: BaseViewController {
         searchBar.searchTextField.returnKeyType = .send
 
     }
+
+    func setBackButton() {
+//        self.navigationController?.navigationBar.tintColor = Constants.BaseColor.black
+////        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
+////        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+//        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "star")
+//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "star")
+//
+//        let backBarButtonItem = UIBarButtonItem(title: "test", style: .plain, target: self, action: #selector(backTapped))
+//        self.navigationItem.backBarButtonItem = backBarButtonItem
+    }
     
+    @objc func backTapped() {
+        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
+                                                   animated: true)
+    }
+
+    
+    @objc override func backButtonTapped() {
+//            navigationController?.popToRootViewController(animated: true)
+//        navigationController?.viewControllers
+        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
+                                                   animated: true)
+       
+    }
     override func bind() {
         
 //        viewModel.result?.bind { value in

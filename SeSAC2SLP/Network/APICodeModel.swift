@@ -136,10 +136,10 @@ enum QueueCode: Int, Error {
 
 enum SesacCode: Int {
     case sesac_face_1 = 0
-    case sesac_face_2 = 1
-    case sesac_face_3 = 2
-    case sesac_face_4 = 3
-    case sesac_face_5 = 4
+    case sesac_face_2
+    case sesac_face_3
+    case sesac_face_4
+    case sesac_face_5
 }
 
 extension SesacCode {
@@ -161,14 +161,14 @@ extension SesacCode {
 
 enum BackgroundCode: Int {
     case sesac_background_1 = 0
-    case sesac_background_2 = 1
-    case sesac_background_3 = 2
-    case sesac_background_4 = 3
-    case sesac_background_5 = 4
-    case sesac_background_6 = 5
-    case sesac_background_7 = 6
-    case sesac_background_8 = 7
-    case sesac_background_9 = 8
+    case sesac_background_2
+    case sesac_background_3
+    case sesac_background_4
+    case sesac_background_5
+    case sesac_background_6
+    case sesac_background_7
+    case sesac_background_8
+    case sesac_background_9
     
 }
 
