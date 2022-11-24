@@ -58,8 +58,6 @@ class SearchQueueViewController: BaseViewController {
         print("results:",results)
         
         setFirstLoad()
-        
-        setBackButton()
             
         setCollectionView()
         setToolBarInTextField()
@@ -92,11 +90,6 @@ class SearchQueueViewController: BaseViewController {
     }
     
     func setToolBarInTextField() {
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//        toolbar.backgroundColor = Constants.brandColor.green
-//        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(searchButtonTapped))
-//        toolbar.setItems([doneButton], animated: false)
         
         let searchButtonInKeyboard: CustomSignButton = {
             let button = CustomSignButton()
@@ -112,31 +105,8 @@ class SearchQueueViewController: BaseViewController {
         searchBar.searchTextField.returnKeyType = .send
 
     }
-
-    func setBackButton() {
-//        self.navigationController?.navigationBar.tintColor = Constants.BaseColor.black
-////        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
-////        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-//        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "star")
-//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "star")
-//
-//        let backBarButtonItem = UIBarButtonItem(title: "test", style: .plain, target: self, action: #selector(backTapped))
-//        self.navigationItem.backBarButtonItem = backBarButtonItem
-    }
     
-    @objc func backTapped() {
-        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
-                                                   animated: true)
-    }
 
-    
-    @objc override func backButtonTapped() {
-//            navigationController?.popToRootViewController(animated: true)
-//        navigationController?.viewControllers
-        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
-                                                   animated: true)
-       
-    }
     override func bind() {
         
 //        viewModel.result?.bind { value in

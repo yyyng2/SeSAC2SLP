@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181121EB29300299006D6279 /* NoneSesacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181121EA29300299006D6279 /* NoneSesacView.swift */; };
 		1811EE59292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */; };
 		1818C5152928C82E0010625E /* ExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5142928C82E0010625E /* ExpandView.swift */; };
 		1818C5172928D73E0010625E /* UserDetailUnderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818C5162928D73E0010625E /* UserDetailUnderView.swift */; };
@@ -25,6 +26,7 @@
 		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
 		183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */; };
 		183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */; };
+		18615AF9293005DA0014CB0F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18615AF8293005DA0014CB0F /* SearchResultViewController.swift */; };
 		1861CAAA292528FC00C6AA70 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */; };
 		1861CAAD2926829E00C6AA70 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */; };
 		1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAAE2926949E00C6AA70 /* CObservable.swift */; };
@@ -32,7 +34,6 @@
 		1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */; };
 		1861CAB62926B89C00C6AA70 /* SearchQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */; };
 		1861CAB82926B8A500C6AA70 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB72926B8A500C6AA70 /* SearchResultView.swift */; };
-		1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */; };
 		1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD32918B5A000BCC159 /* AppDelegate.swift */; };
 		1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FAD52918B5A000BCC159 /* SceneDelegate.swift */; };
 		1870FADD2918B5A300BCC159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1870FADC2918B5A300BCC159 /* Assets.xcassets */; };
@@ -111,6 +112,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181121EA29300299006D6279 /* NoneSesacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneSesacView.swift; sourceTree = "<group>"; };
 		1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		1818C5142928C82E0010625E /* ExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandView.swift; sourceTree = "<group>"; };
 		1818C5162928D73E0010625E /* UserDetailUnderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailUnderView.swift; sourceTree = "<group>"; };
@@ -129,14 +131,14 @@
 		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewCell.swift; sourceTree = "<group>"; };
 		183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueViewModel.swift; sourceTree = "<group>"; };
+		18615AF8293005DA0014CB0F /* SearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		1861CAA9292528FC00C6AA70 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		1861CAAC2926829E00C6AA70 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1861CAAE2926949E00C6AA70 /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
 		1861CAB02926A11100C6AA70 /* CustomMapGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapGenderButton.swift; sourceTree = "<group>"; };
 		1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueView.swift; sourceTree = "<group>"; };
 		1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueViewController.swift; sourceTree = "<group>"; };
-		1861CAB72926B8A500C6AA70 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
-		1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		1861CAB72926B8A500C6AA70 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultView.swift; path = SearchResult/SearchResultView.swift; sourceTree = "<group>"; };
 		1870FAD02918B5A000BCC159 /* SeSAC2SLP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC2SLP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1870FAD32918B5A000BCC159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1870FAD52918B5A000BCC159 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181121EC29300482006D6279 /* NoneSesacView */ = {
+			isa = PBXGroup;
+			children = (
+				181121EA29300299006D6279 /* NoneSesacView.swift */,
+			);
+			path = NoneSesacView;
+			sourceTree = "<group>";
+		};
+		181121ED29300495006D6279 /* SearchQueue */ = {
+			isa = PBXGroup;
+			children = (
+				1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */,
+				183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */,
+				1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */,
+				1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */,
+				183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */,
+			);
+			path = SearchQueue;
+			sourceTree = "<group>";
+		};
 		1861CAA8292528E700C6AA70 /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,13 +261,10 @@
 		1861CAB22926B85600C6AA70 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				1861CAB32926B88F00C6AA70 /* SearchQueueView.swift */,
-				183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */,
-				1811EE58292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift */,
-				1861CAB52926B89C00C6AA70 /* SearchQueueViewController.swift */,
-				183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */,
+				18615AF8293005DA0014CB0F /* SearchResultViewController.swift */,
 				1861CAB72926B8A500C6AA70 /* SearchResultView.swift */,
-				1861CAB92926B8AF00C6AA70 /* SearchResultViewController.swift */,
+				181121ED29300495006D6279 /* SearchQueue */,
+				181121EC29300482006D6279 /* NoneSesacView */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
@@ -630,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181121EB29300299006D6279 /* NoneSesacView.swift in Sources */,
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
 				18DB8BC62922560C007D90CD /* UserInfoViewModel.swift in Sources */,
@@ -645,6 +665,7 @@
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
 				18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */,
+				18615AF9293005DA0014CB0F /* SearchResultViewController.swift in Sources */,
 				18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */,
 				181CB4C829291D0100B7F0E5 /* ExpandBackgroundView.swift in Sources */,
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
@@ -674,7 +695,6 @@
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
 				18ED0AF1292C1E6E00FF9384 /* WithDrawView.swift in Sources */,
 				181CB4C62929158200B7F0E5 /* CustomUserDetailLabel.swift in Sources */,
-				1861CABA2926B8AF00C6AA70 /* SearchResultViewController.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */,
 				1811EE59292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift in Sources */,

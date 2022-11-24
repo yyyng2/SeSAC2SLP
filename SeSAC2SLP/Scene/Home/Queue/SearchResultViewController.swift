@@ -10,6 +10,9 @@ import UIKit
 class SearchResultViewController: BaseViewController {
     let mainView = SearchResultView()
     
+    //임시
+    let noneSesac = true
+    
     override func loadView() {
         self.view = mainView
     }
@@ -24,6 +27,10 @@ class SearchResultViewController: BaseViewController {
     override func configure() {
         super.configure()
         mainView.studyChangeButton.addTarget(self, action: #selector(stopFindingButtonTapped), for: .touchUpInside)
+        
+        if noneSesac {
+            mainView.collectionView.isHidden = true
+        }
     }
     
     override func setNavigationUI() {
