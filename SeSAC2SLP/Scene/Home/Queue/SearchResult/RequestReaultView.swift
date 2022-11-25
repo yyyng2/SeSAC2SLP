@@ -1,13 +1,13 @@
 //
-//  SearchResultView.swift
+//  RequestReaultView.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/18.
+//  Created by Y on 2022/11/25.
 //
 
 import UIKit
 
-class SearchResultView: BaseView {
+class RequestReaultView: BaseView {
     let noneSesacView = NoneSesacView()
 
     let collectionView: UICollectionView = {
@@ -22,6 +22,7 @@ class SearchResultView: BaseView {
         [noneSesacView, collectionView].forEach {
             self.addSubview($0)
         }
+        noneSesacView.noneSesacFirstLabel.text = "아직 받은 요청이 없어요ㅠ"
     }
     
     override func setConstraints() {
@@ -33,3 +34,4 @@ class SearchResultView: BaseView {
         }
     }
 }
+

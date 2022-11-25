@@ -69,6 +69,40 @@ class NoneSesacView: BaseView {
     }
     
     override func setConstraints() {
-        <#code#>
+        noneSesacImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(0.8)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.2)
+            make.height.equalTo(noneSesacImage.snp.width)
+        }
+        noneSesacFirstLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(noneSesacImage.snp.bottom).offset(30)
+            make.width.equalTo(safeAreaLayoutGuide)
+        }
+        noneSesacSecondLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(noneSesacFirstLabel.snp.bottom).offset(20)
+            make.width.equalTo(safeAreaLayoutGuide)
+        }
+        buttonStackView.snp.makeConstraints { make in
+            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.08)
+        }
+        studyChangeButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.width.equalTo(buttonStackView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(buttonStackView.snp.height)
+            make.leading.equalTo(buttonStackView.snp.leading)
+        }
+        refreshButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.height.equalTo(buttonStackView.snp.height)
+            make.width.equalTo(buttonStackView.snp.height)
+            make.leading.equalTo(studyChangeButton.snp.trailing)
+            make.trailing.equalTo(buttonStackView.snp.trailing).offset(20)
+        }
     }
 }

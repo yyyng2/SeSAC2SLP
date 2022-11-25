@@ -176,14 +176,14 @@ class SearchQueueViewController: BaseViewController {
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
             if code == 200 {
                 User.matched = 0
-                let vc = SearchResultViewController()
+                let vc = TabManViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if code == 401 {
                 AuthenticationManager.shared.updateIdToken()
                 APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
                     if code == 200 {
                         User.matched = 0
-                        let vc = SearchResultViewController()
+                        let vc = TabManViewController()
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         print("requestQueueError",code)
