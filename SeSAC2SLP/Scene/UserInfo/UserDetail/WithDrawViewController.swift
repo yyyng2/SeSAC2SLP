@@ -24,6 +24,7 @@ class WithDrawViewController: BaseViewController {
     }
     
     @objc func withDrawButtonTapped() {
+        networkMoniter()
         APIService().withDraw { code in
             switch code {
             case 200:

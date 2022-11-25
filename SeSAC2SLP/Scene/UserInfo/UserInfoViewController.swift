@@ -20,6 +20,7 @@ class UserInfoViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isTranslucent = false
+        networkMoniter()
         APIService().login { code in
 //            APIService().reactLoginAPI(value: code)
         }

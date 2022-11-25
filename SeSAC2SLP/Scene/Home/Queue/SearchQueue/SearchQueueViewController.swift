@@ -36,7 +36,7 @@ class SearchQueueViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isTranslucent = true
-        
+ 
         switch queueState {
         case 0:
             break
@@ -56,7 +56,7 @@ class SearchQueueViewController: BaseViewController {
         print("recommend:",User.fromRecommend, User.fromRecommend.count)
         print("AllStudy:",User.allStudyList)
         print("results:",results)
-        
+        networkMoniter()
         setFirstLoad()
             
         setCollectionView()
@@ -173,6 +173,7 @@ class SearchQueueViewController: BaseViewController {
         } else {
             list = User.studylist
         }
+        networkMoniter()
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
             if code == 200 {
                 User.matched = 0

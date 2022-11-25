@@ -18,7 +18,7 @@ class LaunchScreenViewController: BaseSignViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        networkMoniter()
         AuthenticationManager.shared.updateIdToken()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
             self.checkStatus()

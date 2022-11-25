@@ -30,7 +30,7 @@ class HomeViewController: BaseViewController {
         navigationController?.navigationBar.topItem?.title = ""
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isTranslucent = false
-        
+        networkMoniter()
         setQueueState()
     }
     
@@ -42,8 +42,6 @@ class HomeViewController: BaseViewController {
         locationManager.delegate = self
         
         mainView.mapView.delegate = self
-        
-        setQueueState()
             
         userCurrentLocationButtonTapped()
         

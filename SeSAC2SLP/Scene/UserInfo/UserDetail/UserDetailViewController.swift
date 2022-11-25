@@ -176,7 +176,7 @@ class UserDetailViewController: BaseViewController {
             guard let study = mainView.underView.favoriteStudyTextField.text else { return }
             User.study = study
         }
-        
+        networkMoniter()
         APIService().mypageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
             print("mypageSave",code)
             switch code {

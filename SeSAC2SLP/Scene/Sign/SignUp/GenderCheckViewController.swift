@@ -68,6 +68,7 @@ class GenderCheckViewController: BaseSignViewController {
                     print("fcm:",User.fcm, "id:",User.authVerificationID)
                     User.gender = 2
                 case .man:
+                    self.networkMoniter()
                     User.gender = 1
                     APIService().signUp { value in
                         APIService().reactSignAPI(value: value)
@@ -75,6 +76,7 @@ class GenderCheckViewController: BaseSignViewController {
                     print(User.gender)
                 case .woman:
                     User.gender = 0
+                    self.networkMoniter()
                     APIService().signUp { value in
                         APIService().reactSignAPI(value: value)
                     }

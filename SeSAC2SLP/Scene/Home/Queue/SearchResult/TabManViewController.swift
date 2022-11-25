@@ -76,6 +76,7 @@ class TabManViewController: TabmanViewController {
     }
     
     @objc func stopFindingButtonTapped(sender: UIButton) {
+        networkMoniter()
         APIService().stopQueueFinding { code in
             print("stopQeueFindingError:",code)
             switch code {

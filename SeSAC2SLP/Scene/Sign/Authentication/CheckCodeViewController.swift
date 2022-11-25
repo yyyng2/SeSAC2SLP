@@ -68,7 +68,7 @@ final class CheckCodeViewController: BaseSignViewController {
                 let result = vc.viewModel.checkPattern(num: text)
                 switch result {
                 case true:
-                    
+                    self.networkMoniter()
                     AuthenticationManager().checkVerifyId(code: text) { value in
                      
                         switch value {

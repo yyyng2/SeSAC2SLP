@@ -5,68 +5,40 @@
 //  Created by Y on 2022/11/15.
 //
 
-//import UIKit
-//import Network
-//
-//final class NetworkMonitor{
-//    static let shared = NetworkMonitor()
-//    
-//    private let queue = DispatchQueue.global()
-//    private let monitor: NWPathMonitor
-//    public private(set) var isConnected:Bool = false
-//    public private(set) var connectionType:ConnectionType = .unknown
-//    
-//    /// 연결타입
-//    enum ConnectionType {
-//        case wifi
-//        case cellular
-//        case ethernet
-//        case unknown
-//    }
-//    
-//    private init(){
-//        print("init 호출")
-//        monitor = NWPathMonitor()
-//    }
-//    
-//    public func startMonitoring(completion: @escaping (Bool?) -> Bool) {
-//        print("startMonitoring 호출")
-//        monitor.start(queue: queue)
-//        monitor.pathUpdateHandler = { [weak self] path in
-//            print("path :\(path)")
-//
-//            self?.isConnected = path.status == .satisfied
-//            self?.getConenctionType(path)
-//            
-//            completion(self?.isConnected)
-//           
-//        }
-//    }
-//    
-//    public func stopMonitoring(){
-//        print("stopMonitoring 호출")
-//        monitor.cancel()
-//    }
-//    
-//    
-//    private func getConenctionType(_ path:NWPath) {
-//        print("getConenctionType 호출")
-//        if path.usesInterfaceType(.wifi){
-//            connectionType = .wifi
-//            print("wifi에 연결")
-//
-//        }else if path.usesInterfaceType(.cellular) {
-//            connectionType = .cellular
-//            print("cellular에 연결")
-//
-//        }else if path.usesInterfaceType(.wiredEthernet) {
-//            connectionType = .ethernet
-//            print("wiredEthernet에 연결")
-//
-//        }else {
-//            connectionType = .unknown
-//            print("unknown ..")
-//        }
-//    }
-//    
-//}
+import UIKit
+import Network
+
+extension UIViewController {
+    func networkMoniter() {
+        let monitor = NWPathMonitor()
+        
+        monitor.pathUpdateHandler = {
+            path in
+            if path.status == .satisfied {
+                DispatchQueue.main.async {
+                    return
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.showRequestNetworkServiceAlert()
+                }
+            }
+        }
+        let queue = DispatchQueue(label: "Network")
+        monitor.start(queue: queue)
+    }
+    
+    func showRequestNetworkServiceAlert() {
+        let requestLocationServiceAlert = UIAlertController(title: "설정으로 이동", message: "네트워크를 사용할 수 없습니다. 기기의 설정에서 네트워크 상태를 확인해 주세요.", preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+            if let appSetting = URL(string: UIApplication.openSettingsURLString){
+                UIApplication.shared.open(appSetting)
+            }
+        }
+        let cancel = UIAlertAction(title: "취소", style: .default)
+        requestLocationServiceAlert.addAction(cancel)
+        requestLocationServiceAlert.addAction(goSetting)
+        
+        self.present(requestLocationServiceAlert, animated: true, completion: nil)
+    }
+}
