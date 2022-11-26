@@ -1,13 +1,13 @@
 //
-//  WithDrawView.swift
+//  BasePopupView.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/22.
+//  Created by Y on 2022/11/26.
 //
 
 import UIKit
 
-class WithDrawView: BaseView {
+class BasePopupView: BaseView {
     let whiteBackgroundView: UIView = {
        let view = UIView()
         view.backgroundColor = Constants.BaseColor.white
@@ -20,7 +20,7 @@ class WithDrawView: BaseView {
         label.textColor = Constants.BaseColor.black
         label.backgroundColor = .clear
         label.font = UIFont(name: "NotoSansKR-Medium", size: 16)
-        label.text = "정말 탈퇴하시겠습니까?"
+        label.text = ""
         label.textAlignment = .center
         return label
     }()
@@ -30,7 +30,7 @@ class WithDrawView: BaseView {
         label.textColor = Constants.BaseColor.black
         label.backgroundColor = .clear
         label.font = UIFont(name: "NotoSansKR-Regular", size: 14)
-        label.text = "탈퇴하시면 새싹 스터디를 이용할 수 없어요ㅠ"
+        label.text = ""
         label.textAlignment = .center
         return label
     }()
@@ -48,7 +48,7 @@ class WithDrawView: BaseView {
         return button
     }()
     
-    let withDrawButton: UIButton = {
+    let confirmButton: UIButton = {
         var config = UIButton.Configuration.plain()
         config.background.backgroundColor = Constants.brandColor.green
         var titleAttr = AttributedString.init("확인")
@@ -66,7 +66,7 @@ class WithDrawView: BaseView {
         
         self.addSubview(whiteBackgroundView)
         
-        [titleLabel, contentLabel, cancelButton, withDrawButton].forEach {
+        [titleLabel, contentLabel, cancelButton, confirmButton].forEach {
             whiteBackgroundView.addSubview($0)
         }
     }
@@ -93,7 +93,7 @@ class WithDrawView: BaseView {
             make.height.equalTo(whiteBackgroundView).multipliedBy(0.3)
             make.centerX.equalTo(whiteBackgroundView).multipliedBy(0.5)
         }
-        withDrawButton.snp.makeConstraints { make in
+        confirmButton.snp.makeConstraints { make in
             make.centerY.equalTo(whiteBackgroundView).multipliedBy(1.5)
             make.width.equalTo(whiteBackgroundView).multipliedBy(0.4)
             make.height.equalTo(whiteBackgroundView).multipliedBy(0.3)

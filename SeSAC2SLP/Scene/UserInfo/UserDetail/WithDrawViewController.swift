@@ -8,7 +8,7 @@
 import UIKit
 
 class WithDrawViewController: BaseViewController {
-    let mainView = WithDrawView()
+    let mainView = BasePopupView()
     
     override func loadView() {
         self.view = mainView
@@ -16,7 +16,10 @@ class WithDrawViewController: BaseViewController {
     
     override func configure() {
         mainView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        mainView.withDrawButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
+        mainView.confirmButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
+        
+        mainView.titleLabel.text = "정말 탈퇴하시겠습니까?"
+        mainView.contentLabel.text = "탈퇴하시면 새싹 스터디를 이용할 수 없어요ㅠ"
     }
     
     @objc func cancelButtonTapped() {

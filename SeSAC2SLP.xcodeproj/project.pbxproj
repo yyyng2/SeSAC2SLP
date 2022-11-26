@@ -25,6 +25,7 @@
 		1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */; };
 		1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075E291FC08E001755D5 /* CustomGenderButton.swift */; };
 		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
+		183946162932556E001C3644 /* BasePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183946152932556E001C3644 /* BasePopupView.swift */; };
 		183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */; };
 		183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */; };
 		18615AF9293005DA0014CB0F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18615AF8293005DA0014CB0F /* SearchResultViewController.swift */; };
@@ -111,7 +112,6 @@
 		18DB8BF52923C975007D90CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF42923C974007D90CD /* HomeView.swift */; };
 		18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF62923C98F007D90CD /* HomeViewController.swift */; };
 		18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */; };
-		18ED0AF1292C1E6E00FF9384 /* WithDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */; };
 		18ED0AF3292C237F00FF9384 /* WithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +134,7 @@
 		1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignDetailLabel.swift; sourceTree = "<group>"; };
 		1838075E291FC08E001755D5 /* CustomGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenderButton.swift; sourceTree = "<group>"; };
 		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		183946152932556E001C3644 /* BasePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopupView.swift; sourceTree = "<group>"; };
 		183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewCell.swift; sourceTree = "<group>"; };
 		183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueViewModel.swift; sourceTree = "<group>"; };
 		18615AF8293005DA0014CB0F /* SearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
@@ -212,7 +213,6 @@
 		18DB8BF42923C974007D90CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18DB8BF62923C98F007D90CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawView.swift; sourceTree = "<group>"; };
 		18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -416,6 +416,7 @@
 				1818C5182928D97E0010625E /* ExpandTopView.swift */,
 				181CB4C729291D0100B7F0E5 /* ExpandBackgroundView.swift */,
 				1818C5142928C82E0010625E /* ExpandView.swift */,
+				183946152932556E001C3644 /* BasePopupView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -554,7 +555,6 @@
 				1818C5162928D73E0010625E /* UserDetailUnderView.swift */,
 				18DB8BD72922883C007D90CD /* UserDetailViewController.swift */,
 				18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */,
-				18ED0AF0292C1E6E00FF9384 /* WithDrawView.swift */,
 				18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */,
 			);
 			path = UserDetail;
@@ -672,6 +672,7 @@
 			files = (
 				181121EB29300299006D6279 /* NoneSesacView.swift in Sources */,
 				18615B06293014760014CB0F /* TabManViewController.swift in Sources */,
+				183946162932556E001C3644 /* BasePopupView.swift in Sources */,
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
 				18DB8BC62922560C007D90CD /* UserInfoViewModel.swift in Sources */,
@@ -716,7 +717,6 @@
 				1870FB37291A52CC00BCC159 /* CustomSignButton.swift in Sources */,
 				18DB8BCF29226117007D90CD /* BaseCollectionViewCell.swift in Sources */,
 				1870FB132919838000BCC159 /* OnboardingViewController.swift in Sources */,
-				18ED0AF1292C1E6E00FF9384 /* WithDrawView.swift in Sources */,
 				181CB4C62929158200B7F0E5 /* CustomUserDetailLabel.swift in Sources */,
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				18615AFF29300C160014CB0F /* RequestReaultView.swift in Sources */,
