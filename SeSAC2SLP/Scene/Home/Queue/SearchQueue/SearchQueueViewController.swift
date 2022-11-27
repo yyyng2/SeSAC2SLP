@@ -36,7 +36,7 @@ class SearchQueueViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isTranslucent = true
- 
+        
         switch queueState {
         case 0:
             break
@@ -65,9 +65,7 @@ class SearchQueueViewController: BaseViewController {
     
     override func configure() {
         super.configure()
-        
 
-        
         mainView.scrollView.delegate = self
         
         navigationController?.navigationBar.isHidden = false
@@ -168,18 +166,30 @@ class SearchQueueViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         var list = [""]
-        if User.studylist == [""] {
+        if viewModel.userStudyList.value == [""] {
             list = ["anything"]
         } else {
-            list = User.studylist
+            list = viewModel.userStudyList.value
+            User.studylist = viewModel.userStudyList.value
         }
         networkMoniter()
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
-            if code == 200 {
+            
+            switch code {
+            case 200:
                 User.matched = 0
                 let vc = TabManViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
-            } else if code == 401 {
+            case 201:
+                self.mainView.makeToast("신고가 누적되어 이용하실 수 없습니다", duration: 1.5, position: .center)
+            case 203:
+                self.mainView.makeToast("스터디 취소 패널티로, 1분동안 이용하실 수 없습니다", duration: 1.5, position: .center)
+            case 204:
+                self.mainView.makeToast("스터디 취소 패널티로, 2분동안 이용하실 수 없습니다", duration: 1.5, position: .center)
+            case 205:
+                self.mainView.makeToast("스터디 취소 패널티로, 3분동안 이용하실 수 없습니다", duration: 1.5, position: .center)
+            case 401:
+                self.networkMoniter()
                 AuthenticationManager.shared.updateIdToken()
                 APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
                     if code == 200 {
@@ -190,6 +200,8 @@ class SearchQueueViewController: BaseViewController {
                         print("requestQueueError",code)
                     }
                 }
+            default:
+                break
             }
         }
     }
@@ -270,14 +282,12 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.layer.borderColor = Constants.systemColor.error?.cgColor
                 cell.layer.borderWidth = 1
                 cell.layer.cornerRadius = 8
-                cell.removeButton.isHidden = true
                 cell.titleLabel.text = item.name
             case .fromStudyListDB:
                 cell.titleLabel.textColor = Constants.BaseColor.black
                 cell.layer.borderColor = Constants.grayScale.gray4?.cgColor
                 cell.layer.borderWidth = 1
                 cell.layer.cornerRadius = 8
-                cell.removeButton.isHidden = true
                 cell.titleLabel.text = item.name
             }
         case 1:
@@ -288,8 +298,7 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.layer.borderColor = Constants.brandColor.green?.cgColor
                 cell.layer.borderWidth = 1
                 cell.layer.cornerRadius = 8
-                cell.titleLabel.text = viewModel.userStudyList.value[indexPath.row]
-                cell.removeButton.isHidden = false
+                cell.titleLabel.text = "\(viewModel.userStudyList.value[indexPath.row]) X"
             }
         default:
             break
@@ -299,8 +308,6 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-       
         
         switch indexPath.section {
         case 0:

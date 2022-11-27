@@ -64,6 +64,10 @@ enum keyEnum: String {
     case studylistFromDB = "studylistFromDB"
     case studylistFromDBRequest = "studylistFromDBRequest"
     case allStudyList = "allStudyList"
+    
+    //QueueSearch
+    case fromQueueDBRequested = "fromQueueDBRequested"
+    case fromQueueDB = "fromQueueDB"
 }
 
 struct User {
@@ -139,4 +143,10 @@ struct User {
     static var studylistFromDBRequest: [String]
     @UserDefaultsHelper(key: keyEnum.allStudyList.rawValue, defaultValue: [Study.init(name: "", type: .recommend)])
     static var allStudyList: [Study]
+    
+    //QueueSearch
+    @UserDefaultsHelper(key: keyEnum.fromQueueDB.rawValue, defaultValue: [FromQueueDB.init(uid: "", nick: "", lat: 0, long: 0, reputation: [0], studylist: [""], reviews: [""], gender: 0, type: 0, sesac: 0, background: 0)])
+    static var fromQueueDB: [FromQueueDB]
+    @UserDefaultsHelper(key: keyEnum.fromQueueDBRequested.rawValue, defaultValue: [FromQueueDB.init(uid: "", nick: "", lat: 0, long: 0, reputation: [0], studylist: [""], reviews: [""], gender: 0, type: 0, sesac: 0, background: 0)])
+    static var fromQueueDBRequested: [FromQueueDB]
 }

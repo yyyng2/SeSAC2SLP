@@ -11,13 +11,9 @@ import SnapKit
 
 class SearchQueueCollectionViewHeaderCell: UICollectionReusableView {
     
-    // MARK: - Properties
-    
     static let identifier = String(describing: SearchQueueCollectionViewHeaderCell.self)
 
     let label = UILabel()
-    
-    // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)

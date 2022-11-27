@@ -21,8 +21,9 @@ class SearchQueueViewModel {
     var studyList: CObservable<[Study]>?
     
     func setRecommend(result: SearchInfo, collectionView: UICollectionView) -> [Study] {
-        let recommend = result.fromRecommend.map { Study(name: $0, type: .recommend) } ?? []
-        var studyListFromDB = result.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0, type: .fromStudyListDB) } ?? []
+        
+        let recommend = result.fromRecommend.map { Study(name: $0.removeBackslash, type: .recommend) } ?? []
+        var studyListFromDB = result.fromQueueDB.map{ $0.studylist }.flatMap { $0 }.map { Study(name: $0.removeBackslash, type: .fromStudyListDB) } ?? []
         var userStudy = User.studylist
         
         // 중복 제거

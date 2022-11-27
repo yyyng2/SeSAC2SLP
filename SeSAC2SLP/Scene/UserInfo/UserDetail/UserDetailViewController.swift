@@ -46,10 +46,12 @@ class UserDetailViewController: BaseViewController {
         mainView.topView.profileLabel.text = User.signedName
         
         if User.comment == [] {
+            mainView.middleView.sesacReviewButton.alpha = 0
+            mainView.middleView.sesacReviewButton.isEnabled = false
             mainView.middleView.sesacReviewTextView.text = "첫 리뷰를 기다리는 중이에요!"
             mainView.middleView.sesacReviewTextView.textColor = Constants.grayScale.gray6
         } else {
-            mainView.middleView.sesacReviewTextView.text = ""
+            mainView.middleView.sesacReviewTextView.text = User.comment[0]
             mainView.middleView.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
     }
@@ -148,7 +150,8 @@ class UserDetailViewController: BaseViewController {
     }
     
     @objc func withDrawButtonTapped() {
-        let vc = WithDrawViewController()
+        let vc = PopUpViewController()
+        vc.status = 2
         vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true)

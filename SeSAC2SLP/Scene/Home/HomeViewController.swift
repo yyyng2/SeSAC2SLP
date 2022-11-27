@@ -76,6 +76,7 @@ class HomeViewController: BaseViewController {
     }
     
     func setQueueState() {
+        networkMoniter()
         APIService().requestQueueState { code in
             switch code {
             case 200:
@@ -121,6 +122,7 @@ class HomeViewController: BaseViewController {
     }
     
     func deniedMapPermissionCenter() {
+        networkMoniter()
         APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
             print("requestSearchQueue2:",result)
 //            print("requestSearchQueue2:",code)
@@ -330,6 +332,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     private func searchQueue(lat: Double, long: Double) {
+        networkMoniter()
         APIService().requestSearchQueue(lat: lat, long: long) { result, code in
             print("requestSearchQueue1:",result)
 //            print("code1:",code)
@@ -344,7 +347,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                     switch code {
                     case 200:
                         guard let results = result else { return }
-                        self.viewModel.queueResult = results.fromQueueDB
+                        self.viewModel.queueResult = results.fromQueueDB        
                     default:
                         print("searchQueueError1:",code)
                     }

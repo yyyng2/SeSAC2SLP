@@ -9,17 +9,16 @@ import UIKit
 
 class SearchResultView: BaseView {
     let noneSesacView = NoneSesacView()
-
-    let collectionView: UICollectionView = {
-        let layout = LeftAlignedCollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        return collectionView
+    
+    let tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .grouped)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.sectionFooterHeight = 0
+        return view
     }()
     
     override func configure() {
-        [noneSesacView, collectionView].forEach {
+        [noneSesacView, tableView].forEach {
             self.addSubview($0)
         }
     }
@@ -28,8 +27,8 @@ class SearchResultView: BaseView {
         noneSesacView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
 }

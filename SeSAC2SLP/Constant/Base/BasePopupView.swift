@@ -75,7 +75,7 @@ class BasePopupView: BaseView {
         whiteBackgroundView.snp.makeConstraints { make in
             make.center.equalTo(safeAreaLayoutGuide)
             make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
-            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.2)
+            make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.3)
         }
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalTo(whiteBackgroundView)

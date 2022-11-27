@@ -26,6 +26,7 @@
 		1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838075E291FC08E001755D5 /* CustomGenderButton.swift */; };
 		18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380760291FC0EF001755D5 /* UIButton+Extension.swift */; };
 		183946162932556E001C3644 /* BasePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183946152932556E001C3644 /* BasePopupView.swift */; };
+		1839461B2932574B001C3644 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839461A2932574B001C3644 /* PopUpViewController.swift */; };
 		183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */; };
 		183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */; };
 		18615AF9293005DA0014CB0F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18615AF8293005DA0014CB0F /* SearchResultViewController.swift */; };
@@ -112,7 +113,14 @@
 		18DB8BF52923C975007D90CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF42923C974007D90CD /* HomeView.swift */; };
 		18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF62923C98F007D90CD /* HomeViewController.swift */; };
 		18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */; };
-		18ED0AF3292C237F00FF9384 /* WithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */; };
+		18E05EED2932D33A00043C41 /* QueueResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EEC2932D33A00043C41 /* QueueResultCollectionViewCell.swift */; };
+		18E05EEF2932D46500043C41 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EEE2932D46500043C41 /* SearchResultViewModel.swift */; };
+		18E05EF22932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF12932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		18E05EF42932DA9100043C41 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF32932DA9100043C41 /* ReviewView.swift */; };
+		18E05EF62932DA9D00043C41 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF52932DA9D00043C41 /* ReviewViewController.swift */; };
+		18E05EF82932DB3E00043C41 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */; };
+		18FFA66B2932981400D785CA /* QueueResultTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */; };
+		18FFA66D2932982400D785CA /* QueueResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +143,7 @@
 		1838075E291FC08E001755D5 /* CustomGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGenderButton.swift; sourceTree = "<group>"; };
 		18380760291FC0EF001755D5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		183946152932556E001C3644 /* BasePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopupView.swift; sourceTree = "<group>"; };
+		1839461A2932574B001C3644 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		183CDFA42926CC83000CCE19 /* SearchQueueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueCollectionViewCell.swift; sourceTree = "<group>"; };
 		183CDFA62926DEDA000CCE19 /* SearchQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueueViewModel.swift; sourceTree = "<group>"; };
 		18615AF8293005DA0014CB0F /* SearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
@@ -213,7 +222,14 @@
 		18DB8BF42923C974007D90CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18DB8BF62923C98F007D90CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawViewController.swift; sourceTree = "<group>"; };
+		18E05EEC2932D33A00043C41 /* QueueResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		18E05EEE2932D46500043C41 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		18E05EF12932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		18E05EF32932DA9100043C41 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		18E05EF52932DA9D00043C41 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewHeaderCell.swift; sourceTree = "<group>"; };
+		18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,14 +274,36 @@
 			path = SearchQueue;
 			sourceTree = "<group>";
 		};
+		183946192932573C001C3644 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				1839461A2932574B001C3644 /* PopUpViewController.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		1839461C29325C67001C3644 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				18E05EF32932DA9100043C41 /* ReviewView.swift */,
+				18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */,
+				18E05EF52932DA9D00043C41 /* ReviewViewController.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		18615AFD2930074B0014CB0F /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
+				18E05EEE2932D46500043C41 /* SearchResultViewModel.swift */,
 				18615AFB293007390014CB0F /* SearchResultView.swift */,
 				18615AF8293005DA0014CB0F /* SearchResultViewController.swift */,
 				18615AFE29300C160014CB0F /* RequestReaultView.swift */,
 				1835BB0A2930498E007D926C /* RequestResultViewController.swift */,
 				18615B05293014760014CB0F /* TabManViewController.swift */,
+				18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */,
+				18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */,
+				18E05EEC2932D33A00043C41 /* QueueResultCollectionViewCell.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -281,8 +319,8 @@
 		1861CAB22926B85600C6AA70 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				18615AFD2930074B0014CB0F /* SearchResult */,
 				181121ED29300495006D6279 /* SearchQueue */,
+				18615AFD2930074B0014CB0F /* SearchResult */,
 				181121EC29300482006D6279 /* NoneSesacView */,
 			);
 			path = Queue;
@@ -326,6 +364,8 @@
 		1870FAE92918F7DA00BCC159 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1839461C29325C67001C3644 /* Review */,
+				183946192932573C001C3644 /* PopUp */,
 				18DB8BF32923C968007D90CD /* Friends */,
 				18DB8BF12923C95B007D90CD /* Shop */,
 				18DB8BC0292255BC007D90CD /* UserInfo */,
@@ -341,6 +381,7 @@
 		1870FAEA2918F7EB00BCC159 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				18E05EF02932D91900043C41 /* CollectionViewCellFlowLayout */,
 				1870FB3D291A555C00BCC159 /* UITextField */,
 				1870FB35291A52A700BCC159 /* UIButton */,
 				1870FB34291A52A300BCC159 /* UILabel */,
@@ -555,7 +596,6 @@
 				1818C5162928D73E0010625E /* UserDetailUnderView.swift */,
 				18DB8BD72922883C007D90CD /* UserDetailViewController.swift */,
 				18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */,
-				18ED0AF2292C237F00FF9384 /* WithDrawViewController.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -572,6 +612,14 @@
 			children = (
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		18E05EF02932D91900043C41 /* CollectionViewCellFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				18E05EF12932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift */,
+			);
+			path = CollectionViewCellFlowLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,6 +723,7 @@
 				183946162932556E001C3644 /* BasePopupView.swift in Sources */,
 				1870FB41291A5B8900BCC159 /* AuthenticationViewModel.swift in Sources */,
 				1870FB032919267000BCC159 /* ThirdPageViewController.swift in Sources */,
+				18E05EED2932D33A00043C41 /* QueueResultCollectionViewCell.swift in Sources */,
 				18DB8BC62922560C007D90CD /* UserInfoViewModel.swift in Sources */,
 				1870FB6E291CECC900BCC159 /* BirthCheckViewController.swift in Sources */,
 				18DB8BBF29222DEE007D90CD /* APICodeModel.swift in Sources */,
@@ -684,6 +733,7 @@
 				18DB8BC429225602007D90CD /* UserInfoViewController.swift in Sources */,
 				18DB8BF52923C975007D90CD /* HomeView.swift in Sources */,
 				1818C5192928D97E0010625E /* ExpandTopView.swift in Sources */,
+				18FFA66B2932981400D785CA /* QueueResultTableViewHeaderCell.swift in Sources */,
 				18DB8BD329227B8B007D90CD /* BaseSignViewController.swift in Sources */,
 				1835BB0B2930498E007D926C /* RequestResultViewController.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
@@ -695,6 +745,7 @@
 				1870FB1129197D9D00BCC159 /* TabBarController.swift in Sources */,
 				18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */,
 				18DB8BDE2923653C007D90CD /* BaseTableViewCell.swift in Sources */,
+				1839461B2932574B001C3644 /* PopUpViewController.swift in Sources */,
 				1861CAB12926A11100C6AA70 /* CustomMapGenderButton.swift in Sources */,
 				1870FB012919266600BCC159 /* SecondPageViewController.swift in Sources */,
 				1861CAB62926B89C00C6AA70 /* SearchQueueViewController.swift in Sources */,
@@ -705,8 +756,11 @@
 				1870FB6C291CECBC00BCC159 /* BirthCheckView.swift in Sources */,
 				1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */,
 				1838075D291FBCEB001755D5 /* CustomSignDetailLabel.swift in Sources */,
+				18E05EF62932DA9D00043C41 /* ReviewViewController.swift in Sources */,
 				1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */,
+				18E05EF82932DB3E00043C41 /* ReviewTableViewCell.swift in Sources */,
 				18DB8BB82920A07A007D90CD /* APIService.swift in Sources */,
+				18E05EF42932DA9100043C41 /* ReviewView.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
 				1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */,
@@ -737,6 +791,7 @@
 				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,
 				1870FAD42918B5A000BCC159 /* AppDelegate.swift in Sources */,
 				1861CAAD2926829E00C6AA70 /* HomeViewModel.swift in Sources */,
+				18FFA66D2932982400D785CA /* QueueResultTableViewCell.swift in Sources */,
 				1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */,
 				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
 				18DB8BDA29236502007D90CD /* UserInfoTableViewCell.swift in Sources */,
@@ -745,10 +800,10 @@
 				18615AFC293007390014CB0F /* SearchResultView.swift in Sources */,
 				1818C5172928D73E0010625E /* UserDetailUnderView.swift in Sources */,
 				18DB8BF92923CBB9007D90CD /* NetworkMonitor.swift in Sources */,
+				18E05EEF2932D46500043C41 /* SearchResultViewModel.swift in Sources */,
 				18826584292C4CB600737F45 /* studyModel.swift in Sources */,
 				1870FB192919BAC000BCC159 /* UILabel+Extension.swift in Sources */,
 				18DB8BE629239539007D90CD /* CustomSesacTitleLabel.swift in Sources */,
-				18ED0AF3292C237F00FF9384 /* WithDrawViewController.swift in Sources */,
 				1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */,
 				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
 				183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */,
@@ -758,6 +813,7 @@
 				18380756291FBC16001755D5 /* GenderCheckView.swift in Sources */,
 				18380750291FB73B001755D5 /* EmailCheckView.swift in Sources */,
 				1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */,
+				18E05EF22932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

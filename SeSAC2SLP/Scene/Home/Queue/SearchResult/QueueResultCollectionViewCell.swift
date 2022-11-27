@@ -1,15 +1,14 @@
 //
-//  SearchQueueCollectionViewCell.swift
+//  QueueResultCollectionViewCell.swift
 //  SeSAC2SLP
 //
-//  Created by Y on 2022/11/18.
+//  Created by Y on 2022/11/27.
 //
 
 import UIKit
 
-class SearchQueueCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = String(describing: SearchQueueCollectionViewCell.self)
+class QueueResultCollectionViewCell: UICollectionViewCell {
+    static let identifier = String(describing: QueueResultCollectionViewCell.self)
     
     let titleLabel: UILabel = {
        let label = UILabel()
@@ -37,5 +36,4 @@ class SearchQueueCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

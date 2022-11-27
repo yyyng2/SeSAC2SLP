@@ -22,6 +22,7 @@ enum SeSACAPI {
     case queue(lat: Double, long: Double, studylist: String)        //   'studylist[]': 'anything' }
     case stopQueue
     case searchQueue(lat: Double, long: Double)
+    case studyRequest(otheruid: String)
 }
 
 extension SeSACAPI {
@@ -49,6 +50,8 @@ extension SeSACAPI {
             return URL(string: baseURL+"/queue")!
         case .searchQueue:
             return URL(string: baseURL+"/queue/search")!
+        case .studyRequest:
+            return URL(string: baseURL+"/queue/studyrequest")!
         }
     }
     
@@ -97,6 +100,8 @@ extension SeSACAPI {
                 "gender" : gender,
                 "study" : study
             ]
+        case .studyRequest(let otheruid):
+            return ["otheruid" : otheruid]
         default:
             return ["":""]
         }

@@ -188,6 +188,17 @@ class APIService {
 
         }
     }
+    
+    func studyRequest(otherUid: String, completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.studyRequest(otheruid: otherUid)
+        
+        AF.request(api.path, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
+            guard let code = response.response?.statusCode else { return }
+            print("stopQueueFinding:",code, api.path, api.headers,api.parameters)
+            completionHandler(code)
+
+        }
+    }
 
     
     func reactLoginAPI(value: Int) {

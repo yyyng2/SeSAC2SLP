@@ -94,8 +94,8 @@ class ExpandView: BaseView {
         return button
     }()
     
-    let sesacReviewTextView: UITextView = {
-       let view = UITextView()
+    let sesacReviewTextView: UILabel = {
+       let view = UILabel()
         view.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         view.backgroundColor = .clear
         view.sizeToFit()
@@ -170,13 +170,13 @@ class ExpandView: BaseView {
         }
         sesacReviewButton.snp.makeConstraints { make in
             make.top.equalTo(beneficialTitleLabel.snp.bottom)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
-            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(beneficialTitleLabel.snp.trailing)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
+            make.width.equalTo(sesacReviewButton.snp.height)
         }
         sesacReviewTextView.snp.makeConstraints { make in
             make.top.equalTo(sesacReviewLabel.snp.bottom)
-            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.9)
+            make.width.equalTo(safeAreaLayoutGuide).multipliedBy(0.85)
             make.centerX.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(safeAreaLayoutGuide).multipliedBy(0.1)
         }
