@@ -13,6 +13,11 @@ import Pageboy
 
 class TabManViewController: TabmanViewController {
     private var viewControllers: Array<UIViewController> = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "새싹 찾기"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

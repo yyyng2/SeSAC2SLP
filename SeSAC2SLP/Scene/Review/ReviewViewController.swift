@@ -29,6 +29,11 @@ class ReviewViewController: BaseViewController {
         mainView.tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: ReviewTableViewCell.identifier)
     
     }
+    
+    override func setNavigationUI() {
+        self.title = "새싹 리뷰"
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
 }
 
 extension ReviewViewController: UITableViewDataSource, UITableViewDelegate {

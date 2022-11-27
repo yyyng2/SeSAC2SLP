@@ -38,7 +38,7 @@ class SearchResultViewController: BaseViewController {
             }
             print("count & hidden",self.viewModel.fromQueueDB?.value.count, self.hiddenSections)
             DispatchQueue.main.async {
-                if self.viewModel.fromQueueDB?.value.count == 0 {
+                if self.fromQueueDB.count == 0 {
                     self.mainView.tableView.isHidden = true
                     self.mainView.noneSesacView.isHidden = false
                 } else {
