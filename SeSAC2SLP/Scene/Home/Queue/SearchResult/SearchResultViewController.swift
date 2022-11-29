@@ -12,8 +12,6 @@ class SearchResultViewController: BaseViewController {
     
     var fromQueueDB: [FromQueueDB] = []
     
-    var fromQueueDBRequested: [FromQueueDB] = []
-    
     let viewModel = SearchResultViewModel()
     
     var hiddenSections = Set<Int>()
@@ -28,6 +26,58 @@ class SearchResultViewController: BaseViewController {
         self.tabBarController?.tabBar.isTranslucent = true
        
         networkMoniter()
+        refreshButtonTapped()
+
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureTableView()
+        print("sesacResultView:\(fromQueueDB.count)")
+    }
+    
+    override func configure() {
+        mainView.noneSesacView.refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
+        mainView.noneSesacView.studyChangeButton.addTarget(self, action: #selector(studyChangeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func studyChangeButtonTapped(sender: UIButton) {
+        networkMoniter()
+        APIService().stopQueueFinding { code in
+            print("stopQeueFindingError:",code)
+            switch code {
+            case 200:
+                let homeVC = HomeViewController()
+                User.matched = 2
+                homeVC.setQueueButtonImage()
+                let vc = SearchQueueViewController()
+                vc.queueState = 0
+                self.navigationController?.popViewController(animated: true)
+            case 401:
+                AuthenticationManager.shared.updateIdToken()
+                APIService().stopQueueFinding { code in
+                    print("stopQeueFinding:",code)
+                    switch code {
+                    case 200:
+                        let homeVC = HomeViewController()
+                        User.matched = 2
+                        homeVC.setQueueButtonImage()
+                        let vc = SearchQueueViewController()
+                        vc.queueState = 0
+                        self.navigationController?.popViewController(animated: true)
+                    default:
+                        print("stopQeueFinding",code)
+                    }
+                }
+            default:
+                self.view.makeToast("중단 에러")
+            }
+        }
+        
+    }
+    
+    @objc func refreshButtonTapped() {
         APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { result, code in
             guard let results = result else { return }
             self.viewModel.fromQueueDB?.value = results.fromQueueDB
@@ -48,18 +98,6 @@ class SearchResultViewController: BaseViewController {
                 }
             }
         }
-
-
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureTableView()
-        print("sesacResultView:\(fromQueueDB.count)")
-    }
-    
-    override func configure() {
-      
     }
     
     func configureTableView() {
@@ -178,7 +216,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     @objc private func hideSection(sender: UIButton) {
-        // section의 tag 정보를 가져와서 어느 섹션인지 구분한다.
+        // section의 tag 정보를 가져와서 어느 섹션인지 구분
         let section = sender.tag
         
         // 특정 섹션에 속한 행들의 IndexPath들을 리턴하는 메서드
@@ -191,11 +229,9 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             return indexPaths
         }
 
-        // 가져온 section이 원래 감춰져 있었다면
         if self.hiddenSections.contains(section) {
             self.hiddenSections.remove(section)
             mainView.tableView.insertRows(at: indexPathsForSection(), with: .fade)
-            // 섹션을 노출시킬때 원래 감춰져 있던 행들이 다 보일 수 있게 한다.
             mainView.tableView.scrollToRow(at: IndexPath(row: 0,
                             section: section), at: UITableView.ScrollPosition.bottom, animated: true)
         } else {

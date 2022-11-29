@@ -73,7 +73,9 @@ struct QueueState: Codable {
 }
 
 struct Queue: Codable {
-    
+    let lat: Double
+    let long: Double
+    let studylist: [String]
 }
 
 enum MatchedCode: Int {

@@ -84,8 +84,7 @@ extension SeSACAPI {
             return [
                 "lat" : lat,
                 "long" : long,
-                "studylist" : try! JSONSerialization.data(withJSONObject: studylist)
-      
+                "studylist" : studylist
             ]
         case .searchQueue(let lat, let long):
             return [

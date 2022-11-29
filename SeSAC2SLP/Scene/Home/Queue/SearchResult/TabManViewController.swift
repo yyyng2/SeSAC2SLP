@@ -65,7 +65,6 @@ class TabManViewController: TabmanViewController {
         navigationController?.navigationBar.isHidden = false
         self.title = "새싹 찾기"
         let stopFindingButton = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(stopFindingButtonTapped))
-        stopFindingButton.tag = 1
         self.navigationItem.rightBarButtonItem = stopFindingButton       
     }
     
@@ -86,48 +85,24 @@ class TabManViewController: TabmanViewController {
             print("stopQeueFindingError:",code)
             switch code {
             case 200:
-                switch sender.tag {
-                case 0:
-                    let homeVC = HomeViewController()
-                    User.matched = 2
-                    homeVC.setQueueButtonImage()
-                    let vc = SearchQueueViewController()
-                    vc.queueState = 0
-                    self.navigationController?.popViewController(animated: true)
-                case 1:
-                    let homeVC = HomeViewController()
-                    User.matched = 2
-                    homeVC.setQueueButtonImage()
-                    let vc = SearchQueueViewController()
-                    vc.queueState = 0
-                    self.navigationController?.popToRootViewController(animated: true)
-                default:
-                    break
-                }
+                let homeVC = HomeViewController()
+                User.matched = 2
+                homeVC.setQueueButtonImage()
+                let vc = SearchQueueViewController()
+                vc.queueState = 0
+                self.navigationController?.popToRootViewController(animated: true)
             case 401:
                 AuthenticationManager.shared.updateIdToken()
                 APIService().stopQueueFinding { code in
                     print("stopQeueFinding:",code)
                     switch code {
                     case 200:
-                        switch sender.tag {
-                        case 0:
-                            let homeVC = HomeViewController()
-                            User.matched = 2
-                            homeVC.setQueueButtonImage()
-                            let vc = SearchQueueViewController()
-                            vc.queueState = 0
-                            self.navigationController?.popViewController(animated: true)
-                        case 1:
-                            let homeVC = HomeViewController()
-                            User.matched = 2
-                            homeVC.setQueueButtonImage()
-                            let vc = SearchQueueViewController()
-                            vc.queueState = 0
-                            self.navigationController?.popToRootViewController(animated: true)
-                        default:
-                            break
-                        }
+                        let homeVC = HomeViewController()
+                        User.matched = 2
+                        homeVC.setQueueButtonImage()
+                        let vc = SearchQueueViewController()
+                        vc.queueState = 0
+                        self.navigationController?.popToRootViewController(animated: true)
                     default:
                         print("stopQeueFinding",code)
                     }

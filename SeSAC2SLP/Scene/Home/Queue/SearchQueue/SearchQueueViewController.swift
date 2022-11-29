@@ -28,6 +28,8 @@ class SearchQueueViewController: BaseViewController {
     
     let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 28, height: 0))
     
+    var studylistForAPI = ""
+    
     override func loadView() {
         self.view = mainView
     }
@@ -168,13 +170,14 @@ class SearchQueueViewController: BaseViewController {
         var list = [""]
         if viewModel.userStudyList.value == [""] {
             list = ["anything"]
+            User.studylist = [""]
         } else {
             list = viewModel.userStudyList.value
             User.studylist = viewModel.userStudyList.value
         }
         networkMoniter()
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
-            
+            print(self.studylistForAPI)
             switch code {
             case 200:
                 User.matched = 0
@@ -191,7 +194,7 @@ class SearchQueueViewController: BaseViewController {
             case 401:
                 self.networkMoniter()
                 AuthenticationManager.shared.updateIdToken()
-                APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
+                APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
                     if code == 200 {
                         User.matched = 0
                         let vc = TabManViewController()
