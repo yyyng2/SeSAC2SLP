@@ -253,11 +253,10 @@ extension QueueResultTableViewCell: UICollectionViewDelegateFlowLayout {
     // 셀 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
-        let viewModel = SearchResultViewModel()
        
-        label.text = viewModel.fromQueueDB?.value[indexPath.section].studylist[indexPath.row]
+        label.text = studyList[indexPath.row]
        
         label.sizeToFit()
-        return CGSize(width: label.frame.width + 28, height: 30)
+        return CGSize(width: label.frame.width + 18, height: 26)
     }
 }

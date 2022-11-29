@@ -21,7 +21,7 @@ class QueueResultCollectionViewCell: UICollectionViewCell {
         
         let stack = UIStackView(arrangedSubviews: [titleLabel])
         stack.axis = .horizontal
-        stack.spacing = 6.75
+        stack.spacing = 0
         
         addSubview(stack)
         stack.snp.makeConstraints { make in
