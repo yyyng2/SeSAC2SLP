@@ -12,6 +12,8 @@ import SnapKit
 class QueueResultTableViewCell: UITableViewCell {
     static let identifier = String(describing: QueueResultTableViewCell.self)
     
+    lazy var studyList = [""]
+    
     let sesacTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constants.BaseColor.black
@@ -87,12 +89,13 @@ class QueueResultTableViewCell: UITableViewCell {
     }()
     
     let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+      
+        let layout = LeftAlignedCollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         return collectionView
+        
     }()
     
     let sesacReviewLabel: UILabel = {
@@ -227,18 +230,18 @@ class QueueResultTableViewCell: UITableViewCell {
 
 extension QueueResultTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let viewModel = SearchResultViewModel()
-        return viewModel.fromQueueDB?.value[section].studylist.count ?? 0
+      
+        return studyList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QueueResultCollectionViewCell.identifier, for: indexPath) as? QueueResultCollectionViewCell else { return UICollectionViewCell() }
-        let viewModel = SearchResultViewModel()
-        cell.titleLabel.textColor = Constants.brandColor.green
-        cell.layer.borderColor = Constants.brandColor.green?.cgColor
+      
+        cell.titleLabel.textColor = Constants.BaseColor.black
+        cell.layer.borderColor = Constants.grayScale.gray4?.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
-        cell.titleLabel.text = "\(viewModel.fromQueueDB?.value[indexPath.section].studylist[indexPath.row])"
+        cell.titleLabel.text = studyList[indexPath.row]
         return cell
     }
     
@@ -255,6 +258,6 @@ extension QueueResultTableViewCell: UICollectionViewDelegateFlowLayout {
         label.text = viewModel.fromQueueDB?.value[indexPath.section].studylist[indexPath.row]
        
         label.sizeToFit()
-        return CGSize(width: label.frame.width + 30, height: 32)
+        return CGSize(width: label.frame.width + 28, height: 30)
     }
 }

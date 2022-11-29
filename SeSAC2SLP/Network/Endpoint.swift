@@ -19,7 +19,7 @@ enum SeSACAPI {
     case updateFcmToken(FCMtoken: String)
     case mypage(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String)
     case myQueueState
-    case queue(lat: Double, long: Double, studylist: String)        //   'studylist[]': 'anything' }
+    case queue(lat: Double, long: Double, studylist: [String])        //   'studylist[]': 'anything' }
     case stopQueue
     case searchQueue(lat: Double, long: Double)
     case studyRequest(otheruid: String)
@@ -84,7 +84,7 @@ extension SeSACAPI {
             return [
                 "lat" : lat,
                 "long" : long,
-                "studylist" : studylist
+                "studylist" : try! JSONSerialization.data(withJSONObject: studylist)
       
             ]
         case .searchQueue(let lat, let long):

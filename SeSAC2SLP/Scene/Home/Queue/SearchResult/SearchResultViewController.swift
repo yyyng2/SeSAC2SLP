@@ -36,7 +36,7 @@ class SearchResultViewController: BaseViewController {
             for i in 0 ... self.fromQueueDB.count {
                 self.hiddenSections.insert(i)
             }
-            print("count & hidden",self.viewModel.fromQueueDB?.value.count, self.hiddenSections)
+         
             DispatchQueue.main.async {
                 if self.fromQueueDB.count == 0 {
                     self.mainView.tableView.isHidden = true
@@ -147,6 +147,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             cell.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
         
+        cell.studyList = fromQueueDB[indexPath.section].studylist
         
         return cell
     }

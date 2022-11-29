@@ -12,7 +12,7 @@ class QueueResultCollectionViewCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 12)
         return label
     }()
     

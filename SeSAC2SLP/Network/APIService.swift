@@ -169,7 +169,7 @@ class APIService {
     }
     
     func requestQueue(lat: Double, long: Double, studylist: [String], completionHandler: @escaping (Int) -> Void) {
-        let api = SeSACAPI.queue(lat: lat, long: long, studylist: "\(studylist)")
+        let api = SeSACAPI.queue(lat: lat, long: long, studylist: studylist)
         
         AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             guard let code = response.response?.statusCode else { return }
