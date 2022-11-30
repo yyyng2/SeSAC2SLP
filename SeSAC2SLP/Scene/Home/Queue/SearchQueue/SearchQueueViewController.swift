@@ -170,9 +170,9 @@ class SearchQueueViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         var list = [""]
-        if viewModel.userStudyList.value == [""] {
+        if viewModel.userStudyList.value == [] {
             list = ["anything"]
-            User.studylist = [""]
+            User.studylist = []
         } else {
             list = viewModel.userStudyList.value
             User.studylist = viewModel.userStudyList.value

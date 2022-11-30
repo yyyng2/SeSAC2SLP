@@ -187,7 +187,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             cell.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
         
-        cell.studyList = fromQueueDB[indexPath.section].studylist.filter(){$0 != "anything"}
+        cell.studyList = fromQueueDB[indexPath.section].studylist.filter { $0 != "anything" }
         
         return cell
     }

@@ -68,7 +68,7 @@ class UserDetailView: BaseView {
             make.width.equalTo(UIScreen.main.bounds.width)
             make.leading.equalTo(contentStackView.snp.leading)
             make.trailing.equalTo(contentStackView.snp.trailing)
-            make.height.equalTo(contentStackView.snp.width).multipliedBy(0.6)
+            make.height.equalTo(contentStackView.snp.width).multipliedBy(0.7)
         }
         
         backgroundView.snp.makeConstraints { make in

@@ -189,7 +189,7 @@ extension RequestResultViewController: UITableViewDelegate, UITableViewDataSourc
             cell.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
         
-        cell.studyList = fromQueueDBRequested[indexPath.section].studylist
+        cell.studyList = fromQueueDBRequested[indexPath.section].studylist.filter { $0 != "anything" }
         
         return cell
     }
