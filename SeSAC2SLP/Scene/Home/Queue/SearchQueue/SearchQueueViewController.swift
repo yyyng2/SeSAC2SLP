@@ -159,7 +159,8 @@ class SearchQueueViewController: BaseViewController {
                 viewModel.userStudyList.value.append(string)
                 viewModel.userStudyList.value.removeAll(where: { $0 == "" })
                 results.removeAll(where: { $0.name == string } )
-                mainView.collectionView.reloadData()                
+                mainView.collectionView.reloadData()
+                searchBar.text = ""
             } else {
                 mainView.makeToast("이미 존재하는 스터디입니다", duration: 1.5, position: .center)
             }

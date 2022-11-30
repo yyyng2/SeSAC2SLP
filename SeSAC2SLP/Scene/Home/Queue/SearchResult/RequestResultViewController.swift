@@ -212,7 +212,7 @@ extension RequestResultViewController: UITableViewDelegate, UITableViewDataSourc
     
     @objc private func studyRequest(sender: UIButton) {
         let vc = PopUpViewController()
-        vc.status = 0
+        vc.status = 1
         vc.otherUid = fromQueueDBRequested[sender.tag].uid
         
         vc.modalPresentationStyle = .overFullScreen

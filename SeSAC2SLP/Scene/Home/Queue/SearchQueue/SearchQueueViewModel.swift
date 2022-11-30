@@ -48,6 +48,7 @@ class SearchQueueViewModel {
 
         var results = recommend + dataDeduplication
         results.removeAll(where: { $0.name == "anything" })
+        results.removeAll(where: { $0.name == "Anything" })
         results.removeAll(where: { $0.name == "" })
         print("HomeViewAPI:", recommend, studyListFromDB, results)
         

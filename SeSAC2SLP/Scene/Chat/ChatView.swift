@@ -9,7 +9,7 @@ import UIKit
 
 class ChatView: BaseView {
     let tableView: UITableView = {
-        let view = UITableView(frame: .zero, style: .grouped)
+        let view = UITableView(frame: .zero, style: .plain)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sectionFooterHeight = 0
         return view

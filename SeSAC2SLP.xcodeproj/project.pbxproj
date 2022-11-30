@@ -88,7 +88,8 @@
 		18826584292C4CB600737F45 /* studyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18826583292C4CB600737F45 /* studyModel.swift */; };
 		18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */; };
 		18A853FC2936CBC8000D64EA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A853FB2936CBC8000D64EA /* ChatViewController.swift */; };
-		18A853FE2936CC0D000D64EA /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A853FD2936CC0D000D64EA /* ChatTableViewCell.swift */; };
+		18A853FE2936CC0D000D64EA /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */; };
+		18AB406F293820AD007BB0FA /* PersonChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */; };
 		18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BAE29209A7D007D90CD /* Endpoint.swift */; };
 		18DB8BB229209AC2007D90CD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18DB8BB129209AC2007D90CD /* Alamofire */; };
 		18DB8BB429209C64007D90CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DB8BB329209C64007D90CD /* GoogleService-Info.plist */; };
@@ -202,7 +203,8 @@
 		18826583292C4CB600737F45 /* studyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyModel.swift; sourceTree = "<group>"; };
 		18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		18A853FB2936CBC8000D64EA /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		18A853FD2936CC0D000D64EA /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
+		18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonChatTableViewCell.swift; sourceTree = "<group>"; };
 		18DB8BAE29209A7D007D90CD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		18DB8BB329209C64007D90CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18DB8BB52920A05E007D90CD /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -634,7 +636,8 @@
 			children = (
 				18E05EFA2932E97100043C41 /* ChatView.swift */,
 				18A853FB2936CBC8000D64EA /* ChatViewController.swift */,
-				18A853FD2936CC0D000D64EA /* ChatTableViewCell.swift */,
+				18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */,
+				18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				18E05EF42932DA9100043C41 /* ReviewView.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
 				1870FAED2918FB5F00BCC159 /* Color.swift in Sources */,
+				18AB406F293820AD007BB0FA /* PersonChatTableViewCell.swift in Sources */,
 				1861CAB42926B88F00C6AA70 /* SearchQueueView.swift in Sources */,
 				1870FB48291AFACF00BCC159 /* String+Extension.swift in Sources */,
 				18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */,
@@ -792,7 +796,7 @@
 				18DB8BE0292371F1007D90CD /* UserMenu.swift in Sources */,
 				18615AFF29300C160014CB0F /* RequestReaultView.swift in Sources */,
 				183CDFA52926CC83000CCE19 /* SearchQueueCollectionViewCell.swift in Sources */,
-				18A853FE2936CC0D000D64EA /* ChatTableViewCell.swift in Sources */,
+				18A853FE2936CC0D000D64EA /* MyChatTableViewCell.swift in Sources */,
 				1811EE59292C3BB600261376 /* SearchQueueCollectionViewHeaderCell.swift in Sources */,
 				1870FAFF2919265900BCC159 /* FirstPageViewController.swift in Sources */,
 				18DB8BC2292255CF007D90CD /* UserInfoView.swift in Sources */,
