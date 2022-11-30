@@ -55,19 +55,21 @@ class SearchResultViewController: BaseViewController {
                 vc.queueState = 0
                 self.navigationController?.popViewController(animated: true)
             case 401:
-                AuthenticationManager.shared.updateIdToken()
-                APIService().stopQueueFinding { code in
-                    print("stopQeueFinding:",code)
-                    switch code {
-                    case 200:
-                        let homeVC = HomeViewController()
-                        User.matched = 2
-                        homeVC.setQueueButtonImage()
-                        let vc = SearchQueueViewController()
-                        vc.queueState = 0
-                        self.navigationController?.popViewController(animated: true)
-                    default:
-                        print("stopQeueFinding",code)
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().stopQueueFinding { code in
+                        print("stopQeueFinding:",code)
+                        switch code {
+                        case 200:
+                            let homeVC = HomeViewController()
+                            User.matched = 2
+                            homeVC.setQueueButtonImage()
+                            let vc = SearchQueueViewController()
+                            vc.queueState = 0
+                            self.navigationController?.popViewController(animated: true)
+                        default:
+                            print("stopQeueFinding",code)
+                        }
                     }
                 }
             default:
@@ -185,7 +187,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             cell.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
         
-        cell.studyList = fromQueueDB[indexPath.section].studylist
+        cell.studyList = fromQueueDB[indexPath.section].studylist.filter(){$0 != "anything"}
         
         return cell
     }

@@ -55,19 +55,21 @@ class RequestResultViewController: BaseViewController {
                 vc.queueState = 0
                 self.navigationController?.popViewController(animated: true)
             case 401:
-                AuthenticationManager.shared.updateIdToken()
-                APIService().stopQueueFinding { code in
-                    print("stopQeueFinding:",code)
-                    switch code {
-                    case 200:
-                        let homeVC = HomeViewController()
-                        User.matched = 2
-                        homeVC.setQueueButtonImage()
-                        let vc = SearchQueueViewController()
-                        vc.queueState = 0
-                        self.navigationController?.popViewController(animated: true)
-                    default:
-                        print("stopQeueFinding",code)
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().stopQueueFinding { code in
+                        print("stopQeueFinding:",code)
+                        switch code {
+                        case 200:
+                            let homeVC = HomeViewController()
+                            User.matched = 2
+                            homeVC.setQueueButtonImage()
+                            let vc = SearchQueueViewController()
+                            vc.queueState = 0
+                            self.navigationController?.popViewController(animated: true)
+                        default:
+                            print("stopQeueFinding",code)
+                        }
                     }
                 }
             default:

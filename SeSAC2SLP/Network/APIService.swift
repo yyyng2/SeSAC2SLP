@@ -215,12 +215,15 @@ class APIService {
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
-            AuthenticationManager.shared.updateIdToken()
-//            updateFcmToken()
-            APIService().login { value in
-                self.reactLoginAPI(value: value)
-                
+            
+            DispatchQueue.main.sync {
+                AuthenticationManager.shared.updateIdToken()
+                APIService().login { value in
+                    self.reactLoginAPI(value: value)
+                    
+                }
             }
+           
 //            if User.verificationCode == 0 {
 //                let rootViewController = AuthenticationViewController()
 //                let navigationController = UINavigationController(rootViewController: rootViewController)
@@ -284,10 +287,13 @@ class APIService {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         case .firebaseTokenError:
-            AuthenticationManager.shared.updateIdToken()
-            APIService().signUp { value in
-                self.reactSignAPI(value: value)
+            DispatchQueue.main.sync {
+                AuthenticationManager.shared.updateIdToken()
+                APIService().signUp { value in
+                    self.reactSignAPI(value: value)
+                }
             }
+          
 //            print("firebaseTokenError",User.fcm)
 //            if User.fcm == "" {
 //                let rootViewController = AuthenticationViewController()

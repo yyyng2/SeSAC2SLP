@@ -125,14 +125,16 @@ class SearchQueueViewController: BaseViewController {
                 self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
                 print("results:",self.results)
             case 401:
-                AuthenticationManager.shared.updateIdToken()
-                APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
-                    switch code {
-                    case 200:
-                        guard let result = response else { return }
-                        self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
-                    default:
-                        print("requestSearchQueue:Error", code)
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
+                        switch code {
+                        case 200:
+                            guard let result = response else { return }
+                            self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
+                        default:
+                            print("requestSearchQueue:Error", code)
+                        }
                     }
                 }
                 
@@ -192,15 +194,17 @@ class SearchQueueViewController: BaseViewController {
             case 205:
                 self.mainView.makeToast("스터디 취소 패널티로, 3분동안 이용하실 수 없습니다", duration: 1.5, position: .center)
             case 401:
-                self.networkMoniter()
-                AuthenticationManager.shared.updateIdToken()
-                APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
-                    if code == 200 {
-                        User.matched = 0
-                        let vc = TabManViewController()
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        print("requestQueueError",code)
+                DispatchQueue.main.sync {
+                    self.networkMoniter()
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
+                        if code == 200 {
+                            User.matched = 0
+                            let vc = TabManViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        } else {
+                            print("requestQueueError",code)
+                        }
                     }
                 }
             default:

@@ -58,15 +58,18 @@ class PopUpViewController: BaseViewController {
             case 202:
                 self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
             case 401:
-                AuthenticationManager.shared.updateIdToken()
-                APIService().studyRequest(otherUid: self.otherUid) { code in
-                    switch code {
-                    case 200:
-                        self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
-                    default:
-                        print(code)
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().studyRequest(otherUid: self.otherUid) { code in
+                        switch code {
+                        case 200:
+                            self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
+                        default:
+                            print(code)
+                        }
                     }
                 }
+               
             default:
                 break
             }
@@ -87,20 +90,22 @@ class PopUpViewController: BaseViewController {
                 let navi = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navi
             case 401:
-                AuthenticationManager.shared.updateIdToken()
-                APIService().withDraw { code in
-                    switch code {
-                    case 200:
-                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-                            UserDefaults.standard.removeObject(forKey: key.description)
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken()
+                    APIService().withDraw { code in
+                        switch code {
+                        case 200:
+                            for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                                UserDefaults.standard.removeObject(forKey: key.description)
+                            }
+                            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                            let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                            let rootViewController = LaunchScreenViewController()
+                            let navi = UINavigationController(rootViewController: rootViewController)
+                            sceneDelegate?.window?.rootViewController = navi
+                        default:
+                            self.mainView.makeToast("Error")
                         }
-                        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-                        let rootViewController = LaunchScreenViewController()
-                        let navi = UINavigationController(rootViewController: rootViewController)
-                        sceneDelegate?.window?.rootViewController = navi
-                    default:
-                        self.mainView.makeToast("Error")
                     }
                 }
             default:
