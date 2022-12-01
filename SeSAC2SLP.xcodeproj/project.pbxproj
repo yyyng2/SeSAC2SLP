@@ -85,6 +85,10 @@
 		1870FB70291CECE800BCC159 /* BirthCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */; };
 		1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */; };
 		1870FB76291E084E00BCC159 /* CustomBirthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */; };
+		187278EF29393D5C0063EDBD /* CustomChatMessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278EE29393D5C0063EDBD /* CustomChatMessageLabel.swift */; };
+		187278F129393E4B0063EDBD /* CustomChatTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F029393E4B0063EDBD /* CustomChatTimeLabel.swift */; };
+		187278F329393ED50063EDBD /* CustomMyChatMessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F229393ED50063EDBD /* CustomMyChatMessageLabel.swift */; };
+		187278F5293940770063EDBD /* ChatTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */; };
 		18826584292C4CB600737F45 /* studyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18826583292C4CB600737F45 /* studyModel.swift */; };
 		18836D4C29392DBE00F8889B /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18836D4B29392DBE00F8889B /* ReusableProtocol.swift */; };
 		18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */; };
@@ -202,6 +206,10 @@
 		1870FB6F291CECE800BCC159 /* BirthCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthCheckViewModel.swift; sourceTree = "<group>"; };
 		1870FB73291E06DD00BCC159 /* CustomBirthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthTextField.swift; sourceTree = "<group>"; };
 		1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBirthLabel.swift; sourceTree = "<group>"; };
+		187278EE29393D5C0063EDBD /* CustomChatMessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChatMessageLabel.swift; sourceTree = "<group>"; };
+		187278F029393E4B0063EDBD /* CustomChatTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChatTimeLabel.swift; sourceTree = "<group>"; };
+		187278F229393ED50063EDBD /* CustomMyChatMessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMyChatMessageLabel.swift; sourceTree = "<group>"; };
+		187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		18826583292C4CB600737F45 /* studyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyModel.swift; sourceTree = "<group>"; };
 		18836D4B29392DBE00F8889B /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
@@ -525,6 +533,9 @@
 				1838075C291FBCEB001755D5 /* CustomSignDetailLabel.swift */,
 				1870FB75291E084E00BCC159 /* CustomBirthLabel.swift */,
 				18DB8BE529239539007D90CD /* CustomSesacTitleLabel.swift */,
+				187278EE29393D5C0063EDBD /* CustomChatMessageLabel.swift */,
+				187278F029393E4B0063EDBD /* CustomChatTimeLabel.swift */,
+				187278F229393ED50063EDBD /* CustomMyChatMessageLabel.swift */,
 				181CB4C52929158200B7F0E5 /* CustomUserDetailLabel.swift */,
 			);
 			path = UILabel;
@@ -644,6 +655,7 @@
 				18A853FB2936CBC8000D64EA /* ChatViewController.swift */,
 				18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */,
 				18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */,
+				187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -759,12 +771,14 @@
 				18DB8BC429225602007D90CD /* UserInfoViewController.swift in Sources */,
 				18DB8BF52923C975007D90CD /* HomeView.swift in Sources */,
 				1818C5192928D97E0010625E /* ExpandTopView.swift in Sources */,
+				187278EF29393D5C0063EDBD /* CustomChatMessageLabel.swift in Sources */,
 				18FFA66B2932981400D785CA /* QueueResultTableViewHeaderCell.swift in Sources */,
 				18DB8BD329227B8B007D90CD /* BaseSignViewController.swift in Sources */,
 				1835BB0B2930498E007D926C /* RequestResultViewController.swift in Sources */,
 				1870FB08291926A800BCC159 /* BaseViewController.swift in Sources */,
 				18DB8BBB2922176B007D90CD /* LaunchScreenView.swift in Sources */,
 				18DB8BD82922883C007D90CD /* UserDetailViewController.swift in Sources */,
+				187278F129393E4B0063EDBD /* CustomChatTimeLabel.swift in Sources */,
 				18615AF9293005DA0014CB0F /* SearchResultViewController.swift in Sources */,
 				18DB8BF72923C98F007D90CD /* HomeViewController.swift in Sources */,
 				181CB4C829291D0100B7F0E5 /* ExpandBackgroundView.swift in Sources */,
@@ -785,6 +799,7 @@
 				18E05EF62932DA9D00043C41 /* ReviewViewController.swift in Sources */,
 				1870FB5A291B69A800BCC159 /* NicknameViewController.swift in Sources */,
 				18E05EF82932DB3E00043C41 /* ReviewTableViewCell.swift in Sources */,
+				187278F5293940770063EDBD /* ChatTableViewHeaderCell.swift in Sources */,
 				18DB8BB82920A07A007D90CD /* APIService.swift in Sources */,
 				18E05EF42932DA9100043C41 /* ReviewView.swift in Sources */,
 				1870FAF12918FCB200BCC159 /* UserDefaultsHelper.swift in Sources */,
@@ -815,6 +830,7 @@
 				1818C5152928C82E0010625E /* ExpandView.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1838074E291F8431001755D5 /* Date+Extension.swift in Sources */,
+				187278F329393ED50063EDBD /* CustomMyChatMessageLabel.swift in Sources */,
 				18DB8BD129227B6F007D90CD /* BaseSignView.swift in Sources */,
 				18DB8BBD29221777007D90CD /* LaunchScreenViewController.swift in Sources */,
 				1870FB4F291B2ABD00BCC159 /* CheckCodeViewController.swift in Sources */,

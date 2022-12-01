@@ -27,7 +27,11 @@ class ChatViewController: BaseViewController {
     
     override func configure() {
         mainView.textView.delegate = self
-
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+        mainView.tableView.register(ChatTableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: ChatTableViewHeaderCell.identifier)
+        mainView.tableView.register(MyChatTableViewCell.self, forCellReuseIdentifier: MyChatTableViewCell.identifier)
+        mainView.tableView.register(PersonChatTableViewCell.self, forCellReuseIdentifier: PersonChatTableViewCell.identifier)
     }
     
     func setKeyboard() {
@@ -61,6 +65,31 @@ class ChatViewController: BaseViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ChatTableViewHeaderCell.identifier) as? ChatTableViewHeaderCell else { return UIView() }
+        header.dateLabel.text = "12월 1일 목요일"
+        return header
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else { return UITableViewCell() }
+        cell.chatLabel.text = " asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf "
+        cell.timeLabel.text = "11:11"
+        return cell
     }
 }
 

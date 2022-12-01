@@ -12,6 +12,7 @@ class ChatView: BaseView {
         let view = UITableView(frame: .zero, style: .plain)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sectionFooterHeight = 0
+        view.separatorStyle = .none
         return view
     }()
     
