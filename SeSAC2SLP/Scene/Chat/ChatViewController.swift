@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChatViewController: BaseViewController {
+class ChatViewController: UIViewController {
     let mainView = ChatView()
     
     override func loadView() {
@@ -17,6 +17,9 @@ class ChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
+        
+        setNavigationUI()
+        configure()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -25,7 +28,20 @@ class ChatViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    override func configure() {
+    func setNavigationUI() {
+        self.title = "닉네임"
+        
+        self.navigationController?.navigationBar.tintColor = Constants.BaseColor.black
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: .plain, target: self, action: #selector(backButtonTapped))
+        self.navigationItem.leftBarButtonItem = backBarButtonItem
+        
+        let moreButton = UIBarButtonItem(image: UIImage(named: "more"), style: .plain, target: self, action: #selector(moreButtonTapped))
+        self.navigationItem.rightBarButtonItem = moreButton
+    }
+    
+    func configure() {
         mainView.textView.delegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -40,6 +56,14 @@ class ChatViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDown), name: UIResponder.keyboardDidHideNotification, object: nil)
        
+    }
+    
+    @objc func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func moreButtonTapped() {
+        
     }
     
     @objc func keyBoardUp(notification: Notification){

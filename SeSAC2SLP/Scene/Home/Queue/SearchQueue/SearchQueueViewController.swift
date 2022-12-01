@@ -24,8 +24,6 @@ class SearchQueueViewController: BaseViewController {
     
     let viewModel = SearchQueueViewModel()
     
-    var queueState = 0
-    
     let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 28, height: 0))
     
     var studylistForAPI = ""
@@ -38,17 +36,7 @@ class SearchQueueViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isTranslucent = true
-        
-        switch queueState {
-        case 0:
-            break
-        case 1:
-            searchButtonTapped()
-        case 2:
-            navigationController?.popViewController(animated: true)
-        default:
-            break
-        }
+    
     }
     
     override func viewDidLoad() {

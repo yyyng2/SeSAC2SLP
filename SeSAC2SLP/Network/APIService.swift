@@ -215,13 +215,11 @@ class APIService {
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
-            
-            DispatchQueue.main.sync {
-                AuthenticationManager.shared.updateIdToken()
-                APIService().login { value in
-                    self.reactLoginAPI(value: value)
-                    
-                }
+            AuthenticationManager.shared.updateIdToken()
+     
+            APIService().login { value in
+                self.reactLoginAPI(value: value)
+                
             }
            
 //            if User.verificationCode == 0 {

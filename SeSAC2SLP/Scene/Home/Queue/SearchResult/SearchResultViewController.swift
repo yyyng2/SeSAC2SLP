@@ -49,11 +49,9 @@ class SearchResultViewController: BaseViewController {
             switch code {
             case 200:
                 let homeVC = HomeViewController()
-                User.matched = 2
+                User.matched = 3
                 homeVC.setQueueButtonImage()
-                let vc = SearchQueueViewController()
-                vc.queueState = 0
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             case 401:
                 DispatchQueue.main.sync {
                     AuthenticationManager.shared.updateIdToken()
@@ -62,11 +60,9 @@ class SearchResultViewController: BaseViewController {
                         switch code {
                         case 200:
                             let homeVC = HomeViewController()
-                            User.matched = 2
+                            User.matched = 3
                             homeVC.setQueueButtonImage()
-                            let vc = SearchQueueViewController()
-                            vc.queueState = 0
-                            self.navigationController?.popViewController(animated: true)
+                            self.navigationController?.popToRootViewController(animated: true)
                         default:
                             print("stopQeueFinding",code)
                         }

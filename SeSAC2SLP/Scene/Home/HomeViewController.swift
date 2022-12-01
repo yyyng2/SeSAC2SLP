@@ -20,6 +20,8 @@ class HomeViewController: BaseViewController {
     
     var gender = 2
     
+    var queueState = User.matched
+    
     override func loadView() {
         self.view = mainView
     }
@@ -32,6 +34,14 @@ class HomeViewController: BaseViewController {
         self.tabBarController?.tabBar.isTranslucent = false
         networkMoniter()
         setQueueState()
+        
+        if User.matched == 3 {
+            self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
+            User.matched = 2
+            let vc = SearchQueueViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+       
     }
     
     override func viewDidLoad() {
@@ -55,8 +65,10 @@ class HomeViewController: BaseViewController {
                 self.viewModel.addAnnotation(gender: 0, mapView: self.mainView.mapView)
             case 1:
                 self.viewModel.addAnnotation(gender: 1, mapView: self.mainView.mapView)
-            default:
+            case 2:
                 self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
+            default:
+                break
             }
         }
     }
@@ -76,7 +88,6 @@ class HomeViewController: BaseViewController {
     }
     
     func setQueueState() {
-        networkMoniter()
         APIService().requestQueueState { code in
             switch code {
             case 200:
@@ -89,23 +100,23 @@ class HomeViewController: BaseViewController {
                     self.setQueueButtonImage()
                 }
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().requestQueueState { code in
-                        switch code {
-                        case 200:
-                            DispatchQueue.main.async {
-                                self.setQueueButtonImage()
-                            }
-                        case 201:
-                            DispatchQueue.main.async {
-                                self.setQueueButtonImage()
-                            }
-                        default:
-                            print("requestQueueStateError1",code)
+             
+                AuthenticationManager.shared.updateIdToken()
+                APIService().requestQueueState { code in
+                    switch code {
+                    case 200:
+                        DispatchQueue.main.async {
+                            self.setQueueButtonImage()
                         }
+                    case 201:
+                        DispatchQueue.main.async {
+                            self.setQueueButtonImage()
+                        }
+                    default:
+                        print("requestQueueStateError1",code)
                     }
                 }
+                
             default:
                 print("requestQueueStateError1",code)
             }
@@ -187,26 +198,16 @@ class HomeViewController: BaseViewController {
         locationManager.startUpdatingLocation()
     }
     
-    @objc override func backButtonTapped() {
-//            navigationController?.popToRootViewController(animated: true)
-//        navigationController?.viewControllers
-        navigationController?.popToViewController((self.navigationController?.viewControllers[0])!,
-                                                   animated: true)
-       
-    }
-    
     @objc func statusButtonTapped() {
         switch User.matched {
         case 0:
-            let vc = SearchQueueViewController()
-            vc.queueState = 1
-            navigationController?.pushViewController(vc, animated: true)
+            let vc = TabManViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = SearchResultViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let vc = TabManViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = SearchQueueViewController()
-            vc.queueState = 0
             navigationController?.pushViewController(vc, animated: true)
         default:
             break

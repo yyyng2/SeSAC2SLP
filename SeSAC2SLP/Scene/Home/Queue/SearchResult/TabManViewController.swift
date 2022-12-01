@@ -88,8 +88,6 @@ class TabManViewController: TabmanViewController {
                 let homeVC = HomeViewController()
                 User.matched = 2
                 homeVC.setQueueButtonImage()
-                let vc = SearchQueueViewController()
-                vc.queueState = 0
                 self.navigationController?.popToRootViewController(animated: true)
             case 401:
                 DispatchQueue.main.sync {
@@ -101,8 +99,6 @@ class TabManViewController: TabmanViewController {
                             let homeVC = HomeViewController()
                             User.matched = 2
                             homeVC.setQueueButtonImage()
-                            let vc = SearchQueueViewController()
-                            vc.queueState = 0
                             self.navigationController?.popToRootViewController(animated: true)
                         default:
                             print("stopQeueFinding",code)
