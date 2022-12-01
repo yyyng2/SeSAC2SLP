@@ -86,10 +86,23 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else { return UITableViewCell() }
-        cell.chatLabel.text = " asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf "
-        cell.timeLabel.text = "11:11"
-        return cell
+  
+        
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else { return UITableViewCell() }
+            cell.chatLabel.text = """
+                                asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf
+                                """
+            cell.timeLabel.text = "11:11"
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PersonChatTableViewCell.identifier, for: indexPath) as? PersonChatTableViewCell else { return UITableViewCell() }
+            cell.chatLabel.text = """
+                            asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf
+                            """
+            cell.timeLabel.text = "11:11"
+            return cell
+        }
     }
 }
 

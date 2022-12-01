@@ -11,6 +11,8 @@ class MyChatTableViewCell: UITableViewCell {
     
     let chatView: UIView = {
         let view = UIView()
+        view.backgroundColor = Constants.brandColor.whiteGreen
+        view.layer.cornerRadius = 8
         return view
     }()
     let timeLabel: CustomChatTimeLabel = {
@@ -34,11 +36,10 @@ class MyChatTableViewCell: UITableViewCell {
     }
     
     func configure() {
-        contentView.addSubview(chatView)
-        
-        [timeLabel, chatLabel].forEach {
-            chatView.addSubview($0)
+        [chatView, timeLabel].forEach {
+            contentView.addSubview($0)
         }
+        chatView.addSubview(chatLabel)
     }
     
     func setConstraints() {

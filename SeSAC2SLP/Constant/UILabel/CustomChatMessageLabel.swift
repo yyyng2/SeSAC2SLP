@@ -21,9 +21,6 @@ class CustomChatMessageLabel: UILabel {
         font = UIFont(name: "NotoSansKR-Regular", size: 14)
         textColor = Constants.BaseColor.black
         numberOfLines = 0
-        layer.cornerRadius = 8
-        layer.borderWidth = 1
-        layer.borderColor = Constants.grayScale.gray4!.cgColor
         backgroundColor = .clear
         textAlignment = .left
     }
