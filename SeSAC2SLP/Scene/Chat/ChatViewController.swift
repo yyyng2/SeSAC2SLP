@@ -14,5 +14,36 @@ class ChatViewController: BaseViewController {
         self.view = mainView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainView.textView.delegate = self
+    }
     
+}
+
+extension ChatViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        
+        let contentHeight = textView.contentSize.height
+        
+        DispatchQueue.main.async {
+            if contentHeight <= 35 {
+                self.mainView.textView.snp.updateConstraints { make in
+                    make.height.equalTo(35)
+                }
+            }
+            else if contentHeight >= 70 {
+                self.mainView.textView.snp.updateConstraints { make in
+                    make.height.equalTo(70)
+                }
+            }
+            else {
+                self.mainView.textView.snp.updateConstraints { make in
+                    make.height.equalTo(contentHeight)
+                }
+            }
+        }
+        
+        
+    }
 }
