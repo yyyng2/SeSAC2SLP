@@ -31,8 +31,10 @@ class ChatViewController: BaseViewController {
     }
     
     func setKeyboard() {
+        mainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDown), name: UIResponder.keyboardDidHideNotification, object: nil)
+       
     }
     
     @objc func keyBoardUp(notification: Notification){
@@ -49,14 +51,17 @@ class ChatViewController: BaseViewController {
     }
     
     @objc func keyBoardDown(notification: NSNotification) {
-        mainView.messageView.snp.updateConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        mainView.messageView.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.mainView.layoutIfNeeded()
         }
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension ChatViewController: UITextViewDelegate {
