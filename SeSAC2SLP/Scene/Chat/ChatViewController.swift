@@ -24,6 +24,12 @@ class ChatViewController: BaseViewController {
 extension ChatViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
+        if textView.text.count > 1 {
+            mainView.sendButton.isEnabled = true
+        } else {
+            mainView.sendButton.isEnabled = false
+        }
+        
         let contentHeight = textView.contentSize.height
         
         DispatchQueue.main.async {

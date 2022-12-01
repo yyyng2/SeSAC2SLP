@@ -17,22 +17,23 @@ class ChatView: BaseView {
     
     let messageView: UIView = {
         let view = UIView()
+        view.backgroundColor = Constants.grayScale.gray1
+        view.layer.cornerRadius = 8
         return view
     }()
     
     let textView: UITextView = {
        let view = UITextView()
-        view.backgroundColor = Constants.grayScale.gray1
         view.font = UIFont(name: "NotoSansKR-Regular", size: 14)
-        view.layer.cornerRadius = 8
+        view.backgroundColor = .clear
         return view
     }()
     
     let sendButton: UIButton = {
        let button = UIButton()
-        button.setTitle(">", for: .normal)
-        button.tintColor = .systemMint
-        button.backgroundColor = .systemMint
+        button.isEnabled = false
+        button.setImage(UIImage(named: "unenabledSend"), for: .disabled)
+        button.setImage(UIImage(named: "enabledSend"), for: .normal)
         return button
     }()
     
