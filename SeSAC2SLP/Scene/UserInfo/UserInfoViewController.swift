@@ -60,7 +60,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoTableViewCell.id, for: indexPath) as? UserInfoTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoTableViewCell.identifier, for: indexPath) as? UserInfoTableViewCell else { return UITableViewCell() }
             
             guard let image = SesacCode(rawValue: User.sesac)?.sesacImageName else { return cell }
             
@@ -69,7 +69,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserMenuTableViewCell.id, for: indexPath) as? UserMenuTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserMenuTableViewCell.identifier, for: indexPath) as? UserMenuTableViewCell else { return UITableViewCell() }
             
             cell.menuView.image = UIImage(named: menuList.menu[indexPath.row].menuImage)
             cell.menuLabel.text = menuList.menu[indexPath.row].menuName

@@ -38,6 +38,8 @@ class ChatView: BaseView {
     }()
     
     override func configure() {
+        backgroundColor = Constants.BaseColor.white
+        
         [tableView, messageView].forEach {
             self.addSubview($0)
         }
@@ -49,7 +51,7 @@ class ChatView: BaseView {
     override func setConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.width.equalToSuperview()
-            make.bottom.equalTo(textView.snp.top)
+            make.bottom.equalTo(messageView.snp.top)
         }
         messageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)

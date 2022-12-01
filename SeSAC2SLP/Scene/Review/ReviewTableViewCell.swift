@@ -8,7 +8,6 @@
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
-    static let identifier = String(describing: ReviewTableViewCell.self)
     
     let textView: UILabel = {
         let label = UILabel()

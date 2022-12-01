@@ -8,7 +8,6 @@
 import UIKit
 
 class UserInfoTableViewCell: BaseTableViewCell {
-    static var id = String(describing: UserInfoTableViewCell.self)
     
     let circleView: UIImageView = {
       let view = UIImageView()

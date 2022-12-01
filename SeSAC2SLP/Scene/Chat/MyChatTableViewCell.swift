@@ -8,7 +8,6 @@
 import UIKit
 
 class MyChatTableViewCell: UITableViewCell {
-    static let identifier = String(describing: MyChatTableViewCell.self)
     
     
 }

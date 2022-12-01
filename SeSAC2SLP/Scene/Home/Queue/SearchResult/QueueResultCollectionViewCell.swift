@@ -8,7 +8,6 @@
 import UIKit
 
 class QueueResultCollectionViewCell: UICollectionViewCell {
-    static let identifier = String(describing: QueueResultCollectionViewCell.self)
     
     let titleLabel: UILabel = {
        let label = UILabel()

@@ -96,7 +96,6 @@ class UserDetailView: BaseView {
 
         contentStackView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)
-//            make.edges.equalToSuperview()
         }
 
 //        stackView.snp.makeConstraints { make in

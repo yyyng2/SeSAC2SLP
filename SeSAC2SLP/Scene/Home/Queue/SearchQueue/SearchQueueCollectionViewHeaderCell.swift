@@ -10,8 +10,6 @@ import UIKit
 import SnapKit
 
 class SearchQueueCollectionViewHeaderCell: UICollectionReusableView {
-    
-    static let identifier = String(describing: SearchQueueCollectionViewHeaderCell.self)
 
     let label = UILabel()
     

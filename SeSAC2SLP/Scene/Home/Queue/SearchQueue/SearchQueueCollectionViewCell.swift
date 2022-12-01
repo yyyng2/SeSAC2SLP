@@ -9,8 +9,6 @@ import UIKit
 
 class SearchQueueCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = String(describing: SearchQueueCollectionViewCell.self)
-    
     let titleLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont(name: "NotoSansKR-Regular", size: 14)

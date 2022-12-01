@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 class QueueResultTableViewCell: UITableViewCell {
-    static let identifier = String(describing: QueueResultTableViewCell.self)
     
     lazy var studyList = [""]
     

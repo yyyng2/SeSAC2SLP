@@ -8,5 +8,5 @@
 import UIKit
 
 class PersonChatTableViewCell: UITableViewCell {
-    static let identifier = String(describing: PersonChatTableViewCell.self)
+
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 class QueueResultTableViewHeaderCell: UITableViewHeaderFooterView {
-    static let identifier = String(describing: QueueResultTableViewHeaderCell.self)
     
     let backgroundImageView: UIImageView = {
        let view = UIImageView()

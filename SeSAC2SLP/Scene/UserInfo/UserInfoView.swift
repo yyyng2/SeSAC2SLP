@@ -10,8 +10,8 @@ import UIKit
 class UserInfoView: BaseView {
     let tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
-        view.register(UserInfoTableViewCell.self, forCellReuseIdentifier: UserInfoTableViewCell.id)
-        view.register(UserMenuTableViewCell.self, forCellReuseIdentifier: UserMenuTableViewCell.id)
+        view.register(UserInfoTableViewCell.self, forCellReuseIdentifier: UserInfoTableViewCell.identifier)
+        view.register(UserMenuTableViewCell.self, forCellReuseIdentifier: UserMenuTableViewCell.identifier)
         return view
     }()
     

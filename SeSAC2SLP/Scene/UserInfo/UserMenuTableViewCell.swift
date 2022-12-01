@@ -8,7 +8,6 @@
 import UIKit
 
 class UserMenuTableViewCell: BaseTableViewCell {
-    static var id = String(describing: UserMenuTableViewCell.self)
     
     let menuView: UIImageView = {
        let view = UIImageView()
