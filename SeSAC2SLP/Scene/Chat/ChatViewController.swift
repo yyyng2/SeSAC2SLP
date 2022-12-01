@@ -32,6 +32,7 @@ class ChatViewController: BaseViewController {
         mainView.tableView.register(ChatTableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: ChatTableViewHeaderCell.identifier)
         mainView.tableView.register(MyChatTableViewCell.self, forCellReuseIdentifier: MyChatTableViewCell.identifier)
         mainView.tableView.register(PersonChatTableViewCell.self, forCellReuseIdentifier: PersonChatTableViewCell.identifier)
+        mainView.tableView.register(FirstChatTableViewCell.self, forCellReuseIdentifier: FirstChatTableViewCell.identifier)
     }
     
     func setKeyboard() {
@@ -42,15 +43,20 @@ class ChatViewController: BaseViewController {
     }
     
     @objc func keyBoardUp(notification: Notification){
+    
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height - view.safeAreaInsets.bottom
-            mainView.messageView.snp.updateConstraints { make in
-                make.bottom.equalTo(view.safeAreaLayoutGuide).inset(keyboardHeight)
+
+            self.mainView.messageView.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
             }
+
             UIView.animate(withDuration: 1) {
                 self.mainView.layoutIfNeeded()
             }
         }
+        
+        mainView.tableView.scrollToRow(at: [2, 2], at: .bottom, animated: false)
         
     }
     
@@ -75,26 +81,31 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        switch section {
+        case 1:
+            return 0
+        default:
+            return 30
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else {
+            return 3
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
   
-        
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else { return UITableViewCell() }
-            cell.chatLabel.text = """
-                                asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf
-                                """
-            cell.timeLabel.text = "11:11"
-            return cell
+            guard let firstCell = tableView.dequeueReusableCell(withIdentifier: FirstChatTableViewCell.identifier, for: indexPath) as? FirstChatTableViewCell else { return UITableViewCell() }
+            firstCell.topLabel.text = "test님과 매칭되었습니다"
+            return firstCell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PersonChatTableViewCell.identifier, for: indexPath) as? PersonChatTableViewCell else { return UITableViewCell() }
             cell.chatLabel.text = """
@@ -103,6 +114,17 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.timeLabel.text = "11:11"
             return cell
         }
+        
+//        if indexPath.section == 0 {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyChatTableViewCell.identifier, for: indexPath) as? MyChatTableViewCell else { return UITableViewCell() }
+//            cell.chatLabel.text = """
+//                                asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadf
+//                                """
+//            cell.timeLabel.text = "11:11"
+//            return cell
+//        } else {
+          
+//        }
     }
 }
 

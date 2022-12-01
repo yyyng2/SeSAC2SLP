@@ -13,6 +13,8 @@ class ChatView: BaseView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sectionFooterHeight = 0
         view.separatorStyle = .none
+        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = UITableView.automaticDimension
         return view
     }()
     

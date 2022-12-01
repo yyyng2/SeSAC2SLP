@@ -89,6 +89,7 @@
 		187278F129393E4B0063EDBD /* CustomChatTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F029393E4B0063EDBD /* CustomChatTimeLabel.swift */; };
 		187278F329393ED50063EDBD /* CustomMyChatMessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F229393ED50063EDBD /* CustomMyChatMessageLabel.swift */; };
 		187278F5293940770063EDBD /* ChatTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */; };
+		187278F729394E410063EDBD /* FirstChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187278F629394E410063EDBD /* FirstChatTableViewCell.swift */; };
 		18826584292C4CB600737F45 /* studyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18826583292C4CB600737F45 /* studyModel.swift */; };
 		18836D4C29392DBE00F8889B /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18836D4B29392DBE00F8889B /* ReusableProtocol.swift */; };
 		18861AFC292A00B200A3C6E6 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */; };
@@ -210,6 +211,7 @@
 		187278F029393E4B0063EDBD /* CustomChatTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChatTimeLabel.swift; sourceTree = "<group>"; };
 		187278F229393ED50063EDBD /* CustomMyChatMessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMyChatMessageLabel.swift; sourceTree = "<group>"; };
 		187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewHeaderCell.swift; sourceTree = "<group>"; };
+		187278F629394E410063EDBD /* FirstChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChatTableViewCell.swift; sourceTree = "<group>"; };
 		18826583292C4CB600737F45 /* studyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyModel.swift; sourceTree = "<group>"; };
 		18836D4B29392DBE00F8889B /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		18861AFB292A00B200A3C6E6 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 			children = (
 				18E05EFA2932E97100043C41 /* ChatView.swift */,
 				18A853FB2936CBC8000D64EA /* ChatViewController.swift */,
+				187278F629394E410063EDBD /* FirstChatTableViewCell.swift */,
 				18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */,
 				18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */,
 				187278F4293940770063EDBD /* ChatTableViewHeaderCell.swift */,
@@ -854,6 +857,7 @@
 				18836D4C29392DBE00F8889B /* ReusableProtocol.swift in Sources */,
 				1861CAAF2926949E00C6AA70 /* CObservable.swift in Sources */,
 				18DB8BE8292395CF007D90CD /* SesacTitleColor.swift in Sources */,
+				187278F729394E410063EDBD /* FirstChatTableViewCell.swift in Sources */,
 				183CDFA72926DEDA000CCE19 /* SearchQueueViewModel.swift in Sources */,
 				1870FB74291E06DD00BCC159 /* CustomBirthTextField.swift in Sources */,
 				18DB8BB62920A05E007D90CD /* Network.swift in Sources */,
