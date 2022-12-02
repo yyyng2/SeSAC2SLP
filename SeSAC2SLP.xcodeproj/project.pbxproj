@@ -130,6 +130,7 @@
 		18E05EF62932DA9D00043C41 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF52932DA9D00043C41 /* ReviewViewController.swift */; };
 		18E05EF82932DB3E00043C41 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */; };
 		18E05EFB2932E97100043C41 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EFA2932E97100043C41 /* ChatView.swift */; };
+		18F8760A2939790200EE9919 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F876092939790200EE9919 /* MoreMenuView.swift */; };
 		18FFA66B2932981400D785CA /* QueueResultTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */; };
 		18FFA66D2932982400D785CA /* QueueResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -250,6 +251,7 @@
 		18E05EF52932DA9D00043C41 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		18E05EFA2932E97100043C41 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		18F876092939790200EE9919 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
 		18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -655,6 +657,7 @@
 			children = (
 				18E05EFA2932E97100043C41 /* ChatView.swift */,
 				18A853FB2936CBC8000D64EA /* ChatViewController.swift */,
+				18F876092939790200EE9919 /* MoreMenuView.swift */,
 				187278F629394E410063EDBD /* FirstChatTableViewCell.swift */,
 				18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */,
 				18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */,
@@ -831,6 +834,7 @@
 				1838075A291FBC27001755D5 /* GenderCheckViewModel.swift in Sources */,
 				18380752291FB746001755D5 /* EmailCheckViewController.swift in Sources */,
 				1818C5152928C82E0010625E /* ExpandView.swift in Sources */,
+				18F8760A2939790200EE9919 /* MoreMenuView.swift in Sources */,
 				1870FB06291926A100BCC159 /* BaseView.swift in Sources */,
 				1838074E291F8431001755D5 /* Date+Extension.swift in Sources */,
 				187278F329393ED50063EDBD /* CustomMyChatMessageLabel.swift in Sources */,

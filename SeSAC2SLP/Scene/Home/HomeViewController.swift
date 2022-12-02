@@ -35,6 +35,7 @@ class HomeViewController: BaseViewController {
         networkMoniter()
         setQueueState()
         
+        //스터디 다시 찾기 누른 경우
         if User.matched == 3 {
             self.viewModel.addAnnotation(gender: 2, mapView: self.mainView.mapView)
             User.matched = 2

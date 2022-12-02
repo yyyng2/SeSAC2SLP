@@ -40,15 +40,19 @@ class ChatView: BaseView {
         return button
     }()
     
+    let moreMenuView = MoreMenuView()
+    
     override func configure() {
         backgroundColor = Constants.BaseColor.white
         
-        [tableView, messageView].forEach {
+        [tableView, messageView, moreMenuView].forEach {
             self.addSubview($0)
         }
         [textView, sendButton].forEach {
             messageView.addSubview($0)
         }
+        
+        moreMenuView.isHidden = true
     }
     
     override func setConstraints() {
@@ -70,6 +74,11 @@ class ChatView: BaseView {
             make.trailing.equalToSuperview().inset(12)
             make.centerY.equalToSuperview()
             make.height.width.equalTo(24)
+        }
+        moreMenuView.snp.makeConstraints { make in
+            make.top.width.centerX.equalTo(safeAreaLayoutGuide)
+            make.centerX.equalTo(tableView)
+            make.height.equalTo(UIScreen.main.bounds.maxY)
         }
     }
 }

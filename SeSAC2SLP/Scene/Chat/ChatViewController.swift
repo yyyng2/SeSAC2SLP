@@ -53,6 +53,7 @@ class ChatViewController: UIViewController {
     
     func setKeyboard() {
         mainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        mainView.moreMenuView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissMoreMenu)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDown), name: UIResponder.keyboardDidHideNotification, object: nil)
        
@@ -63,7 +64,19 @@ class ChatViewController: UIViewController {
     }
     
     @objc func moreButtonTapped() {
-        
+        switch mainView.moreMenuView.isHidden {
+        case true:
+            mainView.moreMenuView.isHidden = false
+            mainView.moreMenuView.menuView.snp.updateConstraints { make in
+                make.height.equalTo(90)
+            }
+            UIView.animate(withDuration: 1) {
+                self.mainView.layoutIfNeeded()
+            }
+        case false:
+            dismissMoreMenu()
+        }
+       
     }
     
     @objc func keyBoardUp(notification: Notification){
@@ -95,6 +108,16 @@ class ChatViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc func dismissMoreMenu() {
+        mainView.moreMenuView.isHidden = true
+        mainView.moreMenuView.menuView.snp.updateConstraints { make in
+            make.height.equalTo(0)
+        }
+        UIView.animate(withDuration: 1) {
+            self.mainView.layoutIfNeeded()
+        }
     }
 }
 

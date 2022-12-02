@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.overrideUserInterfaceStyle = .light
         
-        let viewController = LaunchScreenViewController()
-//        let viewController = ChatViewController()
+//        let viewController = LaunchScreenViewController()
+        let viewController = ChatViewController()
         let navi = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navi   
       
