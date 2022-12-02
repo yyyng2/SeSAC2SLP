@@ -21,6 +21,7 @@ class CustomSesacTitleLabel: UILabel {
         font = UIFont(name: "NotoSansKR-Regular", size: 14)
         layer.cornerRadius = 10
         layer.borderWidth = 1
+        clipsToBounds = true
         textAlignment = .center
     }
 }

@@ -159,7 +159,8 @@ class SearchQueueViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         var list = [""]
-        if viewModel.userStudyList.value == [] {
+        print(viewModel.userStudyList.value)
+        if viewModel.userStudyList.value.count == 0 {
             list = ["anything"]
             User.studylist = []
         } else {
