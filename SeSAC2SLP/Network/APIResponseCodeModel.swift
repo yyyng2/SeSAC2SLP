@@ -64,4 +64,19 @@ struct FromQueueDB: Codable {
     let type: Int
     let sesac: Int
     let background: Int
+    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.uid = try container.decode(String.self, forKey: .uid) ?? ""
+//        self.nick = try container.decode(String.self, forKey: .nick) ?? ""
+//        self.lat = try container.decode(Double.self, forKey: .lat) ?? 0
+//        self.long = try container.decode(Double.self, forKey: .long)
+//        self.reputation = try container.decode([Int].self, forKey: .reputation)
+//        self.studylist = try container.decode([String].self, forKey: .studylist)
+//        self.reviews = try container.decode([String].self, forKey: .reviews)
+//        self.gender = try container.decode(Int.self, forKey: .gender)
+//        self.type = try container.decode(Int.self, forKey: .type)
+//        self.sesac = try container.decode(Int.self, forKey: .sesac)
+//        self.background = try container.decode(Int.self, forKey: .background)
+//    }
 }

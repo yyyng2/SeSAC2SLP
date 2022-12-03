@@ -30,6 +30,9 @@ class SearchQueueCollectionViewCell: UICollectionViewCell {
             make.top.bottom.leading.trailing.equalToSuperview()
         }
         
+        layer.borderWidth = 1
+        layer.cornerRadius = 8
+        
     }
     
     required init?(coder: NSCoder) {

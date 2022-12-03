@@ -101,22 +101,28 @@ class HomeViewController: BaseViewController {
                     self.setQueueButtonImage()
                 }
             case 401:
-             
-                AuthenticationManager.shared.updateIdToken()
-                APIService().requestQueueState { code in
-                    switch code {
-                    case 200:
-                        DispatchQueue.main.async {
-                            self.setQueueButtonImage()
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().requestQueueState { code in
+                            switch code {
+                            case 200:
+                                DispatchQueue.main.async {
+                                    self.setQueueButtonImage()
+                                }
+                            case 201:
+                                DispatchQueue.main.async {
+                                    self.setQueueButtonImage()
+                                }
+                            default:
+                                print("requestQueueStateError1",code)
+                            }
                         }
-                    case 201:
-                        DispatchQueue.main.async {
-                            self.setQueueButtonImage()
-                        }
-                    default:
-                        print("requestQueueStateError1",code)
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
                 }
+               
                 
             default:
                 print("requestQueueStateError1",code)
@@ -145,16 +151,20 @@ class HomeViewController: BaseViewController {
                 guard let results = result else { return }
                 self.viewModel.queueResult = results.fromQueueDB
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
-                        switch code {
-                        case 200:
-                            guard let results = result else { return }
-                            self.viewModel.queueResult = results.fromQueueDB
-                        default:
-                            print("requestSearchQueueError2:",code)
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().requestSearchQueue(lat: 37.517829, long: 126.886270) { result, code in
+                            switch code {
+                            case 200:
+                                guard let results = result else { return }
+                                self.viewModel.queueResult = results.fromQueueDB
+                            default:
+                                print("requestSearchQueueError2:",code)
+                            }
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
                 }
             default:
@@ -348,16 +358,20 @@ extension HomeViewController: CLLocationManagerDelegate {
                 guard let results = result else { return }
                 self.viewModel.queueResult = results.fromQueueDB
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().requestSearchQueue(lat: lat, long: long) { result, code in
-                        switch code {
-                        case 200:
-                            guard let results = result else { return }
-                            self.viewModel.queueResult = results.fromQueueDB        
-                        default:
-                            print("searchQueueError1:",code)
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().requestSearchQueue(lat: lat, long: long) { result, code in
+                            switch code {
+                            case 200:
+                                guard let results = result else { return }
+                                self.viewModel.queueResult = results.fromQueueDB
+                            default:
+                                print("searchQueueError1:",code)
+                            }
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
                 }
             default:

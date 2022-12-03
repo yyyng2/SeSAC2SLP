@@ -22,7 +22,7 @@ class UserInfoViewController: BaseViewController {
         self.tabBarController?.tabBar.isTranslucent = false
         networkMoniter()
         APIService().login { code in
-//            APIService().reactLoginAPI(value: code)
+            APIService().reactLoginAPI(value: code)
         }
     }
     
@@ -33,7 +33,7 @@ class UserInfoViewController: BaseViewController {
         self.mainView.tableView.dataSource = self
         
         APIService().login { code in
-//            APIService().reactLoginAPI(value: code)
+            APIService().reactLoginAPI(value: code)
         }
     }
     

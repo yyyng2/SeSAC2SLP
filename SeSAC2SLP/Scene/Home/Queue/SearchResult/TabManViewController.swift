@@ -91,19 +91,26 @@ class TabManViewController: TabmanViewController {
                 self.navigationController?.popToRootViewController(animated: true)
             case 401:
                 DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().stopQueueFinding { code in
-                        print("stopQeueFinding:",code)
-                        switch code {
-                        case 200:
-                            let homeVC = HomeViewController()
-                            User.matched = 2
-                            homeVC.setQueueButtonImage()
-                            self.navigationController?.popToRootViewController(animated: true)
-                        default:
-                            print("stopQeueFinding",code)
+                    AuthenticationManager.shared.updateIdToken { result in
+                        switch result {
+                        case true:
+                            APIService().stopQueueFinding { code in
+                                print("stopQeueFinding:",code)
+                                switch code {
+                                case 200:
+                                    let homeVC = HomeViewController()
+                                    User.matched = 2
+                                    homeVC.setQueueButtonImage()
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                default:
+                                    print("stopQeueFinding",code)
+                                }
+                            }
+                        case false:
+                            self.view.makeToast("Error")
                         }
                     }
+                 
                 }
             default:
                 self.view.makeToast("중단 에러")

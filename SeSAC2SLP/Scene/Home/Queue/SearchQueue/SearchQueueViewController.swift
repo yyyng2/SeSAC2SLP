@@ -114,16 +114,23 @@ class SearchQueueViewController: BaseViewController {
                 print("results:",self.results)
             case 401:
                 DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
-                        switch code {
-                        case 200:
-                            guard let result = response else { return }
-                            self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
-                        default:
-                            print("requestSearchQueue:Error", code)
+                    AuthenticationManager.shared.updateIdToken { result in
+                        switch result {
+                        case true:
+                            APIService().requestSearchQueue(lat: User.currentLat, long: User.currentLong) { response, code in
+                                switch code {
+                                case 200:
+                                    guard let result = response else { return }
+                                    self.results = self.viewModel.setRecommend(result: result, collectionView: self.mainView.collectionView)
+                                default:
+                                    print("requestSearchQueue:Error", code)
+                                }
+                            }
+                        case false:
+                            self.mainView.makeToast("Error")
                         }
                     }
+                   
                 }
                 
             default:
@@ -186,16 +193,23 @@ class SearchQueueViewController: BaseViewController {
             case 401:
                 DispatchQueue.main.sync {
                     self.networkMoniter()
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
-                        if code == 200 {
-                            User.matched = 0
-                            let vc = TabManViewController()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        } else {
-                            print("requestQueueError",code)
+                    AuthenticationManager.shared.updateIdToken { result in
+                        switch result {
+                        case true:
+                            APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
+                                if code == 200 {
+                                    User.matched = 0
+                                    let vc = TabManViewController()
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                } else {
+                                    print("requestQueueError",code)
+                                }
+                            }
+                        case false:
+                            self.mainView.makeToast("Error")
                         }
                     }
+                    
                 }
             default:
                 break
@@ -277,14 +291,10 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
             case .recommend:
                 cell.titleLabel.textColor = Constants.systemColor.error
                 cell.layer.borderColor = Constants.systemColor.error?.cgColor
-                cell.layer.borderWidth = 1
-                cell.layer.cornerRadius = 8
                 cell.titleLabel.text = item.name
             case .fromStudyListDB:
                 cell.titleLabel.textColor = Constants.BaseColor.black
                 cell.layer.borderColor = Constants.grayScale.gray4?.cgColor
-                cell.layer.borderWidth = 1
-                cell.layer.cornerRadius = 8
                 cell.titleLabel.text = item.name
             }
         case 1:
@@ -293,8 +303,6 @@ extension SearchQueueViewController: UICollectionViewDelegate, UICollectionViewD
             } else {
                 cell.titleLabel.textColor = Constants.brandColor.green
                 cell.layer.borderColor = Constants.brandColor.green?.cgColor
-                cell.layer.borderWidth = 1
-                cell.layer.cornerRadius = 8
                 cell.titleLabel.text = "\(viewModel.userStudyList.value[indexPath.row]) X"
             }
         default:

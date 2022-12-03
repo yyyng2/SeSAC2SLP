@@ -187,17 +187,21 @@ class UserDetailViewController: BaseViewController {
                 let vc = HomeViewController()
                 self.navigationController?.popViewController(animated: true)
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken()
-                    APIService().mypageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
-                        print(code)
-                        switch code {
-                        case 200:
-                            let vc = HomeViewController()
-                            self.navigationController?.popViewController(animated: true)
-                        default:
-                            self.mainView.makeToast("정보 저장에 실패했습니다")
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().mypageUpdate(searchable: User.searchable, ageMin: min, ageMax: max, gender: User.gender, study: User.study) { code in
+                            print(code)
+                            switch code {
+                            case 200:
+                                let vc = HomeViewController()
+                                self.navigationController?.popViewController(animated: true)
+                            default:
+                                self.mainView.makeToast("정보 저장에 실패했습니다")
+                            }
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
                 }
             default:

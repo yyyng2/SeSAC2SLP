@@ -15,6 +15,8 @@ class APIService {
         
         let api = SeSACAPI.signUp(phoneNumber: User.phoneNumber, FCMtoken: User.fcm, nick: User.nickname, birth: User.birth, email: User.email, gender: User.gender)
         
+        print(api.parameters)
+        
         AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseString { response in
             print(response, response.response?.statusCode)
             guard let statusCode = response.response?.statusCode else { return }
@@ -25,7 +27,7 @@ class APIService {
     func login(completionHandler: @escaping (Int) -> Void) {
 
         let api = SeSACAPI.login
-        
+        print(api.parameters)
         AF.request(api.path, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: Login.self) { response in
             guard let statusCode = response.response?.statusCode else { return }
             switch response.result {
@@ -215,12 +217,19 @@ class APIService {
             sceneDelegate?.window?.rootViewController = rootViewController
         case .firebaseTokenError:
             print(value)
-            AuthenticationManager.shared.updateIdToken()
-     
-            APIService().login { value in
-                self.reactLoginAPI(value: value)
-                
+            AuthenticationManager.shared.updateIdToken { result in
+                switch result {
+                case true:
+                    APIService().login { value in
+                        self.reactLoginAPI(value: value)
+                        
+                    }
+                case false:
+                    print("error")
+                }
             }
+     
+          
            
 //            if User.verificationCode == 0 {
 //                let rootViewController = AuthenticationViewController()
@@ -250,7 +259,7 @@ class APIService {
             print(value)
             if User.phoneNumber.count > 3 {
                 print("error: clientError case 1")
-                let rootViewController = AuthenticationViewController()
+                let rootViewController = NicknameCheckViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 sceneDelegate?.window?.rootViewController = navigationController
             } else {
@@ -270,26 +279,42 @@ class APIService {
         
         switch SignCode(rawValue: value) {
         case .success:
+            print("SuccessSign")
 //            AuthenticationManager.shared.updateIdToken()
 //            updateFcmToken()
             let rootViewController = TabBarController()
             sceneDelegate?.window?.rootViewController = rootViewController
         case .already:
-            AuthenticationManager.shared.updateIdToken()
-            updateFcmToken()
-            let rootViewController = TabBarController()
-            sceneDelegate?.window?.rootViewController = rootViewController
+            print("alreadySign")
+            AuthenticationManager.shared.updateIdToken { result in
+                switch result {
+                case true:
+                    self.updateFcmToken()
+                    let rootViewController = TabBarController()
+                    sceneDelegate?.window?.rootViewController = rootViewController
+                case false:
+                    print("error")
+                }
+            }
+          
         case .badNickname:
+            print("badNickSign")
             let rootViewController = NicknameCheckViewController()
             rootViewController.nicknameStatus = true
             let navigationController = UINavigationController(rootViewController: rootViewController)
             sceneDelegate?.window?.rootViewController = navigationController
         case .firebaseTokenError:
-            DispatchQueue.main.sync {
-                AuthenticationManager.shared.updateIdToken()
-                APIService().signUp { value in
-                    self.reactSignAPI(value: value)
-                }
+            print("firebaseTokenErrorSign")
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().signUp { value in
+                            self.reactSignAPI(value: value)
+                        }
+                    case false:
+                        print("error")
+                    }
+                
             }
           
 //            print("firebaseTokenError",User.fcm)
@@ -317,6 +342,7 @@ class APIService {
         case .serverError:
             print("serverError")
         case .clientError:
+            print("clientErrorSign")
             if User.phoneNumber.count > 3 {
                 let rootViewController = AuthenticationViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)

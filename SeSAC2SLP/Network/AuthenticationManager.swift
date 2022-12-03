@@ -51,17 +51,19 @@ class AuthenticationManager {
         }
     }
     
-    func updateIdToken() {
+    func updateIdToken(completionHandler: @escaping (Bool) -> Void) {
         Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if error != nil {
                 print("error: updateIdTotken")
 //                let rootViewController = AuthenticationViewController()
 //                let navigationController = UINavigationController(rootViewController: rootViewController)
+                completionHandler(false)
             }
             guard let id = idToken else { return }
             print("success: updateIdTotken")
             print(id)
             User.IDToken = id
+            completionHandler(true)
         }
     }
     
