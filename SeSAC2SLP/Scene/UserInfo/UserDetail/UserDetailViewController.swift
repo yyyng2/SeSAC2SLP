@@ -152,9 +152,7 @@ class UserDetailViewController: BaseViewController {
     @objc func withDrawButtonTapped() {
         let vc = PopUpViewController()
         vc.status = 2
-        vc.modalPresentationStyle = .overFullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
+        transition(vc, transitionStyle: .popUp)
     }
     
     

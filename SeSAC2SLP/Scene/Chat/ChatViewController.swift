@@ -10,6 +10,8 @@ import UIKit
 class ChatViewController: UIViewController {
     let mainView = ChatView()
     
+    var otherUid = ""
+    
     override func loadView() {
         self.view = mainView
     }

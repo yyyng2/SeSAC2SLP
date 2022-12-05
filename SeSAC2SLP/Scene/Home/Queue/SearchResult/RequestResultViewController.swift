@@ -132,7 +132,7 @@ extension RequestResultViewController: UITableViewDelegate, UITableViewDataSourc
         header.reactButton.tag = section
         header.reactButton.backgroundColor = Constants.systemColor.success
         header.reactButton.setTitle("수락하기", for: .normal)
-        header.reactButton.addTarget(self, action: #selector(studyRequest(sender:)), for: .touchUpInside)
+        header.reactButton.addTarget(self, action: #selector(studyAccept(sender:)), for: .touchUpInside)
  
         return header
     }
@@ -210,21 +210,19 @@ extension RequestResultViewController: UITableViewDelegate, UITableViewDataSourc
         label.clipsToBounds = true
     }
     
-    @objc private func studyRequest(sender: UIButton) {
+    @objc private func studyAccept(sender: UIButton) {
         let vc = PopUpViewController()
         vc.status = 1
         vc.otherUid = fromQueueDBRequested[sender.tag].uid
-        
-        vc.modalPresentationStyle = .overFullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
+
+        transition(vc, transitionStyle: .popUp)
         
     }
     
     @objc private func transitionToRevies(sender: UIButton) {
         let vc = ReviewViewController()
         vc.reviews = fromQueueDBRequested[sender.tag].reviews
-        navigationController?.pushViewController(vc, animated: true)
+        transition(vc, transitionStyle: .push)
     }
     
     @objc private func hideSection(sender: UIButton) {

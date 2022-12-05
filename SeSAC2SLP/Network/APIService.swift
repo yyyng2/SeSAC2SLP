@@ -122,14 +122,16 @@ class APIService {
                 
                 guard let data = response.value else { return }
                 
-                User.dodged = data.dodged
-           
-                User.reviewed = data.reviewed
-                User.matchedNick = data.matchedNick
-                User.matchedUid = data.matchedUid
+      
     
-                if statusCode == 200 {
+                if data.matched == 1 {
                     User.matched = data.matched
+                    
+                    User.dodged = data.dodged
+               
+                    User.reviewed = data.reviewed
+                    User.matchedNick = data.matchedNick
+                    User.matchedUid = data.matchedUid
                 }
                 completionHandler(statusCode)
                 print("QueueStateSuccess:",statusCode)
@@ -194,14 +196,46 @@ class APIService {
     func studyRequest(otherUid: String, completionHandler: @escaping (Int) -> Void) {
         let api = SeSACAPI.studyRequest(otheruid: otherUid)
         
-        AF.request(api.path, method: .delete, parameters: api.parameters, headers: api.headers).response { response in
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).response { response in
             guard let code = response.response?.statusCode else { return }
-            print("stopQueueFinding:",code, api.path, api.headers,api.parameters)
+            print("studyRequest:",code, api.path, api.headers,api.parameters)
+            completionHandler(code)
+
+        }
+    }
+    
+    func studyAccept(otherUid: String, completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.studyAccept(otheruid: otherUid)
+        
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).response { response in
+            guard let code = response.response?.statusCode else { return }
+            print("studyAccept:",code, api.path, api.headers,api.parameters)
             completionHandler(code)
 
         }
     }
 
+    func dodge(otherUid: String, completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.dodge(otheruid: otherUid)
+        
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).response { response in
+            guard let code = response.response?.statusCode else { return }
+            print("dodge:",code, api.path, api.headers,api.parameters)
+            completionHandler(code)
+
+        }
+    }
+    
+    func rate(otherUid: String, reputation: [Int], comment: String, completionHandler: @escaping (Int) -> Void) {
+        let api = SeSACAPI.rate(otheruid: otherUid, reputation: reputation, comment: comment)
+        
+        AF.request(api.path, method: .post, parameters: api.parameters, encoding: URLEncoding(arrayEncoding: .noBrackets), headers: api.headers).response { response in
+            guard let code = response.response?.statusCode else { return }
+            print("rate:",code, api.path, api.headers,api.parameters)
+            completionHandler(code)
+
+        }
+    }
     
     func reactLoginAPI(value: Int) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene

@@ -180,8 +180,7 @@ class SearchQueueViewController: BaseViewController {
             switch code {
             case 200:
                 User.matched = 0
-                let vc = TabManViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.transition(TabManViewController(), transitionStyle: .push)
             case 201:
                 self.mainView.makeToast("신고가 누적되어 이용하실 수 없습니다", duration: 1.5, position: .center)
             case 203:
@@ -199,8 +198,7 @@ class SearchQueueViewController: BaseViewController {
                             APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
                                 if code == 200 {
                                     User.matched = 0
-                                    let vc = TabManViewController()
-                                    self.navigationController?.pushViewController(vc, animated: true)
+                                    self.transition(TabManViewController(), transitionStyle: .push)
                                 } else {
                                     print("requestQueueError",code)
                                 }

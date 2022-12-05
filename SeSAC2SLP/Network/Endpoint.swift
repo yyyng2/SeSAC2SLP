@@ -23,35 +23,44 @@ enum SeSACAPI {
     case stopQueue
     case searchQueue(lat: Double, long: Double)
     case studyRequest(otheruid: String)
+    case studyAccept(otheruid: String)
+    case dodge(otheruid: String)
+    case rate(otheruid: String, reputation: [Int], comment: String)
 }
 
 extension SeSACAPI {
     var baseURL: String {
-        return "http://api.sesac.co.kr:1210/v1"
+        return "http://api.sesac.co.kr:1210"
     }
                    
     var path: URL {
         switch self {
         case .signUp:
-            return URL(string: baseURL+"/user")!
+            return URL(string: baseURL+"/v1/user")!
         case .login:
-            return URL(string: baseURL+"/user")!
+            return URL(string: baseURL+"/v1/user")!
         case .withDraw:
-            return URL(string: baseURL+"/user/withdraw")!
+            return URL(string: baseURL+"/v1/user/withdraw")!
         case .updateFcmToken:
-            return URL(string: baseURL+"/user/update_fcm_token")!
+            return URL(string: baseURL+"/v1/user/update_fcm_token")!
         case .mypage:
-            return URL(string: baseURL+"/user/mypage")!
+            return URL(string: baseURL+"/v1/user/mypage")!
         case .myQueueState:
-            return URL(string: baseURL+"/queue/myQueueState")!
+            return URL(string: baseURL+"/v1/queue/myQueueState")!
         case .queue:
-            return URL(string: baseURL+"/queue")!
+            return URL(string: baseURL+"/v1/queue")!
         case .stopQueue:
-            return URL(string: baseURL+"/queue")!
+            return URL(string: baseURL+"/v1/queue")!
         case .searchQueue:
-            return URL(string: baseURL+"/queue/search")!
+            return URL(string: baseURL+"/v1/queue/search")!
         case .studyRequest:
-            return URL(string: baseURL+"/queue/studyrequest")!
+            return URL(string: baseURL+"/v1/queue/studyrequest")!
+        case .studyAccept:
+            return URL(string: baseURL+"/v1/queue/studyrequest")!
+        case .dodge:
+            return URL(string: baseURL+"/v1/queue/dodge")!
+        case .rate:
+            return URL(string: baseURL+"/v1/queue/rate/\(User.matchedUid)")!
         }
     }
     
@@ -101,6 +110,16 @@ extension SeSACAPI {
             ]
         case .studyRequest(let otheruid):
             return ["otheruid" : otheruid]
+        case .studyAccept(let otheruid):
+            return ["otheruid" : otheruid]
+        case .dodge(let otheruid):
+            return ["otheruid" : otheruid]
+        case .rate(let otheruid, let reputation, let comment):
+            return [
+                "otheruid" : otheruid,
+                "reputation" : reputation,
+                "comment" : comment
+            ]
         default:
             return ["":""]
         }

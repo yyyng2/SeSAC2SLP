@@ -213,16 +213,14 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
         vc.status = 0
         vc.otherUid = fromQueueDB[sender.tag].uid
         
-        vc.modalPresentationStyle = .overFullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
+        transition(vc, transitionStyle: .popUp)
         
     }
     
     @objc private func transitionToRevies(sender: UIButton) {
         let vc = ReviewViewController()
         vc.reviews = fromQueueDB[sender.tag].reviews
-        navigationController?.pushViewController(vc, animated: true)
+        transition(vc, transitionStyle: .push)
     }
     
     @objc private func hideSection(sender: UIButton) {

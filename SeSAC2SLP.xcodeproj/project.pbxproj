@@ -98,6 +98,7 @@
 		18A853FE2936CC0D000D64EA /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */; };
 		18AB406F293820AD007BB0FA /* PersonChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */; };
 		18AB407129382551007BB0FA /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AB407029382551007BB0FA /* UITextView+Extension.swift */; };
+		18D36DC4293D824800B607C9 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D36DC3293D824800B607C9 /* SocketIOManager.swift */; };
 		18DB8BAF29209A7D007D90CD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8BAE29209A7D007D90CD /* Endpoint.swift */; };
 		18DB8BB229209AC2007D90CD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18DB8BB129209AC2007D90CD /* Alamofire */; };
 		18DB8BB429209C64007D90CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DB8BB329209C64007D90CD /* GoogleService-Info.plist */; };
@@ -131,6 +132,7 @@
 		18E05EF62932DA9D00043C41 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF52932DA9D00043C41 /* ReviewViewController.swift */; };
 		18E05EF82932DB3E00043C41 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */; };
 		18E05EFB2932E97100043C41 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05EFA2932E97100043C41 /* ChatView.swift */; };
+		18F17F95293CED3D0002C938 /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F17F94293CED3D0002C938 /* Transition+Extension.swift */; };
 		18F8760A2939790200EE9919 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F876092939790200EE9919 /* MoreMenuView.swift */; };
 		18FFA66B2932981400D785CA /* QueueResultTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */; };
 		18FFA66D2932982400D785CA /* QueueResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */; };
@@ -222,6 +224,7 @@
 		18A853FD2936CC0D000D64EA /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
 		18AB406E293820AD007BB0FA /* PersonChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonChatTableViewCell.swift; sourceTree = "<group>"; };
 		18AB407029382551007BB0FA /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		18D36DC3293D824800B607C9 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		18DB8BAE29209A7D007D90CD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		18DB8BB329209C64007D90CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18DB8BB52920A05E007D90CD /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 		18E05EF52932DA9D00043C41 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		18E05EF72932DB3E00043C41 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		18E05EFA2932E97100043C41 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		18F17F94293CED3D0002C938 /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
 		18F876092939790200EE9919 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
 		18FFA66A2932981400D785CA /* QueueResultTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		18FFA66C2932982400D785CA /* QueueResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -526,6 +530,7 @@
 				18380760291FC0EF001755D5 /* UIButton+Extension.swift */,
 				18AB407029382551007BB0FA /* UITextView+Extension.swift */,
 				18836D4B29392DBE00F8889B /* ReusableProtocol.swift */,
+				18F17F94293CED3D0002C938 /* Transition+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				18DB8BB72920A07A007D90CD /* APIService.swift */,
 				18DB8BBE29222DEE007D90CD /* APICodeModel.swift */,
 				186AD22A293A414F00011980 /* APIResponseCodeModel.swift */,
+				18D36DC3293D824800B607C9 /* SocketIOManager.swift */,
 				18DB8BF82923CBB9007D90CD /* NetworkMonitor.swift */,
 			);
 			path = Network;
@@ -865,6 +871,7 @@
 				186AD22B293A414F00011980 /* APIResponseCodeModel.swift in Sources */,
 				18FFA66D2932982400D785CA /* QueueResultTableViewCell.swift in Sources */,
 				1838075F291FC08E001755D5 /* CustomGenderButton.swift in Sources */,
+				18F17F95293CED3D0002C938 /* Transition+Extension.swift in Sources */,
 				1870FB2B291A4D4C00BCC159 /* AuthenticationView.swift in Sources */,
 				18DB8BDA29236502007D90CD /* UserInfoTableViewCell.swift in Sources */,
 				1870FB39291A53BE00BCC159 /* CustomSignLabel.swift in Sources */,
@@ -888,6 +895,7 @@
 				1870FB3C291A54DD00BCC159 /* AuthenticationViewController.swift in Sources */,
 				18380756291FBC16001755D5 /* GenderCheckView.swift in Sources */,
 				18380750291FB73B001755D5 /* EmailCheckView.swift in Sources */,
+				18D36DC4293D824800B607C9 /* SocketIOManager.swift in Sources */,
 				1870FAD62918B5A000BCC159 /* SceneDelegate.swift in Sources */,
 				18E05EF22932D93F00043C41 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				18380761291FC0EF001755D5 /* UIButton+Extension.swift in Sources */,

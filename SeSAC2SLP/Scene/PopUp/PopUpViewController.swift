@@ -30,6 +30,8 @@ class PopUpViewController: BaseViewController {
                                         """
             mainView.contentLabel.numberOfLines = 2
         case 1:
+            mainView.confirmButton.addTarget(self, action: #selector(studyAccept), for: .touchUpInside)
+            
             mainView.titleLabel.text = "스터디를 수락할까요?"
             mainView.contentLabel.text = "요청을 수락하면 채팅창에서 대화를 나눌 수 있어요"
         case 2:
@@ -43,18 +45,18 @@ class PopUpViewController: BaseViewController {
         mainView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
     
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         self.dismiss(animated: true)
     }
     
-    @objc func studyRequest() {
+    @objc private func studyRequest() {
         networkMoniter()
         APIService().studyRequest(otherUid: otherUid) { code in
             switch code {
             case 200:
                 self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
             case 201:
-                print("나한테 요청함 요청 수락 api 추가해서 연결할것")
+                self.studyAccept()
             case 202:
                 self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
             case 401:
@@ -83,7 +85,59 @@ class PopUpViewController: BaseViewController {
         }
     }
     
-    @objc func withDrawButtonTapped() {
+    @objc private func studyAccept() {
+        networkMoniter()
+        APIService().studyAccept(otherUid: otherUid) { code in
+            switch code {
+            case 200:
+                let vc = ChatViewController()
+                vc.otherUid = self.otherUid
+                User.matchedUid = self.otherUid
+                self.transition(vc, transitionStyle: .push)
+            case 201:
+                self.mainView.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다", duration: 1.5, position: .center)
+            case 202:
+                self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
+            case 203:
+                self.mainView.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!", duration: 1.5, position: .center)
+                self.setQueueState()
+            case 401:
+                DispatchQueue.main.sync {
+                    AuthenticationManager.shared.updateIdToken { result in
+                        switch result {
+                        case true:
+                            APIService().studyAccept(otherUid: self.otherUid) { code in
+                                switch code {
+                                case 200:
+                                    let vc = ChatViewController()
+                                    vc.otherUid = self.otherUid
+                                    User.matchedUid = self.otherUid
+                                    self.transition(vc, transitionStyle: .push)
+                                case 201:
+                                    self.mainView.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다", duration: 1.5, position: .center)
+                                case 202:
+                                    self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
+                                case 203:
+                                    self.mainView.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!", duration: 1.5, position: .center)
+                                    self.setQueueState()
+                                default:
+                                    print(code)
+                                }
+                            }
+                        case false:
+                            self.mainView.makeToast("Error")
+                        }
+                    }
+                   
+                }
+               
+            default:
+                break
+            }
+        }
+    }
+    
+    @objc private func withDrawButtonTapped() {
         networkMoniter()
         APIService().withDraw { code in
             switch code {
@@ -128,4 +182,49 @@ class PopUpViewController: BaseViewController {
         }
     }
 
+    
+    private func setQueueState() {
+        let vc = HomeViewController()
+        APIService().requestQueueState { code in
+            switch code {
+            case 200:
+                print("requestQueueState1:",code)
+                DispatchQueue.main.async {
+                    vc.setQueueButtonImage()
+                }
+            case 201:
+                DispatchQueue.main.async {
+                    vc.setQueueButtonImage()
+                }
+            case 401:
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().requestQueueState { code in
+                            switch code {
+                            case 200:
+                                DispatchQueue.main.async {
+                                    vc.setQueueButtonImage()
+                                }
+                            case 201:
+                                DispatchQueue.main.async {
+                                    vc.setQueueButtonImage()
+                                }
+                            default:
+                                print("requestQueueStateError1",code)
+                            }
+                        }
+                    case false:
+                        self.mainView.makeToast("Error")
+                    }
+                }
+               
+                
+            default:
+                print("requestQueueStateError1",code)
+            }
+           
+        }
+    }
+    
 }
