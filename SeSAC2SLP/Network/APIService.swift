@@ -48,6 +48,7 @@ class APIService {
                 User.ageMax = data.ageMax
                 User.gender = data.gender
                 User.searchable = data.searchable
+                User.uid = data.uid
                 
            
                 print("loginSuccess:",statusCode)
@@ -164,7 +165,7 @@ class APIService {
                 completionHandler(data, statusCode)
                 
             case .failure(let error):
-                print("requestQueueError", "", statusCode)
+                print("requestQueueError", statusCode)
                 completionHandler(nil, statusCode)
             }
             
@@ -234,6 +235,50 @@ class APIService {
             print("rate:",code, api.path, api.headers,api.parameters)
             completionHandler(code)
 
+        }
+    }
+    
+    func sendChat(message: String, completionHandler: @escaping (Chat?, Int?) -> Void) {
+
+        let api = SeSACAPI.chat(chat: message)
+        
+        AF.request(api.path, method: .post, parameters: api.parameters, headers: api.headers).responseDecodable(of: Chat.self) { response in
+            print("sendChat:",response)
+            guard let statusCode = response.response?.statusCode else { return }
+            switch response.result {
+            case .success(let data):
+          
+                print("sendChat",data, statusCode)
+                completionHandler(data, statusCode)
+                
+            case .failure(_):
+                print("sendChatError", statusCode)
+                completionHandler(nil, statusCode)
+            }
+            
+          
+        }
+    }
+    
+    func loadChat(date: String, completionHandler: @escaping (LoadChat?, Int?) -> Void) {
+
+        let api = SeSACAPI.loadChat(lastchatDate: date)
+        
+        AF.request(api.path, method: .get, parameters: api.parameters, headers: api.headers).responseDecodable(of: LoadChat.self) { response in
+            print("loadChat:",response)
+            guard let statusCode = response.response?.statusCode else { return }
+            switch response.result {
+            case .success(let data):
+          
+                print("loadChat",data, statusCode)
+                completionHandler(data, statusCode)
+                
+            case .failure(_):
+                print("loadChat", "Error", statusCode)
+                completionHandler(nil, statusCode)
+            }
+            
+          
         }
     }
     

@@ -80,3 +80,14 @@ struct FromQueueDB: Codable {
 //        self.background = try container.decode(Int.self, forKey: .background)
 //    }
 }
+
+struct Chat: Codable {
+    let to: String
+    let from: String
+    let chat: String
+    let createdAt: String
+}
+
+struct LoadChat: Codable {
+    let payload: [Chat]
+}

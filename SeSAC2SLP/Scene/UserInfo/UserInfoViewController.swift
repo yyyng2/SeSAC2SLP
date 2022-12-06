@@ -84,7 +84,8 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            transition(UserDetailViewController(), transitionStyle: .push)
+            let vc = UserDetailViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             return
         }

@@ -152,7 +152,9 @@ class UserDetailViewController: BaseViewController {
     @objc func withDrawButtonTapped() {
         let vc = PopUpViewController()
         vc.status = 2
-        transition(vc, transitionStyle: .popUp)
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
     }
     
     
@@ -182,7 +184,6 @@ class UserDetailViewController: BaseViewController {
             print("mypageSave",code)
             switch code {
             case 200:
-                let vc = HomeViewController()
                 self.navigationController?.popViewController(animated: true)
             case 401:
                 AuthenticationManager.shared.updateIdToken { result in
@@ -192,7 +193,6 @@ class UserDetailViewController: BaseViewController {
                             print(code)
                             switch code {
                             case 200:
-                                let vc = HomeViewController()
                                 self.navigationController?.popViewController(animated: true)
                             default:
                                 self.mainView.makeToast("정보 저장에 실패했습니다")

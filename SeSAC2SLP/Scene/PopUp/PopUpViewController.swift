@@ -55,29 +55,32 @@ class PopUpViewController: BaseViewController {
             switch code {
             case 200:
                 self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.dismiss(animated: true)
+                }
             case 201:
                 self.studyAccept()
             case 202:
                 self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken { result in
-                        switch result {
-                        case true:
-                            APIService().studyRequest(otherUid: self.otherUid) { code in
-                                switch code {
-                                case 200:
-                                    self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
-                                default:
-                                    print(code)
-                                }
+        
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().studyRequest(otherUid: self.otherUid) { code in
+                            switch code {
+                            case 200:
+                                self.mainView.makeToast("스터디 요청을 보냈습니다", duration: 1.5, position: .center)
+                            default:
+                                print(code)
                             }
-                        case false:
-                            self.mainView.makeToast("Error")
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
-                   
                 }
+                
+                
                
             default:
                 break
@@ -93,7 +96,7 @@ class PopUpViewController: BaseViewController {
                 let vc = ChatViewController()
                 vc.otherUid = self.otherUid
                 User.matchedUid = self.otherUid
-                self.transition(vc, transitionStyle: .push)
+                self.navigationController?.pushViewController(vc, animated: true)
             case 201:
                 self.mainView.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다", duration: 1.5, position: .center)
             case 202:
@@ -102,34 +105,34 @@ class PopUpViewController: BaseViewController {
                 self.mainView.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!", duration: 1.5, position: .center)
                 self.setQueueState()
             case 401:
-                DispatchQueue.main.sync {
-                    AuthenticationManager.shared.updateIdToken { result in
-                        switch result {
-                        case true:
-                            APIService().studyAccept(otherUid: self.otherUid) { code in
-                                switch code {
-                                case 200:
-                                    let vc = ChatViewController()
-                                    vc.otherUid = self.otherUid
-                                    User.matchedUid = self.otherUid
-                                    self.transition(vc, transitionStyle: .push)
-                                case 201:
-                                    self.mainView.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다", duration: 1.5, position: .center)
-                                case 202:
-                                    self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
-                                case 203:
-                                    self.mainView.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!", duration: 1.5, position: .center)
-                                    self.setQueueState()
-                                default:
-                                    print(code)
-                                }
+             
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().studyAccept(otherUid: self.otherUid) { code in
+                            switch code {
+                            case 200:
+                                let vc = ChatViewController()
+                                vc.otherUid = self.otherUid
+                                User.matchedUid = self.otherUid
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            case 201:
+                                self.mainView.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다", duration: 1.5, position: .center)
+                            case 202:
+                                self.mainView.makeToast("상대방이 스터디 찾기를 그만두었습니다", duration: 1.5, position: .center)
+                            case 203:
+                                self.mainView.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!", duration: 1.5, position: .center)
+                                self.setQueueState()
+                            default:
+                                print(code)
                             }
-                        case false:
-                            self.mainView.makeToast("Error")
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
-                   
                 }
+                
+                
                
             default:
                 break

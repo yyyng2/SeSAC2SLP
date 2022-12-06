@@ -13,6 +13,7 @@ import FirebaseAuth
 
 
 enum SeSACAPI {
+    case baseURL
     case signUp(phoneNumber: String, FCMtoken: String, nick: String, birth: String, email: String, gender: Int)
     case login
     case withDraw
@@ -26,6 +27,8 @@ enum SeSACAPI {
     case studyAccept(otheruid: String)
     case dodge(otheruid: String)
     case rate(otheruid: String, reputation: [Int], comment: String)
+    case chat(chat: String)
+    case loadChat(lastchatDate: String)
 }
 
 extension SeSACAPI {
@@ -35,6 +38,8 @@ extension SeSACAPI {
                    
     var path: URL {
         switch self {
+        case .baseURL:
+            return URL(string: baseURL)!
         case .signUp:
             return URL(string: baseURL+"/v1/user")!
         case .login:
@@ -61,6 +66,10 @@ extension SeSACAPI {
             return URL(string: baseURL+"/v1/queue/dodge")!
         case .rate:
             return URL(string: baseURL+"/v1/queue/rate/\(User.matchedUid)")!
+        case .chat:
+            return URL(string: baseURL+"/v1/chat/\(User.matchedUid)")!
+        case .loadChat:
+            return URL(string: baseURL+"/v1/chat/\(User.matchedUid)")!
         }
     }
     
@@ -119,6 +128,14 @@ extension SeSACAPI {
                 "otheruid" : otheruid,
                 "reputation" : reputation,
                 "comment" : comment
+            ]
+        case .chat(let chat):
+            return [
+                "chat" : chat
+            ]
+        case .loadChat(let lastchatDate):
+            return [
+                "lastchatDate" : lastchatDate
             ]
         default:
             return ["":""]

@@ -182,7 +182,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             cell.sesacReviewButton.isHidden = false
             cell.sesacReviewButton.isEnabled = true
             cell.sesacReviewButton.tag = indexPath.section
-            cell.sesacReviewButton.addTarget(self, action: #selector(transitionToRevies(sender:)), for: .touchUpInside)
+            cell.sesacReviewButton.addTarget(self, action: #selector(transitionToReviews(sender:)), for: .touchUpInside)
             cell.sesacReviewTextView.text = fromQueueDB[indexPath.section].reviews[0]
             cell.sesacReviewTextView.textColor = Constants.BaseColor.black
         }
@@ -213,14 +213,16 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
         vc.status = 0
         vc.otherUid = fromQueueDB[sender.tag].uid
         
-        transition(vc, transitionStyle: .popUp)
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
         
     }
     
-    @objc private func transitionToRevies(sender: UIButton) {
+    @objc private func transitionToReviews(sender: UIButton) {
         let vc = ReviewViewController()
         vc.reviews = fromQueueDB[sender.tag].reviews
-        transition(vc, transitionStyle: .push)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func hideSection(sender: UIButton) {

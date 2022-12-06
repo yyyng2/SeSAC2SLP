@@ -215,7 +215,7 @@ class HomeViewController: BaseViewController {
             let vc = TabManViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = TabManViewController()
+            let vc = ChatViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = SearchQueueViewController()

@@ -167,7 +167,10 @@ class SearchQueueViewController: BaseViewController {
     @objc func searchButtonTapped() {
         var list = [""]
         print(viewModel.userStudyList.value)
-        if viewModel.userStudyList.value.count == 0 {
+        if viewModel.userStudyList.value == [""] {
+            list = ["anything"]
+            User.studylist = []
+        } else if viewModel.userStudyList.value == [] {
             list = ["anything"]
             User.studylist = []
         } else {
@@ -177,10 +180,11 @@ class SearchQueueViewController: BaseViewController {
         networkMoniter()
         APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: list) { code in
             print(self.studylistForAPI)
+            let vc = TabManViewController()
             switch code {
             case 200:
                 User.matched = 0
-                self.transition(TabManViewController(), transitionStyle: .push)
+                self.navigationController?.pushViewController(vc, animated: true)
             case 201:
                 self.mainView.makeToast("신고가 누적되어 이용하실 수 없습니다", duration: 1.5, position: .center)
             case 203:
@@ -198,7 +202,7 @@ class SearchQueueViewController: BaseViewController {
                             APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
                                 if code == 200 {
                                     User.matched = 0
-                                    self.transition(TabManViewController(), transitionStyle: .push)
+                                    self.navigationController?.pushViewController(vc, animated: true)
                                 } else {
                                     print("requestQueueError",code)
                                 }

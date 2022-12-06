@@ -8,10 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
-    let vc1 = HomeViewController()
-//    let vc2 = ScheduleViewController()
-//    let vc3 = DdayViewController()
-    let vc4 = UserInfoViewController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +26,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = Constants.brandColor.green
         self.tabBar.unselectedItemTintColor = Constants.grayScale.gray6
         
+        let vc1 = HomeViewController()
+    //    let vc2 = ScheduleViewController()
+    //    let vc3 = DdayViewController()
+        let vc4 = UserInfoViewController()
+        
         configureTab(vc: vc1, title: "홈", imageName: "ic-4", selectedImageName: "ic")
 //        configureTab(vc: vc2, title: "Schedule", image: themeType().tabBarScheduleItem, selectedImage: themeType().tabBarScheduleItemSelected)
 //        configureTab(vc: vc3, title: "D-day", image: themeType().tabBarDdayItem, selectedImage: themeType().tabBarDdayItemSelected)
@@ -44,7 +46,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let nav4 = configureNav(vc: vc4)
         
 //        setViewControllers([nav1, nav2, nav3, nav4], animated: true)
-        setViewControllers([nav1, nav4], animated: true)
+        setViewControllers([nav1, nav4], animated: false)
     }
     
     func configureTab(vc: UIViewController, title: String, imageName: String, selectedImageName: String){
