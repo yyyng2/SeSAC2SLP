@@ -194,25 +194,25 @@ class SearchQueueViewController: BaseViewController {
             case 205:
                 self.mainView.makeToast("스터디 취소 패널티로, 3분동안 이용하실 수 없습니다", duration: 1.5, position: .center)
             case 401:
-                DispatchQueue.main.sync {
-                    self.networkMoniter()
-                    AuthenticationManager.shared.updateIdToken { result in
-                        switch result {
-                        case true:
-                            APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
-                                if code == 200 {
-                                    User.matched = 0
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                } else {
-                                    print("requestQueueError",code)
-                                }
+                
+                self.networkMoniter()
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().requestQueue(lat: User.currentLat, long: User.currentLong, studylist: User.studylist) { code in
+                            if code == 200 {
+                                User.matched = 0
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            } else {
+                                print("requestQueueError",code)
                             }
-                        case false:
-                            self.mainView.makeToast("Error")
                         }
+                    case false:
+                        self.mainView.makeToast("Error")
                     }
-                    
                 }
+                    
+                
             default:
                 break
             }

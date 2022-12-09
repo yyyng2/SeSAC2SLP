@@ -29,9 +29,9 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
-        
+        setNotification()
         setLoadChat()
-
+        setMoreMenuButton()
         configure()
     }
     
@@ -66,12 +66,15 @@ class ChatViewController: UIViewController {
         mainView.tableView.register(FirstChatTableViewCell.self, forCellReuseIdentifier: FirstChatTableViewCell.identifier)
     }
     
+    func setMoreMenuButton() {
+        mainView.moreMenuView.cancelButton.addTarget(self, action: #selector(dodgeButtonTapped), for: .touchUpInside)
+    }
+    
     func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage), name: NSNotification.Name("getMessage"), object: nil)
     }
     
     func setLoadChat() {
-//        SocketIOManager.shared.establishConnection()
         APIService().loadChat(date: "2022-12-05T10:09:37.688Z") { chat, code in
             guard let chatList = chat else { return }
      
@@ -94,8 +97,16 @@ class ChatViewController: UIViewController {
        
     }
     
+    @objc func dodgeButtonTapped() {
+        let vc = PopUpViewController()
+        vc.status = 3
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
+    }
+    
     @objc func getMessage(notification: NSNotification) {
-            
+        print(#function)
         let chat = notification.userInfo!["chat"] as! String
         let createdAt = notification.userInfo!["createdAt"] as! String
         let from = notification.userInfo!["from"] as! String

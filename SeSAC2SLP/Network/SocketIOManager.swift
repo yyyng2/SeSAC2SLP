@@ -19,8 +19,8 @@ class SocketIOManager {
     var socket: SocketIOClient!
     
     private init() {
-        
-        manager = SocketManager(socketURL: URL(string: SeSACAPI.baseURL.baseURL)!, config: [
+      
+        manager = SocketManager(socketURL: SeSACAPI.baseURL.path, config: [
             .forceWebsockets(true)
         ])
         
@@ -38,7 +38,7 @@ class SocketIOManager {
         //On event
         socket.on("chat") { dataArray, ack in
             print("SESAC RECEIVED", dataArray, ack)
-            
+            print(dataArray)
             let data = dataArray[0] as! NSDictionary
             let chat = data["chat"] as! String
             let createdAt = data["createdAt"] as! String

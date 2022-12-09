@@ -39,6 +39,11 @@ class PopUpViewController: BaseViewController {
             
             mainView.titleLabel.text = "정말 탈퇴하시겠습니까?"
             mainView.contentLabel.text = "탈퇴하시면 새싹 스터디를 이용할 수 없어요ㅠ"
+        case 3:
+            mainView.confirmButton.addTarget(self, action: #selector(withDrawButtonTapped), for: .touchUpInside)
+            
+            mainView.titleLabel.text = "스터디를 취소하겠습니까?"
+            mainView.contentLabel.text = "스터디를 취소하시면 패널티가 부과됩니다"
         default:
             break
         }
@@ -185,6 +190,39 @@ class PopUpViewController: BaseViewController {
         }
     }
 
+    @objc private func dodgeButtonTapped() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        APIService().dodge(otherUid: User.matchedUid) { code in
+            switch code {
+            case 200:
+                let homeVC = HomeViewController()
+                User.matched = 2
+                let rootViewController = TabBarController()
+                sceneDelegate?.window?.rootViewController = rootViewController
+            case 401:
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().dodge(otherUid: User.matchedUid) { code in
+                            if code == 200 {
+                                let homeVC = HomeViewController()
+                                User.matched = 2
+                                let rootViewController = TabBarController()
+                                sceneDelegate?.window?.rootViewController = rootViewController
+                            } else {
+                                print("requestQueueError",code)
+                            }
+                        }
+                    case false:
+                        self.mainView.makeToast("Error")
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
     
     private func setQueueState() {
         let vc = HomeViewController()
