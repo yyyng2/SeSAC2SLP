@@ -22,7 +22,18 @@ class UserInfoViewController: BaseViewController {
         self.tabBarController?.tabBar.isTranslucent = false
         networkMoniter()
         APIService().login { code in
-            APIService().reactLoginAPI(value: code)
+            if code == 401 {
+                AuthenticationManager.shared.updateIdToken { result in
+                    switch result {
+                    case true:
+                        APIService().login { value in
+                            
+                        }
+                    case false:
+                        print("error")
+                    }
+                }
+            }
         }
     }
     
@@ -32,9 +43,6 @@ class UserInfoViewController: BaseViewController {
         self.mainView.tableView.delegate = self
         self.mainView.tableView.dataSource = self
         
-        APIService().login { code in
-            APIService().reactLoginAPI(value: code)
-        }
     }
     
 }
