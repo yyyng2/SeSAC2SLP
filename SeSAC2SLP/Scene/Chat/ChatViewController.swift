@@ -78,12 +78,16 @@ class ChatViewController: UIViewController {
         APIService().loadChat(date: "2022-12-05T10:09:37.688Z") { chat, code in
             guard let chatList = chat else { return }
      
-            print(code)
+            print("chat",code)
             print(chatList.payload)
             self.chatList = chatList.payload
             print("print",chatList.payload.count, self.chatList.count)
             self.mainView.tableView.reloadData()
-            self.mainView.tableView.scrollToRow(at: IndexPath(row: self.chatList.count - 1, section: 1), at: .bottom, animated: false)
+            if self.chatList.count == 0 {
+                
+            } else {
+                self.mainView.tableView.scrollToRow(at: IndexPath(row: self.chatList.count - 1, section: 1), at: .bottom, animated: false)
+            }
             
             SocketIOManager.shared.establishConnection()
         }
